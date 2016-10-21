@@ -1,5 +1,10 @@
 package com.nixsolutions;
 
+/**
+ * Represents base class for writable objects.
+ * 
+ * @author plakhotnichenko
+ */
 public class Pen extends Writable {
 	
 	public Pen() {

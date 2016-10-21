@@ -3,20 +3,28 @@ package com.nixsolutions;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Entry point 
+ * 
+ * @author plakhotnichenko
+ */
 public class Main {
 
-	private static StringBuilder tmp;
+	/**
+	 * Instance of StringBuilder containing alphanumeric characters	
+	 */
+	private static StringBuilder chars;
 	
 	static {
-	    tmp = new StringBuilder();
+		chars = new StringBuilder();
 	    for (char ch = '0'; ch <= '9'; ++ch)
-	        tmp.append(ch);
+	    	chars.append(ch);
 	      for (char ch = 'a'; ch <= 'z'; ++ch)
-	        tmp.append(ch);
+	    	  chars.append(ch);
 	}
 	
 	public static void main(String[] args) {
-		Writable[] writers = generateWritableArray();
+		Writable[] writers = generateWritableArray(10);
 		StringBuilder sb = new StringBuilder();
 		Random r = new Random();
 		
@@ -25,7 +33,7 @@ public class Main {
 				int symCount = r.nextInt(2) + 3;
 				
 				for (int k = 0; k < symCount; k++) {					
-					writers[j].write(sb, tmp.charAt(r.nextInt(tmp.length())));
+					writers[j].write(sb, chars.charAt(r.nextInt(chars.length())));
 				}
 				
 				writers[j].erase(sb);
@@ -39,8 +47,16 @@ public class Main {
 		}
 	}
 
-	public static Writable[] generateWritableArray() {		
-		Writable[] outArr = new Writable[10];
+	/**
+	 * Generates array of random Writable objects
+	 * 
+	 * @param   count		count of instances to be generated	
+	 *
+	 * @return  Writable[]  an array containing instances of {@link Pen}, {@link Pencil} 
+	 * 	  					and {@link Marker} objects 
+	 */
+	public static Writable[] generateWritableArray(int count) {		
+		Writable[] outArr = new Writable[count];
 		
 		Random r = new Random();
 		

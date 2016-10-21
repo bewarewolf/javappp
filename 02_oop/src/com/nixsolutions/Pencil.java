@@ -1,5 +1,10 @@
 package com.nixsolutions;
 
+/**
+ * Represents Pencil object.
+ * 
+ * @author plakhotnichenko
+ */
 public class Pencil extends Writable {
 
 	private double extraConsumption;

@@ -1,5 +1,10 @@
 package com.nixsolutions;
 
+/**
+ * Represents Marker object
+ * 
+ * @author plakhotnichenko
+ */
 public class Marker extends Writable{
 
 	public Marker() {
