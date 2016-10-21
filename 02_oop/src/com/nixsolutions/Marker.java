@@ -7,6 +7,9 @@ package com.nixsolutions;
  */
 public class Marker extends Writable{
 
+	/**
+	 * Sets the ink consumption	
+	 */
 	public Marker() {
 		consumption = 1;
 	}

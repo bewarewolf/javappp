@@ -7,8 +7,14 @@ package com.nixsolutions;
  */
 public class Pencil extends Writable {
 
+	/**
+	 * Ink consumption of pencil sharpening
+	 */
 	private double extraConsumption;
 	
+	/**
+	 * Sets the ink consumption	
+	 */
 	public Pencil() {
 		consumption = 0.95f;
 		extraConsumption = 3;

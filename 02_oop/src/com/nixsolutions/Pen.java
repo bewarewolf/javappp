@@ -7,6 +7,9 @@ package com.nixsolutions;
  */
 public class Pen extends Writable {
 	
+	/**
+	 * Sets the ink consumption	
+	 */
 	public Pen() {
 		consumption = 1.15f;
 	}
