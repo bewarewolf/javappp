@@ -29,27 +29,15 @@ public class StringOperations {
 	
 	public static void deduplicateAndSort(String str) {
 		
-		char[] strArr = str.toCharArray();
-		StringBuilder sb = new StringBuilder();	
+		StringBuilder sb = new StringBuilder(str);	
 		
-		for (char c : strArr) {
-			if (!Character.isLetterOrDigit(c)) {
-				continue;
-			}
-			
-			int i = 0;			
-			boolean contains = false;
-			
-			do {				
-				if (sb.length() > 0 && (
-						sb.charAt(i) == Character.toLowerCase(c) || sb.charAt(i) == Character.toUpperCase(c))) {
-					contains = true;
-					continue;
+		for (int i = 0; i < sb.length(); i++) {
+			for (int j = i + 1; j < sb.length(); ) {
+				if (Character.toLowerCase(sb.charAt(i)) == Character.toLowerCase(sb.charAt(j))) {
+					sb.deleteCharAt(j);
+				} else {
+					 j++;
 				}
-			} while (++i < sb.length());
-			
-			if (!contains) {
-				sb.append(c);
 			}
 		}
 		
@@ -63,6 +51,6 @@ public class StringOperations {
 	public static void main(String[] args) {
 		reverse("You know nothing Jon Snow");
 		remove("You know nothing Jon Snow", "o", 3, true);
-		deduplicateAndSort("You kKnow nothing Jon Snowy");
+		deduplicateAndSort("FloccinaucinihiliPIlifiCation");
 	}
 }
