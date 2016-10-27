@@ -17,10 +17,18 @@ public class StringOperations {
 	
 	public static void remove(String strToModify, String strToRemove, int cnt, boolean fromBeginning) {
 		
+		if (strToModify == null || strToRemove == null) {
+			return;
+		}
+		
 		StringBuilder sb = new StringBuilder(strToModify);
 		
 		for (int i = 0; i < cnt; i++) {
 			int index = fromBeginning ? sb.indexOf(strToRemove) : sb.lastIndexOf(strToRemove);
+			if (index == -1) {
+				return;
+			}
+			
 			sb.deleteCharAt(index);
 		}
 		
