@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Profile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <filters>
+    <SerializableFilter>
+      <Name>Approver (Test)</Name>
+      <Value>rwt34rt</Value>
+    </SerializableFilter>
+  </filters>
+  <ExtractFrom>Test Plan</ExtractFrom>
+  <QCPath>Subject\JPharm 10.2\Functional</QCPath>
+  <SaveTo>D:\qc_out\swer4.xls</SaveTo>
+  <Exporting>
+    <Fields>
+      <ColumName>TS_RESPONSIBLE</ColumName>
+      <DisplayName>Designer (Test)</DisplayName>
+      <Type>TC</Type>
+    </Fields>
+    <Fields>
+      <ColumName>TS_EXEC_STATUS</ColumName>
+      <DisplayName>Execution Status (Test)</DisplayName>
+      <Type>TC</Type>
+    </Fields>
+    <Fields>
+      <ColumName>TS_NAME</ColumName>
+      <DisplayName>Test Name (Test)</DisplayName>
+      <Type>TC</Type>
+    </Fields>
+  </Exporting>
+  <Filters>
+    <SerializableFilter>
+      <Name>Approver (Test)</Name>
+      <Value>rwt34rt</Value>
+    </SerializableFilter>
+  </Filters>
+</Profile>
