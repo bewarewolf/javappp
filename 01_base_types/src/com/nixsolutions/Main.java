@@ -19,12 +19,15 @@ public class Main {
 			int[] arr = generateArray(arraySize, -100, 100);
 			
 			timeStart = System.currentTimeMillis();			
-			Arrays.sort(arr);			
+			int[] sortedArr = Arrays.sort(arr);			
 			timeArr[i][0] = System.currentTimeMillis() - timeStart;
 			
+			
 			timeStart = System.currentTimeMillis();			
-			java.util.Arrays.sort(arr);			
+			java.util.Arrays.sort(arr);					
 			timeArr[i][1] = System.currentTimeMillis() - timeStart;
+			
+			System.out.println("Arrays are equal: " + java.util.Arrays.equals(sortedArr, arr));
 		}
 		
 		for (int i = 0; i < timeArr.length; i++) {			
@@ -66,7 +69,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		task1(20, 10);
+		task1(20, 10000);
 		task2();
 	}
 

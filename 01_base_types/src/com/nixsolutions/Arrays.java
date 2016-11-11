@@ -2,22 +2,19 @@ package com.nixsolutions;
 
 public class Arrays {
 
-	public static void sort(int[] inArr) {		
+	public static int[] sort(int[] inArr) {		
 		int[] workArr = java.util.Arrays.copyOf(inArr, inArr.length);
-		
-		boolean flag = true;   
-		
-	    while (flag)
-	    {	    	
-	    	flag= false;   
-            for(int j=0; j < workArr.length - 1; j++) {      
-            	if (workArr[j] > workArr[j + 1]) {            		
-            		int temp = workArr[j];               
-                    workArr[j] = workArr[j + 1];
-                    workArr[j + 1] = temp;
-                    flag = true;            
-                } 
-            } 
+		    	
+    	for (int i = 0; i < workArr.length - 1; i++) {	    		 
+            for (int j = 1; j < workArr.length - i; j++) {
+                if (workArr[j - 1] > workArr[j]){
+                    int temp = workArr[j - 1];
+                    workArr[j - 1] = workArr[j];
+                    workArr[j] = temp;
+                }
+            }
 	    } 
+    	
+    	return workArr;
 	}
 }

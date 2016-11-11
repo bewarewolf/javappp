@@ -3,7 +3,7 @@ package com.nixsolutions;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Calendar;
@@ -20,12 +20,14 @@ public class Main {
 		for (int i = Calendar.JANUARY; i <= Calendar.DECEMBER; i++) {
 			
 			c.set(Calendar.MONTH, i);
+			c.set(Calendar.DAY_OF_MONTH, 1);
 			System.out.println("Month: " + c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + 
 					"; max days: " + c.getActualMaximum(Calendar.DAY_OF_MONTH));
 		}
 	}
 	
 	public static void task2(int year, int month) {
+		
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.YEAR, year);
 		c.set(Calendar.MONTH, month);
@@ -80,15 +82,28 @@ public class Main {
 	public static void task5() {
 		String[] locales = new String[] { "en-CA", "de-DE", "vi-VN", "en-PK" };
 		
-		LocalDate date = LocalDate.now();
+		System.out.println("Java 8: ");
+		LocalDateTime date = LocalDateTime.now();
 		
 		for (int i = 0; i < locales.length; i++) {
 			DateTimeFormatter format = 
-					DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
+					DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.SHORT)
 					.withLocale(Locale.forLanguageTag(locales[i]));
 			
 			System.out.println(date.format(format));
 		}		
+		
+		System.out.println("Java 7: ");
+		
+		for (int i = 0; i < locales.length; i++) {
+			Calendar c = Calendar.getInstance(Locale.forLanguageTag(locales[i]));
+			
+			DateFormat formatter = DateFormat.getDateTimeInstance(
+					DateFormat.FULL, DateFormat.SHORT, Locale.forLanguageTag(locales[i]));
+			String formattedDateTime = formatter.format(c.getTime());
+			
+			System.out.println(formattedDateTime);
+		}	
 	}
 	
 	public static void main(String[] args) throws ParseException {
@@ -97,9 +112,9 @@ public class Main {
 		
 		task2(2016, Calendar.OCTOBER);
 	
-		task3("13-May-16");
+		task3("31-Oct-16");
 		
-		task4("27-Sep-16");
+		task4("31-Oct-16");
 		
 		task5();
 	}
