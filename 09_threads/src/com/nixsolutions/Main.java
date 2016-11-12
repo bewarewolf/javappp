@@ -53,6 +53,8 @@ public class Main {
       }
       
       System.out.println(builder.toString());
+      
+      executor.shutdown();
     } catch (InterruptedException | ExecutionException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

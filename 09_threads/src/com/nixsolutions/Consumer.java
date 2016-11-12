@@ -25,6 +25,6 @@ public class Consumer implements Runnable {
       }
     }
     
-    System.out.println("Consumer finished. " + comp);
+    System.out.println("Consumer " + name + " finished. " + comp);
   }
 }
