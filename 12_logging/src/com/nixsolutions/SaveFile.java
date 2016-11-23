@@ -11,7 +11,7 @@ import exception.Save;
 
 public class SaveFile implements Save {
 
-  private static final Logger LOG = LogManager.getLogger("com.nixsolutions");
+  private static final Logger LOG = LogManager.getLogger(SaveFile.class);
   
   @Override
   public void save(String data, String fileName) {

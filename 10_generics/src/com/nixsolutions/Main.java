@@ -22,10 +22,10 @@ public class Main {
     System.out.println("Initial float map: " + floatMap);
     System.out.println("Sum: " + sum(floatMap));
     
-    Converter.FloatDoubleConverter fdConv = new Converter.FloatDoubleConverter();
+    FloatDoubleConverter fdConv = new FloatDoubleConverter();
     System.out.println("Float to Double: " + fdConv.get(123.45f));
     
-    Converter.IntArrStringConverter isConv = new Converter.IntArrStringConverter();
+    IntArrStringConverter isConv = new IntArrStringConverter();
     System.out.println("Integer[] to String: " + isConv.get(new Integer[] { 1, 2, 3}));
   }
 
@@ -45,5 +45,4 @@ public class Main {
     
     return outMap;
   }  
-  
 }
