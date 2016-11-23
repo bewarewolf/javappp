@@ -83,6 +83,7 @@ public class StringBuilderTest {
     
     // when
     sb.charAt(5);
+    sb.charAt(-3);
   }
   
   @Test
@@ -104,5 +105,24 @@ public class StringBuilderTest {
     
     // then
     assertEquals("some abcstring", sb.toString());
+  }
+  
+  @Test
+  public void shouldReturnLastIndexOfSubstring() {
+    // given
+    sb.append("appending string");
+    
+    // then
+    
+    assertEquals(13, sb.lastIndexOf("in"));
+  }
+  
+  @Test
+  public void shouldReverseString() {
+    // given
+    sb.append("abcd");
+    
+    // then
+    assertEquals("dcba", sb.reverse().toString());
   }
 }
