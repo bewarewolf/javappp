@@ -13,50 +13,43 @@ public class StringBuilderTest {
   @Rule
   public ExpectedException ex = ExpectedException.none(); 
   
-  @Before
-  public void setup() {
-    sb = new StringBuilder();
-  }
-  
   @Test
   public void shouldAppendString() {
     // given
-    String str = "new string";
+    sb = new StringBuilder("new");
     
     // when
-    sb.append(str);
+    sb.append(" string");
     
     // then
-    assertTrue(sb.toString().contains(str));
+    assertEquals("new string", sb.toString());
   }
   
   @Test
   public void shouldDeleteSubstring() {
     // given
-    sb.append("string");
+    sb = new StringBuilder("string");
     
     // when
     sb.delete(3, 5);
     
     // then
-    assertNotEquals("in", sb.toString());
+    assertEquals("strg", sb.toString());
   }
   
   @Test
   public void shouldReturnSubstringForRange() {
     // given
-    String strToAppend = "new string";
-    sb.append(strToAppend);
+    sb = new StringBuilder("new string");
     
     // then    
     assertEquals("str", sb.substring(4, 7));
-    assertEquals(strToAppend.length(), sb.length());
   }
   
   @Test
   public void shouldReplaceSubstring() {
     // given
-    sb.append("some abc string");
+    sb = new StringBuilder("some abc string");
     
     // when
     sb.replace(5, 8, "xyz");
@@ -68,7 +61,7 @@ public class StringBuilderTest {
   @Test
   public void shouldReturnCharAtIndex() {
     // given
-    sb.append("qwerty");
+    sb = new StringBuilder("qwerty");
     
     // then
     assertEquals('q', sb.charAt(0));
@@ -76,20 +69,29 @@ public class StringBuilderTest {
   }
   
   @Test
-  public void shouldThrowExceptionForWrongIndex() {
+  public void shouldThrowExceptionForWrongPositiveIndex() {
     // given
     ex.expect(IndexOutOfBoundsException.class);
-    sb.append("abc");
+    sb = new StringBuilder("abc");
     
     // when
     sb.charAt(5);
-    sb.charAt(-3);
+  }
+  
+  @Test
+  public void shouldThrowExceptionForNegativeIndex() {
+    // given
+    ex.expect(IndexOutOfBoundsException.class);
+    sb = new StringBuilder("abc");
+    
+    // when
+    sb.charAt(-5);
   }
   
   @Test
   public void shouldReturnIndexOfSubstring() {
     // given
-    sb.append("some abc string");
+    sb = new StringBuilder("some abc string");
     
     // then
     assertEquals(5, sb.indexOf("abc"));
@@ -98,7 +100,7 @@ public class StringBuilderTest {
   @Test
   public void shouldInsertSubstring() {
     // given
-    sb.append("some string");
+    sb = new StringBuilder("some string");
     
     // when
     sb.insert(5, "abc");
@@ -110,17 +112,16 @@ public class StringBuilderTest {
   @Test
   public void shouldReturnLastIndexOfSubstring() {
     // given
-    sb.append("appending string");
+    sb = new StringBuilder("appending string");
     
     // then
-    
     assertEquals(13, sb.lastIndexOf("in"));
   }
   
   @Test
   public void shouldReverseString() {
     // given
-    sb.append("abcd");
+    sb = new StringBuilder("abcd");
     
     // then
     assertEquals("dcba", sb.reverse().toString());

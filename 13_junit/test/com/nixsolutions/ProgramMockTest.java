@@ -53,5 +53,17 @@ public class ProgramMockTest {
 
     // then
     verify(robot).stepForward();
+    verify(writer).write("[1,0]");
+  }
+  
+  @Test
+  public void shouldProcessRoute() throws IOException {
+    // when
+    program.processRoute("lffrflfrrfff");
+
+    // then
+    verify(robot, times(7)).stepForward();
+    verify(robot, times(2)).turnLeft();
+    verify(robot, times(3)).turnRight();
   }
 }
