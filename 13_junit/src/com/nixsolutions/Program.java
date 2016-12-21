@@ -17,6 +17,7 @@ public class Program {
   
   public void processRoute(String route) throws IOException {
     try (BufferedWriter bw = utils.createWriter(fOut)) {
+      robot.setDirection(Robot.Direction.X_POS);
       robot.setWriter(bw);
       
       for (char goal : route.toCharArray()) {

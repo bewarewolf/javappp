@@ -7,11 +7,19 @@ public class Robot {
 
   private int x;
   private int y;
-  private Direction direction = Direction.X_POS;
+  private Direction direction;
   private BufferedWriter writer;
+  
+  public Robot() {
+    direction = Direction.X_POS;
+  }
   
   public void setWriter(BufferedWriter fw) {
     writer = fw;
+  }
+  
+  public void setDirection(Direction dir) {
+    direction = dir;
   }
   
   public void turnLeft() {
@@ -66,7 +74,7 @@ public class Robot {
     }
   }
   
-  private enum Direction {
+  public enum Direction {
     X_POS,
     X_NEG,
     Y_POS,
