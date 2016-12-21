@@ -71,6 +71,8 @@ RIGHT JOIN person_status ps ON p.person_status_id = ps.person_status_id;
 
 -- 12. numeric functions
 
+SELECT last_name, COMPRESS(STRINGTOUTF8(last_name), 'DEFLATE') as compressed from person;
+
 -- 13. string functions
 
 SELECT CONCAT(first_name, ' ', last_name)  as name, birthday FROM person;
