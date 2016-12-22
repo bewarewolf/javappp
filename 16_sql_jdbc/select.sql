@@ -16,6 +16,8 @@ SELECT * FROM person WHERE date_start BETWEEN TO_DATE('14-AUG-2015', 'DD-MON-YYY
 
 SELECT * FROM semester WHERE semester_date_end < CURRENT_DATE();
 
+SELECT * FROM semester WHERE CURRENT_DATE() BETWEEN semester_date_start AND semester_date_end;
+
 SELECT * FROM person WHERE first_name LIKE 'Ma%';
 
 SELECT * FROM journal WHERE grade_id BETWEEN 2 AND 4;
