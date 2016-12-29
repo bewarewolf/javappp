@@ -18,12 +18,21 @@ public class H2GradeDAOImpl implements GradeDAO {
 
   private static final Logger LOG = LogManager.getLogger();
   
+  private Connection conn;
+  
+  public H2GradeDAOImpl() throws SQLException {
+    this.conn = H2ConnectionManager.getConnection();
+  }
+  
+  public H2GradeDAOImpl(Connection conn) throws SQLException {
+    this.conn = conn;
+  }
+  
   @Override
   public boolean create(Grade bean) throws SQLException {
-    Connection conn = null;
+    //Connection conn = null;
     PreparedStatement stat = null;
-    try {
-      conn = H2ConnectionManager.getConnection();
+    try {      
       stat = conn.prepareStatement("INSERT INTO grade (description, value) VALUES (?, ?)");
       stat.setString(1, bean.getDescription());
       stat.setInt(2, bean.getValue());
