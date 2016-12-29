@@ -46,4 +46,18 @@ public class Subject {
   public void setSemester(Semester semester) {
     this.semester = semester;
   }  
+  
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("ID: ");
+    sb.append(id);
+    sb.append("; Name: ");
+    sb.append(subjectName);
+    sb.append("; Teacher: ");
+    sb.append(teacher.getFullName());
+    sb.append("; Semester: ");
+    sb.append(semester.getSemesterName());
+    return sb.toString();
+  }
 }

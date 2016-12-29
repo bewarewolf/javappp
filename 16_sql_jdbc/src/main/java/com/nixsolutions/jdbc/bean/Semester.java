@@ -52,4 +52,18 @@ public class Semester {
       throw new RuntimeException("End date should not be null");
     }
   }  
+  
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("ID: ");
+    sb.append(id);
+    sb.append("; Name: ");
+    sb.append(semesterName);
+    sb.append("; Start date: ");
+    sb.append(startDate);
+    sb.append("; End date: ");
+    sb.append(endDate);
+    return sb.toString();
+  }
 }

@@ -49,4 +49,16 @@ public class Journal {
   public void setGradeDate(LocalDate gradeDate) {
     this.gradeDate = gradeDate;
   }  
+  
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("ID: ");
+    sb.append(recordId);
+    sb.append("; Person: ");
+    sb.append(person.getFullName());
+    sb.append("; Grade: ");
+    sb.append(grade.getDescription());
+    return sb.toString();
+  }
 }

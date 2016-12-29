@@ -12,7 +12,7 @@ import com.nixsolutions.jdbc.bean.Grade;
 public class H2GradeDAOImplTest {
 
   @Test
-  public void test1() {
+  public void test1() throws Exception {
     Grade g1 = new Grade();
     g1.setDescription("Very good");
     g1.setValue(5);

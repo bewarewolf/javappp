@@ -37,4 +37,16 @@ public class PhoneNumber {
       throw new RuntimeException("Phone number should not be null");
     }
   }
+  
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("ID: ");
+    sb.append(id);
+    sb.append("; Person id: ");
+    sb.append(personId );
+    sb.append("; Number: ");
+    sb.append(phoneNumber);
+    return sb.toString();
+  }
 }

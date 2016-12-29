@@ -6,6 +6,13 @@ public class Grade {
   private String description;
   private Integer value;
   
+  public Grade() {}
+  
+  public Grade(String description, Integer value) {
+    this.description = description;
+    this.value = value;
+  }
+  
   public Integer getId() {
     return id;
   }

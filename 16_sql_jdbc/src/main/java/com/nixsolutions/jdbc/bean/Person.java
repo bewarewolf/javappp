@@ -110,4 +110,36 @@ public class Person {
   public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
     this.phoneNumbers = phoneNumbers;
   }
+  
+  public String getFullName() {
+    StringBuilder sb = new StringBuilder(firstName);
+    
+    if (middleName != null) {
+      sb.append(" ");
+      sb.append(middleName);
+    }
+    
+    sb.append(" ");
+    sb.append(lastName);
+    
+    return sb.toString();
+  }
+  
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("ID: ");
+    sb.append(id);
+    sb.append("; Name: ");
+    sb.append(getFullName());
+    sb.append("; Birthday: ");
+    sb.append(birthday);
+    sb.append("; Start date: ");
+    sb.append(startDate);
+    sb.append("; Type: ");
+    sb.append(personType.getValue());
+    sb.append("; Status: ");
+    sb.append(personStatus.getValue());
+    return sb.toString();
+  }
 }

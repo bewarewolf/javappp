@@ -1,11 +1,12 @@
 package com.nixsolutions.jdbc.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface GenericDAO<T> {
 
-  boolean create(T bean);
-  boolean delete(Integer id);
-  T getById(Integer id);
-  List<T> getAll();
+  boolean create(T bean) throws SQLException;
+  boolean delete(Integer id) throws SQLException;
+  T getById(Integer id) throws SQLException;
+  List<T> getAll() throws SQLException;
 }

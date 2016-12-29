@@ -127,7 +127,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
     try {
       conn = H2ConnectionManager.getConnection();
       stat = conn.createStatement();
-      ResultSet res = stat.executeQuery("SELECT * FROM grade");
+      ResultSet res = stat.executeQuery("SELECT * FROM person_type");
       
       List<PersonType> out = new ArrayList<>();
       while (res.next()) {

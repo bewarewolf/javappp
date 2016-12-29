@@ -19,7 +19,7 @@ public class H2GradeDAOImpl implements GradeDAO {
   private static final Logger LOG = LogManager.getLogger();
   
   @Override
-  public boolean create(Grade bean) {
+  public boolean create(Grade bean) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -31,6 +31,7 @@ public class H2GradeDAOImpl implements GradeDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
+      throw ex;
     } finally {
       try {
 	if (stat != null) {
@@ -47,11 +48,10 @@ public class H2GradeDAOImpl implements GradeDAO {
 	LOG.error("Can't close connection", ex);
       }
     }
-    return false;
   }
 
   @Override
-  public boolean delete(Integer id) {
+  public boolean delete(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -62,6 +62,7 @@ public class H2GradeDAOImpl implements GradeDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete grade", ex);
+      throw ex;
     } finally {
       try {
 	if (stat != null) {
@@ -69,6 +70,7 @@ public class H2GradeDAOImpl implements GradeDAO {
 	}
       } catch (SQLException ex) {
 	LOG.error("Can't close statement", ex);
+	throw ex;
       }
       try {
 	if (conn != null) {
@@ -78,11 +80,10 @@ public class H2GradeDAOImpl implements GradeDAO {
 	LOG.error("Can't close connection", ex);
       }
     }
-    return false;
   }
 
   @Override
-  public Grade getById(Integer id) {
+  public Grade getById(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -101,6 +102,7 @@ public class H2GradeDAOImpl implements GradeDAO {
       return gr;
     } catch (SQLException ex) {
       LOG.error("Can't get grade [id = " + id + "]", ex);
+      throw ex;
     } finally {
       try {
 	if (stat != null) {
@@ -117,11 +119,10 @@ public class H2GradeDAOImpl implements GradeDAO {
 	LOG.error("Can't close connection", ex);
       }
     }
-    return null;
   }
 
   @Override
-  public List<Grade> getAll() {
+  public List<Grade> getAll() throws SQLException {
     Connection conn = null;
     Statement stat = null;
     try {
@@ -142,7 +143,8 @@ public class H2GradeDAOImpl implements GradeDAO {
       
       return out;
     } catch (SQLException ex) {
-      
+      LOG.error("Can't get list of grades", ex);
+      throw ex;
     } finally {
       try {
 	if (stat != null) {
@@ -159,7 +161,6 @@ public class H2GradeDAOImpl implements GradeDAO {
 	LOG.error("Can't close connection", ex);
       }
     }
-    return null;
   }
 
 }
