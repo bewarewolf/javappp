@@ -34,7 +34,7 @@ CREATE TABLE journal (
   person_id INT NOT NULL,
   subject_id INT NOT NULL,
   grade_id INT NOT NULL,
-  grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(),
+  grade_date TIMESTAMP NOT NULL,
   FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE,
   FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE,
   FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE,
