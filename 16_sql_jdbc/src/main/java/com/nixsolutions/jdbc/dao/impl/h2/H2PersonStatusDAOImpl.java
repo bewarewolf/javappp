@@ -60,7 +60,6 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       stat.setString(1, bean.getDescription());
       stat.setString(2, bean.getValue());
       stat.setInt(3, bean.getId());
-      stat.executeUpdate();
       
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {

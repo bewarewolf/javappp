@@ -59,7 +59,6 @@ public class H2GradeDAOImpl implements GradeDAO {
       stat.setString(1, bean.getDescription());
       stat.setInt(2, bean.getValue());
       stat.setInt(3, bean.getId());
-      stat.executeUpdate();
       
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {

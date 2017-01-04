@@ -63,7 +63,6 @@ public class H2JournalDAOImpl implements JournalDAO {
       stat.setInt(2, bean.getSubject().getId());
       stat.setInt(3, bean.getGrade().getId());
       stat.setInt(4, bean.getId());
-      stat.executeUpdate();
       
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {

@@ -63,7 +63,6 @@ public class H2SemesterDAOImpl implements SemesterDAO{
       stat.setDate(2, java.sql.Date.valueOf(bean.getStartDate()));
       stat.setDate(3, java.sql.Date.valueOf(bean.getEndDate()));
       stat.setInt(4, bean.getId());
-      stat.executeUpdate();
       
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {

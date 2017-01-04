@@ -63,7 +63,6 @@ public class H2SubjectDAOImpl implements SubjectDAO {
       stat.setInt(2, bean.getTeacher().getId());
       stat.setInt(3, bean.getSemester().getId());
       stat.setInt(4, bean.getId());
-      stat.executeUpdate();
       
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {

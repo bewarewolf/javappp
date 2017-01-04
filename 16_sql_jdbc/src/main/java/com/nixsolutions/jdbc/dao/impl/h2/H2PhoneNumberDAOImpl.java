@@ -60,7 +60,6 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       stat.setInt(1, bean.getPersonId());
       stat.setString(2, bean.getPhoneNumber());
       stat.setInt(3, bean.getId());
-      stat.executeUpdate();
       
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {

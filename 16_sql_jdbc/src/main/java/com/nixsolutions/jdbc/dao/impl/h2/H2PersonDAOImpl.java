@@ -38,7 +38,8 @@ public class H2PersonDAOImpl implements PersonDAO {
       stat.setDate(5, java.sql.Date.valueOf(bean.getStartDate()));
       stat.setInt(6, bean.getPersonType().getId());
       stat.setInt(7, bean.getPersonStatus().getId());
-
+      stat.executeUpdate();
+      
       ResultSet res = stat.getGeneratedKeys(); 
       int personId = -1;
       while (res.next()) {
@@ -64,7 +65,37 @@ public class H2PersonDAOImpl implements PersonDAO {
 
   @Override
   public boolean update(Person bean) {
-    return false;
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("UPDATE person SET "
+          + "first_name = ?, "
+          + "middle_name = ?, "
+          + "last_name = ?, "
+          + "birthday = ?, "
+          + "date_start = ?, "
+          + "person_type_id = ?, "
+          + "person_status_id = ? "
+          + "WHERE person_id = ?");
+      
+      stat.setString(1, bean.getFirstName());
+      stat.setString(2, bean.getMiddleName());
+      stat.setString(3, bean.getLastName());
+      stat.setDate(4, java.sql.Date.valueOf(bean.getBirthday()));
+      stat.setDate(5, java.sql.Date.valueOf(bean.getStartDate()));
+      stat.setInt(6, bean.getPersonType().getId());
+      stat.setInt(7, bean.getPersonStatus().getId());
+      stat.setInt(8, bean.getId());
+            
+      return stat.executeUpdate() != 0;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't add person [%s]", bean.toString()), ex);
+      return false;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
   }
   
   @Override
