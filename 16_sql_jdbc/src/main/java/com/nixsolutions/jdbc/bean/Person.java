@@ -16,6 +16,21 @@ public class Person extends AbstractBean {
   private PersonStatus personStatus;
   private List<PhoneNumber> phoneNumbers;
   
+  public Person() {}
+  
+  public Person(String firstName, String middleName, String lastName, LocalDate birthday, LocalDate startDate,
+      PersonType personType, PersonStatus personStatus, List<PhoneNumber> phoneNumbers) {
+    super();
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.lastName = lastName;
+    this.birthday = birthday;
+    this.startDate = startDate;
+    this.personType = personType;
+    this.personStatus = personStatus;
+    this.phoneNumbers = phoneNumbers;
+  }
+
   public String getFirstName() {
     return firstName;
   }

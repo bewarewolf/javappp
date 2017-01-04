@@ -12,6 +12,7 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.nixsolutions.jdbc.bean.Journal;
 import com.nixsolutions.jdbc.bean.PersonStatus;
 import com.nixsolutions.jdbc.dao.PersonStatusDAO;
 
@@ -46,6 +47,31 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
     }
   }
 
+  @Override
+  public boolean update(PersonStatus bean) {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {      
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("UPDATE person_status SET "
+          + "description = ?, "
+          + "value = ? "
+          + "WHERE person_status_id = ?");
+      stat.setString(1, bean.getDescription());
+      stat.setString(2, bean.getValue());
+      stat.setInt(3, bean.getId());
+      stat.executeUpdate();
+      
+      return stat.executeUpdate() != 0;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
+      return false;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
+  
   @Override
   public boolean delete(Integer id) {
     Connection conn = null;

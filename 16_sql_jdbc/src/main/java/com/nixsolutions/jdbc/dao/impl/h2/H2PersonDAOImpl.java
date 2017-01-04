@@ -16,6 +16,7 @@ import com.nixsolutions.jdbc.bean.Person;
 import com.nixsolutions.jdbc.bean.PersonStatus;
 import com.nixsolutions.jdbc.bean.PersonType;
 import com.nixsolutions.jdbc.bean.PhoneNumber;
+import com.nixsolutions.jdbc.bean.Subject;
 import com.nixsolutions.jdbc.dao.PersonDAO;
 
 public class H2PersonDAOImpl implements PersonDAO {
@@ -61,6 +62,11 @@ public class H2PersonDAOImpl implements PersonDAO {
     }
   }
 
+  @Override
+  public boolean update(Person bean) {
+    return false;
+  }
+  
   @Override
   public boolean delete(Integer id) {
     Connection conn = null;

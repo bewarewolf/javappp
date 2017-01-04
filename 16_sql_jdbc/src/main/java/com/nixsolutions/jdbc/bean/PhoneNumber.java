@@ -7,6 +7,14 @@ public class PhoneNumber extends AbstractBean {
   private Integer personId;
   private String phoneNumber;
   
+  public PhoneNumber() {}
+  
+  public PhoneNumber(Integer personId, String phoneNumber) {
+    super();
+    this.personId = personId;
+    this.phoneNumber = phoneNumber;
+  }
+
   public Integer getPersonId() {
     return personId;
   }

@@ -47,6 +47,31 @@ public class H2GradeDAOImpl implements GradeDAO {
   }
 
   @Override
+  public boolean update(Grade bean) {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {      
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("UPDATE grade SET "
+          + "description = ?, "
+          + "value = ? "
+          + "WHERE grade_id = ?");
+      stat.setString(1, bean.getDescription());
+      stat.setInt(2, bean.getValue());
+      stat.setInt(3, bean.getId());
+      stat.executeUpdate();
+      
+      return stat.executeUpdate() != 0;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
+      return false;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
+  
+  @Override
   public boolean delete(Integer id) {
     Connection conn = null;
     PreparedStatement stat = null;

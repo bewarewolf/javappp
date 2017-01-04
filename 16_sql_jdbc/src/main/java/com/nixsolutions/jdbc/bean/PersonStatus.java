@@ -7,6 +7,14 @@ public class PersonStatus extends AbstractBean {
   private String description;
   private String value;
   
+  public PersonStatus() {}
+  
+  public PersonStatus(String description, String value) {
+    super();
+    this.description = description;
+    this.value = value;
+  }
+
   public String getDescription() {
     return description;
   }

@@ -11,6 +11,16 @@ public class Journal extends AbstractBean {
   private Grade grade;
   private LocalDate gradeDate;
     
+  public Journal() {}
+  
+  public Journal(Person person, Subject subject, Grade grade, LocalDate gradeDate) {
+    super();
+    this.person = person;
+    this.subject = subject;
+    this.grade = grade;
+    this.gradeDate = gradeDate;
+  }
+
   public Person getPerson() {
     return person;
   }

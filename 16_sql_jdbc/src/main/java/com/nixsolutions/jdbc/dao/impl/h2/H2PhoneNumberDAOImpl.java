@@ -12,6 +12,7 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.nixsolutions.jdbc.bean.PersonStatus;
 import com.nixsolutions.jdbc.bean.PhoneNumber;
 import com.nixsolutions.jdbc.dao.PhoneNumberDAO;
 
@@ -46,6 +47,31 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
     }
   }
 
+  @Override
+  public boolean update(PhoneNumber bean) {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {      
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("UPDATE phone_number SET "
+          + "person_id = ?, "
+          + "phone_number = ? "
+          + "WHERE phone_number_id = ?");
+      stat.setInt(1, bean.getPersonId());
+      stat.setString(2, bean.getPhoneNumber());
+      stat.setInt(3, bean.getId());
+      stat.executeUpdate();
+      
+      return stat.executeUpdate() != 0;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
+      return false;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
+  
   @Override
   public boolean delete(Integer id) {
     Connection conn = null;

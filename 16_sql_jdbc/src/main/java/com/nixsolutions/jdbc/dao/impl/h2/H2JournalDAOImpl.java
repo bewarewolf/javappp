@@ -12,6 +12,7 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.nixsolutions.jdbc.bean.Grade;
 import com.nixsolutions.jdbc.bean.Journal;
 import com.nixsolutions.jdbc.dao.JournalDAO;
 
@@ -47,6 +48,33 @@ public class H2JournalDAOImpl implements JournalDAO {
     }
   }
 
+  @Override
+  public boolean update(Journal bean) {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {      
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("UPDATE journal SET "
+          + "person_id = ?, "
+          + "subject_id = ? "
+          + "grade_id = ? "
+          + "WHERE record_id = ?");
+      stat.setInt(1, bean.getPerson().getId());
+      stat.setInt(2, bean.getSubject().getId());
+      stat.setInt(3, bean.getGrade().getId());
+      stat.setInt(4, bean.getId());
+      stat.executeUpdate();
+      
+      return stat.executeUpdate() != 0;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
+      return false;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
+  
   @Override
   public boolean delete(Integer id) {
     Connection conn = null;

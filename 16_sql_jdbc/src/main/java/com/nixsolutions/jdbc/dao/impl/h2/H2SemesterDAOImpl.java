@@ -12,6 +12,7 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.nixsolutions.jdbc.bean.PersonStatus;
 import com.nixsolutions.jdbc.bean.Semester;
 import com.nixsolutions.jdbc.dao.SemesterDAO;
 
@@ -47,6 +48,33 @@ public class H2SemesterDAOImpl implements SemesterDAO{
     }
   }
 
+  @Override
+  public boolean update(Semester bean) {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {      
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("UPDATE semester SET "
+          + "semester_name = ?, "
+          + "semester_date_start = ? "
+          + "semester_date_end = ? "
+          + "WHERE semester_id = ?");
+      stat.setString(1, bean.getSemesterName());
+      stat.setDate(2, java.sql.Date.valueOf(bean.getStartDate()));
+      stat.setDate(3, java.sql.Date.valueOf(bean.getEndDate()));
+      stat.setInt(4, bean.getId());
+      stat.executeUpdate();
+      
+      return stat.executeUpdate() != 0;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
+      return false;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
+  
   @Override
   public boolean delete(Integer id) {
     Connection conn = null;

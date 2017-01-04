@@ -10,6 +10,15 @@ public class Semester extends AbstractBean {
   private LocalDate startDate;
   private LocalDate endDate;
   
+  public Semester() {}
+  
+  public Semester(String semesterName, LocalDate startDate, LocalDate endDate) {
+    super();
+    this.semesterName = semesterName;
+    this.startDate = startDate;
+    this.endDate = endDate;
+  }
+
   public String getSemesterName() {
     return semesterName;
   }

@@ -8,6 +8,15 @@ public class Subject extends AbstractBean {
   private Person teacher;
   private Semester semester;
   
+  public Subject() {}
+  
+  public Subject(String subjectName, Person teacher, Semester semester) {
+    super();
+    this.subjectName = subjectName;
+    this.teacher = teacher;
+    this.semester = semester;
+  }
+
   public String getSubjectName() {
     return subjectName;
   }
