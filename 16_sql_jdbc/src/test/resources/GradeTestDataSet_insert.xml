@@ -4,4 +4,5 @@
 	<GRADE GRADE_ID="3" DESCRIPTION="Average" VALUE="3" />
 	<GRADE GRADE_ID="4" DESCRIPTION="Good" VALUE="4" />
 	<GRADE GRADE_ID="5" DESCRIPTION="Very good" VALUE="5" />
+	<GRADE GRADE_ID="5" DESCRIPTION="new grade" VALUE="15" />
 </dataset>

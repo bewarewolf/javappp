@@ -33,10 +33,10 @@ public class CreateSchemaApp {
       Properties prop = new Properties();
       prop.load(fis);
 
-      String strUrl = prop.getProperty("db.url");
-      String strDbName = prop.getProperty("db.name");
-      String strUsername = prop.getProperty("db.username");
-      String strPassword = prop.getProperty("db.password");
+      String strUrl = prop.getProperty("db.url.h2");
+      String strDbName = prop.getProperty("db.name.h2");
+      String strUsername = prop.getProperty("db.username.h2");
+      String strPassword = prop.getProperty("db.password.h2");
 
       conn = DriverManager.getConnection(strUrl + "~/" + strDbName, strUsername, strPassword);
       st = conn.createStatement();
