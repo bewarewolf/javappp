@@ -2,22 +2,15 @@ package com.nixsolutions.jdbc.bean;
 
 import java.time.LocalDate;
 
-public class Journal {
+public class Journal extends AbstractBean {
 
-  private Integer recordId;
+  private static final long serialVersionUID = -2433296202714953695L;
+  
   private Person person;
   private Subject subject;
   private Grade grade;
   private LocalDate gradeDate;
-  
-  public Integer getRecordId() {
-    return recordId;
-  }
-  
-  public void setRecordId(Integer recordId) {
-    this.recordId = recordId;
-  }
-  
+    
   public Person getPerson() {
     return person;
   }
@@ -54,7 +47,7 @@ public class Journal {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("ID: ");
-    sb.append(recordId);
+    sb.append(id);
     sb.append("; Person: ");
     sb.append(person.getFullName());
     sb.append("; Grade: ");

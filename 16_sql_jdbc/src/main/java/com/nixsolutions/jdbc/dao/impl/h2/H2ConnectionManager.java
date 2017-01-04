@@ -16,7 +16,7 @@ public class H2ConnectionManager {
 
   private static final Logger LOG = LogManager.getLogger();
 
-  public static Connection getConnection() throws SQLException {
+  public static Connection getConnection() {
     JdbcConnectionPool localPool = pool;
     
     if (localPool == null) {
@@ -44,6 +44,11 @@ public class H2ConnectionManager {
       }
     }
 
-    return pool.getConnection();
+    try {
+      return pool.getConnection();
+    } catch (SQLException ex) {
+      LOG.error("Can't create connection", ex);
+      return null;
+    }
   }
 }

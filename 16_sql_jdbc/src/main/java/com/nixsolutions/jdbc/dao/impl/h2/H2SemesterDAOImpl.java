@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +20,7 @@ public class H2SemesterDAOImpl implements SemesterDAO{
   private static final Logger LOG = LogManager.getLogger();
   
   @Override
-  public boolean create(Semester bean) {
+  public int create(Semester bean) {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -28,27 +29,22 @@ public class H2SemesterDAOImpl implements SemesterDAO{
       stat.setString(1, bean.getSemesterName());
       stat.setDate(2, java.sql.Date.valueOf(bean.getStartDate()));
       stat.setDate(3, java.sql.Date.valueOf(bean.getEndDate()));
-            
-      return stat.executeUpdate() != 0;
+      stat.executeUpdate();
+      
+      ResultSet res = stat.getGeneratedKeys(); 
+      
+      while (res.next()) {
+        return res.getInt(1);
+      }
+      
+      return -1;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add semester [%s]", bean.toString()), ex);
+      return -1;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return false;
   }
 
   @Override
@@ -63,23 +59,11 @@ public class H2SemesterDAOImpl implements SemesterDAO{
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete semester", ex);
+      return false;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return false;
   }
 
   @Override
@@ -103,23 +87,11 @@ public class H2SemesterDAOImpl implements SemesterDAO{
       return sem;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get semester [id = %d]", id), ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
   @Override
@@ -145,24 +117,12 @@ public class H2SemesterDAOImpl implements SemesterDAO{
       
       return out;
     } catch (SQLException ex) {
-      
+      LOG.error("Can't get list of semesters", ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
   @Override
@@ -186,23 +146,11 @@ public class H2SemesterDAOImpl implements SemesterDAO{
       return sem;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get semester [name = %d]", semesterName), ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
   @Override
@@ -225,23 +173,11 @@ public class H2SemesterDAOImpl implements SemesterDAO{
       return sem;
     } catch (SQLException ex) {
       LOG.error("Can't get current semester", ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
 }

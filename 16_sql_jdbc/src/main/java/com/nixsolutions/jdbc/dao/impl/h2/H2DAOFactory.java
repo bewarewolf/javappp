@@ -1,7 +1,5 @@
 package com.nixsolutions.jdbc.dao.impl.h2;
 
-import java.sql.SQLException;
-
 import com.nixsolutions.jdbc.dao.DAOFactory;
 import com.nixsolutions.jdbc.dao.GradeDAO;
 import com.nixsolutions.jdbc.dao.JournalDAO;
@@ -15,43 +13,42 @@ import com.nixsolutions.jdbc.dao.SubjectDAO;
 public class H2DAOFactory extends DAOFactory {
 
   @Override
-  public GradeDAO getGradeDAO() throws SQLException {
+  public GradeDAO getGradeDAO() {
     return new H2GradeDAOImpl();
   }
 
   @Override
-  public JournalDAO getJournalDAO() throws SQLException {
+  public JournalDAO getJournalDAO() {
     return new H2JournalDAOImpl();
   }
 
   @Override
-  public PersonDAO getPersonDAO() throws SQLException {
+  public PersonDAO getPersonDAO() {
     return new H2PersonDAOImpl();
   }
 
   @Override
-  public PersonStatusDAO getPersonStatusDAO() throws SQLException {
+  public PersonStatusDAO getPersonStatusDAO() {
     return new H2PersonStatusDAOImpl();
   }
 
   @Override
-  public PersonTypeDAO getPersonTypeDAO() throws SQLException {
+  public PersonTypeDAO getPersonTypeDAO() {
     return new H2PersonTypeDAOImpl();
   }
 
   @Override
-  public PhoneNumberDAO getPhoneNumberDAO() throws SQLException {
+  public PhoneNumberDAO getPhoneNumberDAO() {
     return new H2PhoneNumberDAOImpl();
   }
 
   @Override
-  public SemesterDAO getSemesterDAO() throws SQLException {
+  public SemesterDAO getSemesterDAO() {
     return new H2SemesterDAOImpl();
   }
 
   @Override
-  public SubjectDAO getSubjectDAO() throws SQLException {
+  public SubjectDAO getSubjectDAO() {
     return new H2SubjectDAOImpl();
   }
-
 }

@@ -1,8 +1,9 @@
 package com.nixsolutions.jdbc.bean;
 
-public class Grade {
+public class Grade extends AbstractBean {
 
-  private Integer id;
+  private static final long serialVersionUID = -4705584854029058600L;
+  
   private String description;
   private Integer value;
   
@@ -11,14 +12,6 @@ public class Grade {
   public Grade(String description, Integer value) {
     this.description = description;
     this.value = value;
-  }
-  
-  public Integer getId() {
-    return id;
-  }
-  
-  public void setId(Integer gradeId) {
-    this.id = gradeId;
   }
   
   public String getDescription() {

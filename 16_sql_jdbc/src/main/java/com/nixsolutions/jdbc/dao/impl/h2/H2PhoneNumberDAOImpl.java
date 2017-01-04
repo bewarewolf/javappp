@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +20,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
   private static final Logger LOG = LogManager.getLogger();
   
   @Override
-  public boolean create(PhoneNumber bean) {
+  public int create(PhoneNumber bean) {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -27,27 +28,22 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       stat = conn.prepareStatement("INSERT INTO phone_number (person_id, phone_number) VALUES (?, ?)");
       stat.setInt(1, bean.getPersonId());
       stat.setString(2, bean.getPhoneNumber());
-            
-      return stat.executeUpdate() != 0;
+      stat.executeUpdate();
+      
+      ResultSet res = stat.getGeneratedKeys(); 
+      
+      while (res.next()) {
+        return res.getInt(1);
+      }
+      
+      return -1;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add phone number [%s]", bean.toString()), ex);
+      return -1;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return false;
   }
 
   @Override
@@ -62,23 +58,11 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete phone number", ex);
+      return false;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return false;
   }
 
   @Override
@@ -101,23 +85,11 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       return pn;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person status [id = %d]", id), ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
   @Override
@@ -142,24 +114,12 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       
       return out;
     } catch (SQLException ex) {
-      
+      LOG.error("Can't get list of phone numbers", ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
   @Override
@@ -174,23 +134,11 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't delete phone numbers for person [id = %d]", id), ex);
+      return false;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return false;
   }
 
   @Override
@@ -218,20 +166,8 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get phone numbers for person [id = %d]", id), ex);
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
     return null;
   }

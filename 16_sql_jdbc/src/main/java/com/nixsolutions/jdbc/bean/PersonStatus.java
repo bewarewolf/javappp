@@ -1,18 +1,11 @@
 package com.nixsolutions.jdbc.bean;
 
-public class PersonStatus {
+public class PersonStatus extends AbstractBean {
 
-  private Integer id;
+  private static final long serialVersionUID = -3617840613205325201L;
+  
   private String description;
   private String value;
-  
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
   
   public String getDescription() {
     return description;

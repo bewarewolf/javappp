@@ -19,10 +19,10 @@ public class DAOExampleApp {
 //    LOG.info("--- Grade DAO demo");
 //    runGradeDAO(fact.getGradeDAO());
 //    LOG.info("--- Grade DAO demo finished");
-    
-    LOG.info("--- Person Type DAO demo");
-    runPersonTypeDAO(fact.getPersonTypeDAO());
-    LOG.info("--- Person Type DAO demo finished");
+//    
+//    LOG.info("--- Person Type DAO demo");
+//    runPersonTypeDAO(fact.getPersonTypeDAO());
+//    LOG.info("--- Person Type DAO demo finished");
     
     runPersonDAO();
   }

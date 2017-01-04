@@ -1,0 +1,271 @@
+16:28:08.302 [main] INFO  [DropSchemaApp]: Starting DROP SCHEMA application
+16:28:08.351 [main] INFO  [DropSchemaApp]: Schema has been dropped
+16:29:34.532 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+16:29:34.567 [main] INFO  [CreateSchemaApp]: CREATE TABLE grade ( grade_id INT IDENTITY, description VARCHAR(100) NOT NULL, value INT UNIQUE NOT NULL);
+16:29:34.567 [main] INFO  [CreateSchemaApp]: CREATE TABLE person ( person_id INT IDENTITY, first_name VARCHAR(100) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, birthday DATE NOT NULL, date_start DATE NOT NULL, person_type_id INT NOT NULL, person_status_id INT NOT NULL);
+16:29:34.567 [main] INFO  [CreateSchemaApp]: CREATE TABLE subject ( subject_id INT IDENTITY, subject_name VARCHAR(100) NOT NULL UNIQUE, teacher_id INT, semester_id INT NOT NULL);
+16:29:34.567 [main] INFO  [CreateSchemaApp]: CREATE TABLE semester ( semester_id INT IDENTITY, semester_name VARCHAR(20) NOT NULL UNIQUE, semester_date_start DATE NOT NULL, semester_date_end DATE NOT NULL);
+16:29:34.567 [main] INFO  [CreateSchemaApp]: CREATE TABLE journal ( record_id INT IDENTITY, person_id INT NOT NULL, subject_id INT NOT NULL, grade_id INT NOT NULL, grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(), FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE, FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE);
+16:29:34.568 [main] INFO  [CreateSchemaApp]: CREATE TABLE phone_number ( phone_number_id INT IDENTITY, phone_number VARCHAR(20) NOT NULL UNIQUE, person_id INT NOT NULL, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE);
+16:29:34.568 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_type ( person_type_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+16:29:34.568 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+16:29:34.568 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_type_id) REFERENCES person_type (person_type_id)
+16:29:34.568 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_status_id) REFERENCES person_status (person_status_id)
+16:29:34.568 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (teacher_id) REFERENCES person (person_id) ON DELETE CASCADE;
+16:29:34.568 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (semester_id) REFERENCES semester (semester_id) ON DELETE CASCADE;
+16:29:34.587 [main] INFO  [CreateSchemaApp]: Schema has been created
+16:32:26.770 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+16:32:26.772 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Fail; Value: 1
+16:32:26.821 [main] ERROR [H2GradeDAOImpl]: Can't add grade [ID: null; Description: Fail; Value: 1]
+org.h2.jdbc.JdbcSQLException: Column "grade_id" not found [42122-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3174) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3236) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:36) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runGradeDAO(DAOExampleApp.java:41) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:20) [classes/:?]
+16:32:26.825 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Pass; Value: 2
+16:32:26.827 [main] ERROR [H2GradeDAOImpl]: Can't add grade [ID: null; Description: Pass; Value: 2]
+org.h2.jdbc.JdbcSQLException: Column "grade_id" not found [42122-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3174) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3236) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:36) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runGradeDAO(DAOExampleApp.java:41) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:20) [classes/:?]
+16:32:26.827 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Average; Value: 3
+16:32:26.828 [main] ERROR [H2GradeDAOImpl]: Can't add grade [ID: null; Description: Average; Value: 3]
+org.h2.jdbc.JdbcSQLException: Column "grade_id" not found [42122-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3174) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3236) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:36) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runGradeDAO(DAOExampleApp.java:41) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:20) [classes/:?]
+16:32:26.829 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Good; Value: 4
+16:32:26.829 [main] ERROR [H2GradeDAOImpl]: Can't add grade [ID: null; Description: Good; Value: 4]
+org.h2.jdbc.JdbcSQLException: Column "grade_id" not found [42122-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3174) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3236) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:36) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runGradeDAO(DAOExampleApp.java:41) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:20) [classes/:?]
+16:32:26.830 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Very good; Value: 5
+16:32:26.831 [main] ERROR [H2GradeDAOImpl]: Can't add grade [ID: null; Description: Very good; Value: 5]
+org.h2.jdbc.JdbcSQLException: Column "grade_id" not found [42122-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3174) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3236) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:36) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runGradeDAO(DAOExampleApp.java:41) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:20) [classes/:?]
+16:32:26.832 [main] INFO  [DAOExampleApp]: Grade [ID = 3]: ID: 3; Description: Average; Value: 3
+16:32:26.834 [main] INFO  [DAOExampleApp]: ID: 1; Description: Fail; Value: 1
+16:32:26.834 [main] INFO  [DAOExampleApp]: ID: 3; Description: Average; Value: 3
+16:32:26.834 [main] INFO  [DAOExampleApp]: ID: 4; Description: Good; Value: 4
+16:32:26.834 [main] INFO  [DAOExampleApp]: ID: 5; Description: Very good; Value: 5
+16:32:26.834 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+16:32:26.834 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+16:32:26.835 [main] INFO  [DAOExampleApp]: Creating type: ID: null; Description: Administration; Value: Dean
+16:32:26.836 [main] ERROR [H2PersonTypeDAOImpl]: Can't add person type [ID: null; Description: Administration; Value: Dean]
+org.h2.jdbc.JdbcSQLException: Column "person_type_id" not found [42122-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3174) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3236) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2PersonTypeDAOImpl.create(H2PersonTypeDAOImpl.java:36) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2PersonTypeDAOImpl.create(H2PersonTypeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runPersonTypeDAO(DAOExampleApp.java:62) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:24) [classes/:?]
+16:32:26.836 [main] INFO  [DAOExampleApp]: Creating type: ID: null; Description: Teaching and grading; Value: Teacher
+16:32:26.837 [main] ERROR [H2PersonTypeDAOImpl]: Can't add person type [ID: null; Description: Teaching and grading; Value: Teacher]
+org.h2.jdbc.JdbcSQLException: Column "person_type_id" not found [42122-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3174) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3236) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2PersonTypeDAOImpl.create(H2PersonTypeDAOImpl.java:36) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2PersonTypeDAOImpl.create(H2PersonTypeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runPersonTypeDAO(DAOExampleApp.java:62) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:24) [classes/:?]
+16:32:26.838 [main] INFO  [DAOExampleApp]: Creating type: ID: null; Description: Studying; Value: Student
+16:32:26.838 [main] ERROR [H2PersonTypeDAOImpl]: Can't add person type [ID: null; Description: Studying; Value: Student]
+org.h2.jdbc.JdbcSQLException: Column "person_type_id" not found [42122-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3174) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3236) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2PersonTypeDAOImpl.create(H2PersonTypeDAOImpl.java:36) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2PersonTypeDAOImpl.create(H2PersonTypeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runPersonTypeDAO(DAOExampleApp.java:62) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:24) [classes/:?]
+16:32:26.840 [main] INFO  [DAOExampleApp]: Type [ID = 2]: ID: 2; Description: Teaching and grading; Value: Teacher
+16:32:26.841 [main] INFO  [DAOExampleApp]: ID: 2; Description: Teaching and grading; Value: Teacher
+16:32:26.841 [main] INFO  [DAOExampleApp]: ID: 3; Description: Studying; Value: Student
+16:32:26.841 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo finished
+16:33:35.017 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+16:33:35.019 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Fail; Value: 1
+16:33:35.070 [main] ERROR [H2GradeDAOImpl]: Can't add grade [ID: null; Description: Fail; Value: 1]
+org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "CONSTRAINT_INDEX_4 ON PUBLIC.GRADE(VALUE) VALUES (1, 1)"; SQL statement:
+INSERT INTO grade (description, value) VALUES (?, ?) [23505-193]
+	at org.h2.engine.SessionRemote.done(SessionRemote.java:624) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.command.CommandRemote.executeUpdate(CommandRemote.java:191) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:160) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:146) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:31) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runGradeDAO(DAOExampleApp.java:41) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:20) [classes/:?]
+16:33:35.074 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Pass; Value: 2
+16:33:35.081 [main] ERROR [H2GradeDAOImpl]: Can't add grade [ID: null; Description: Pass; Value: 2]
+org.h2.jdbc.JdbcSQLException: Column "grade_id" not found [42122-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3174) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3236) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:36) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runGradeDAO(DAOExampleApp.java:41) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:20) [classes/:?]
+16:33:35.081 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Average; Value: 3
+16:33:35.083 [main] ERROR [H2GradeDAOImpl]: Can't add grade [ID: null; Description: Average; Value: 3]
+org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "CONSTRAINT_INDEX_4 ON PUBLIC.GRADE(VALUE) VALUES (3, 3)"; SQL statement:
+INSERT INTO grade (description, value) VALUES (?, ?) [23505-193]
+	at org.h2.engine.SessionRemote.done(SessionRemote.java:624) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.command.CommandRemote.executeUpdate(CommandRemote.java:191) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:160) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:146) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:31) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runGradeDAO(DAOExampleApp.java:41) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:20) [classes/:?]
+16:33:35.084 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Good; Value: 4
+16:33:35.085 [main] ERROR [H2GradeDAOImpl]: Can't add grade [ID: null; Description: Good; Value: 4]
+org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "CONSTRAINT_INDEX_4 ON PUBLIC.GRADE(VALUE) VALUES (4, 4)"; SQL statement:
+INSERT INTO grade (description, value) VALUES (?, ?) [23505-193]
+	at org.h2.engine.SessionRemote.done(SessionRemote.java:624) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.command.CommandRemote.executeUpdate(CommandRemote.java:191) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:160) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:146) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:31) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runGradeDAO(DAOExampleApp.java:41) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:20) [classes/:?]
+16:33:35.085 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Very good; Value: 5
+16:33:35.087 [main] ERROR [H2GradeDAOImpl]: Can't add grade [ID: null; Description: Very good; Value: 5]
+org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "CONSTRAINT_INDEX_4 ON PUBLIC.GRADE(VALUE) VALUES (5, 5)"; SQL statement:
+INSERT INTO grade (description, value) VALUES (?, ?) [23505-193]
+	at org.h2.engine.SessionRemote.done(SessionRemote.java:624) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.command.CommandRemote.executeUpdate(CommandRemote.java:191) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:160) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:146) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:31) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2GradeDAOImpl.create(H2GradeDAOImpl.java:1) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runGradeDAO(DAOExampleApp.java:41) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:20) [classes/:?]
+16:33:35.089 [main] INFO  [DAOExampleApp]: Grade [ID = 3]: ID: 3; Description: Average; Value: 3
+16:33:35.091 [main] INFO  [DAOExampleApp]: ID: 1; Description: Fail; Value: 1
+16:33:35.091 [main] INFO  [DAOExampleApp]: ID: 3; Description: Average; Value: 3
+16:33:35.091 [main] INFO  [DAOExampleApp]: ID: 4; Description: Good; Value: 4
+16:33:35.091 [main] INFO  [DAOExampleApp]: ID: 5; Description: Very good; Value: 5
+16:33:35.092 [main] INFO  [DAOExampleApp]: ID: 7; Description: Pass; Value: 2
+16:33:35.092 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+16:33:35.092 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+16:33:35.156 [main] INFO  [DAOExampleApp]: Creating type: ID: null; Description: Administration; Value: Dean
+16:36:55.061 [main] INFO  [DropSchemaApp]: Starting DROP SCHEMA application
+16:36:55.104 [main] INFO  [DropSchemaApp]: Schema has been dropped
+16:37:10.564 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+16:37:10.598 [main] INFO  [CreateSchemaApp]: CREATE TABLE grade ( grade_id INT IDENTITY, description VARCHAR(100) NOT NULL, value INT UNIQUE NOT NULL);
+16:37:10.598 [main] INFO  [CreateSchemaApp]: CREATE TABLE person ( person_id INT IDENTITY, first_name VARCHAR(100) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, birthday DATE NOT NULL, date_start DATE NOT NULL, person_type_id INT NOT NULL, person_status_id INT NOT NULL);
+16:37:10.598 [main] INFO  [CreateSchemaApp]: CREATE TABLE subject ( subject_id INT IDENTITY, subject_name VARCHAR(100) NOT NULL UNIQUE, teacher_id INT, semester_id INT NOT NULL);
+16:37:10.598 [main] INFO  [CreateSchemaApp]: CREATE TABLE semester ( semester_id INT IDENTITY, semester_name VARCHAR(20) NOT NULL UNIQUE, semester_date_start DATE NOT NULL, semester_date_end DATE NOT NULL);
+16:37:10.598 [main] INFO  [CreateSchemaApp]: CREATE TABLE journal ( record_id INT IDENTITY, person_id INT NOT NULL, subject_id INT NOT NULL, grade_id INT NOT NULL, grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(), FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE, FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE);
+16:37:10.598 [main] INFO  [CreateSchemaApp]: CREATE TABLE phone_number ( phone_number_id INT IDENTITY, phone_number VARCHAR(20) NOT NULL UNIQUE, person_id INT NOT NULL, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE);
+16:37:10.599 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_type ( person_type_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+16:37:10.599 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+16:37:10.599 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_type_id) REFERENCES person_type (person_type_id)
+16:37:10.599 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_status_id) REFERENCES person_status (person_status_id)
+16:37:10.599 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (teacher_id) REFERENCES person (person_id) ON DELETE CASCADE;
+16:37:10.599 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (semester_id) REFERENCES semester (semester_id) ON DELETE CASCADE;
+16:37:10.612 [main] INFO  [CreateSchemaApp]: Schema has been created
+16:37:58.779 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+16:37:58.782 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Fail; Value: 1
+16:37:58.837 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Pass; Value: 2
+16:37:58.838 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Average; Value: 3
+16:37:58.839 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Good; Value: 4
+16:37:58.840 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Very good; Value: 5
+16:37:58.842 [main] INFO  [DAOExampleApp]: Grade [ID = 3]: ID: 3; Description: Average; Value: 3
+16:37:58.844 [main] INFO  [DAOExampleApp]: ID: 1; Description: Fail; Value: 1
+16:37:58.844 [main] INFO  [DAOExampleApp]: ID: 3; Description: Average; Value: 3
+16:37:58.844 [main] INFO  [DAOExampleApp]: ID: 4; Description: Good; Value: 4
+16:37:58.845 [main] INFO  [DAOExampleApp]: ID: 5; Description: Very good; Value: 5
+16:37:58.845 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+16:37:58.845 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+16:37:58.846 [main] INFO  [DAOExampleApp]: Creating type: ID: null; Description: Administration; Value: Dean
+16:37:58.847 [main] INFO  [DAOExampleApp]: Creating type: ID: null; Description: Teaching and grading; Value: Teacher
+16:37:58.848 [main] INFO  [DAOExampleApp]: Creating type: ID: null; Description: Studying; Value: Student
+16:37:58.850 [main] INFO  [DAOExampleApp]: Type [ID = 2]: ID: null; Description: null; Value: null
+16:37:58.851 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo finished
+16:38:34.455 [main] INFO  [DropSchemaApp]: Starting DROP SCHEMA application
+16:38:34.492 [main] INFO  [DropSchemaApp]: Schema has been dropped
+16:38:41.245 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+16:38:41.279 [main] INFO  [CreateSchemaApp]: CREATE TABLE grade ( grade_id INT IDENTITY, description VARCHAR(100) NOT NULL, value INT UNIQUE NOT NULL);
+16:38:41.279 [main] INFO  [CreateSchemaApp]: CREATE TABLE person ( person_id INT IDENTITY, first_name VARCHAR(100) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, birthday DATE NOT NULL, date_start DATE NOT NULL, person_type_id INT NOT NULL, person_status_id INT NOT NULL);
+16:38:41.280 [main] INFO  [CreateSchemaApp]: CREATE TABLE subject ( subject_id INT IDENTITY, subject_name VARCHAR(100) NOT NULL UNIQUE, teacher_id INT, semester_id INT NOT NULL);
+16:38:41.280 [main] INFO  [CreateSchemaApp]: CREATE TABLE semester ( semester_id INT IDENTITY, semester_name VARCHAR(20) NOT NULL UNIQUE, semester_date_start DATE NOT NULL, semester_date_end DATE NOT NULL);
+16:38:41.280 [main] INFO  [CreateSchemaApp]: CREATE TABLE journal ( record_id INT IDENTITY, person_id INT NOT NULL, subject_id INT NOT NULL, grade_id INT NOT NULL, grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(), FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE, FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE);
+16:38:41.280 [main] INFO  [CreateSchemaApp]: CREATE TABLE phone_number ( phone_number_id INT IDENTITY, phone_number VARCHAR(20) NOT NULL UNIQUE, person_id INT NOT NULL, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE);
+16:38:41.280 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_type ( person_type_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+16:38:41.280 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+16:38:41.281 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_type_id) REFERENCES person_type (person_type_id)
+16:38:41.281 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_status_id) REFERENCES person_status (person_status_id)
+16:38:41.281 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (teacher_id) REFERENCES person (person_id) ON DELETE CASCADE;
+16:38:41.281 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (semester_id) REFERENCES semester (semester_id) ON DELETE CASCADE;
+16:38:41.294 [main] INFO  [CreateSchemaApp]: Schema has been created
+16:38:45.616 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+16:38:45.618 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Fail; Value: 1
+16:38:45.665 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Pass; Value: 2
+16:38:45.666 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Average; Value: 3
+16:38:45.666 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Good; Value: 4
+16:38:45.667 [main] INFO  [DAOExampleApp]: Creating grade: ID: null; Description: Very good; Value: 5
+16:38:45.669 [main] INFO  [DAOExampleApp]: Grade [ID = 3]: ID: 3; Description: Average; Value: 3
+16:38:45.671 [main] INFO  [DAOExampleApp]: ID: 1; Description: Fail; Value: 1
+16:38:45.671 [main] INFO  [DAOExampleApp]: ID: 3; Description: Average; Value: 3
+16:38:45.672 [main] INFO  [DAOExampleApp]: ID: 4; Description: Good; Value: 4
+16:38:45.672 [main] INFO  [DAOExampleApp]: ID: 5; Description: Very good; Value: 5
+16:38:45.672 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+16:38:45.672 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+16:38:45.673 [main] INFO  [DAOExampleApp]: Creating type: ID: null; Description: Administration; Value: Dean
+16:38:45.674 [main] INFO  [DAOExampleApp]: Creating type: ID: null; Description: Teaching and grading; Value: Teacher
+16:38:45.674 [main] INFO  [DAOExampleApp]: Creating type: ID: null; Description: Studying; Value: Student
+16:38:45.676 [main] INFO  [DAOExampleApp]: Type [ID = 2]: ID: null; Description: null; Value: null
+16:38:45.677 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo finished

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +23,7 @@ public class H2PersonDAOImpl implements PersonDAO {
   private static final Logger LOG = LogManager.getLogger();
 
   @Override
-  public boolean create(Person bean) {
+  public int create(Person bean) {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -37,26 +38,27 @@ public class H2PersonDAOImpl implements PersonDAO {
       stat.setInt(6, bean.getPersonType().getId());
       stat.setInt(7, bean.getPersonStatus().getId());
 
-      return stat.executeUpdate() != 0;
+      ResultSet res = stat.getGeneratedKeys(); 
+      int personId = -1;
+      while (res.next()) {
+        return res.getInt(1);
+      }
+      
+      if (personId != -1 && bean.getPhoneNumbers() != null) {
+        for (PhoneNumber pn : bean.getPhoneNumbers()) {
+          pn.setPersonId(personId);
+          addPhoneNumber(pn);
+        }
+      }
+      
+      return personId;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add person [%s]", bean.toString()), ex);
+      return -1;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return false;
   }
 
   @Override
@@ -71,23 +73,11 @@ public class H2PersonDAOImpl implements PersonDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete person", ex);
+      return false;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return false;
   }
 
   @Override
@@ -119,23 +109,11 @@ public class H2PersonDAOImpl implements PersonDAO {
       return pers;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person [id = %d]", id), ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
   @Override
@@ -169,24 +147,12 @@ public class H2PersonDAOImpl implements PersonDAO {
 
       return out;
     } catch (SQLException ex) {
-
+      LOG.error("Can't get list of persons", ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
   @Override
@@ -219,23 +185,11 @@ public class H2PersonDAOImpl implements PersonDAO {
       return pers;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person [name = %s %s]", firstName, lastName), ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
   @Override
@@ -251,23 +205,11 @@ public class H2PersonDAOImpl implements PersonDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete person", ex);
+      return false;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return false;
   }
 
   @Override
@@ -283,27 +225,15 @@ public class H2PersonDAOImpl implements PersonDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete person", ex);
+      return false;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return false;
   }
 
   @Override
-  public boolean addPhoneNumber(PhoneNumber pn) {
+  public int addPhoneNumber(PhoneNumber pn) {
     H2PhoneNumberDAOImpl pnDao = new H2PhoneNumberDAOImpl();
     return pnDao.create(pn);
   }
@@ -315,9 +245,9 @@ public class H2PersonDAOImpl implements PersonDAO {
   }
 
   @Override
-  public boolean addPhoneNumber(Person p, String number) {
+  public int addPhoneNumber(Integer personId, String number) {
     PhoneNumber pn = new PhoneNumber();
-    pn.setPersonId(p.getId());
+    pn.setPersonId(personId);
     pn.setPhoneNumber(number);
     return addPhoneNumber(pn);
   }

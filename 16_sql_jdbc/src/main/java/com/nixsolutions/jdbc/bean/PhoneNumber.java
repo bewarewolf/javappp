@@ -1,18 +1,11 @@
 package com.nixsolutions.jdbc.bean;
 
-public class PhoneNumber {
+public class PhoneNumber extends AbstractBean {
 
-  private Integer id;
+  private static final long serialVersionUID = -8047594668701871392L;
+  
   private Integer personId;
   private String phoneNumber;
-  
-  public Integer getId() {
-    return id;
-  }
-  
-  public void setId(Integer id) {
-    this.id = id;
-  }
   
   public Integer getPersonId() {
     return personId;

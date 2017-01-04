@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,50 +18,36 @@ import com.nixsolutions.jdbc.dao.GradeDAO;
 public class H2GradeDAOImpl implements GradeDAO {
 
   private static final Logger LOG = LogManager.getLogger();
-  
-  private Connection conn;
-  
-  public H2GradeDAOImpl() throws SQLException {
-    this.conn = H2ConnectionManager.getConnection();
-  }
-  
-  public H2GradeDAOImpl(Connection conn) throws SQLException {
-    this.conn = conn;
-  }
-  
+    
   @Override
-  public boolean create(Grade bean) throws SQLException {
-    //Connection conn = null;
+  public int create(Grade bean) {
+    Connection conn = null;
     PreparedStatement stat = null;
     try {      
+      conn = H2ConnectionManager.getConnection();
       stat = conn.prepareStatement("INSERT INTO grade (description, value) VALUES (?, ?)");
       stat.setString(1, bean.getDescription());
       stat.setInt(2, bean.getValue());
-            
-      return stat.executeUpdate() != 0;
+      stat.executeUpdate();
+      
+      ResultSet res = stat.getGeneratedKeys(); 
+      
+      while (res.next()) {
+        return res.getInt(1);
+      }
+      
+      return -1;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
-      throw ex;
+      return -1;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
   }
 
   @Override
-  public boolean delete(Integer id) throws SQLException {
+  public boolean delete(Integer id) {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -71,28 +58,15 @@ public class H2GradeDAOImpl implements GradeDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete grade", ex);
-      throw ex;
+      return false;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-	throw ex;
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
   }
 
   @Override
-  public Grade getById(Integer id) throws SQLException {
+  public Grade getById(Integer id) {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -111,27 +85,15 @@ public class H2GradeDAOImpl implements GradeDAO {
       return gr;
     } catch (SQLException ex) {
       LOG.error("Can't get grade [id = " + id + "]", ex);
-      throw ex;
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
   }
 
   @Override
-  public List<Grade> getAll() throws SQLException {
+  public List<Grade> getAll() {
     Connection conn = null;
     Statement stat = null;
     try {
@@ -153,22 +115,10 @@ public class H2GradeDAOImpl implements GradeDAO {
       return out;
     } catch (SQLException ex) {
       LOG.error("Can't get list of grades", ex);
-      throw ex;
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
   }
 

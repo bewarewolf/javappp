@@ -1,19 +1,12 @@
 package com.nixsolutions.jdbc.bean;
 
-public class Subject {
+public class Subject extends AbstractBean {
 
-  private Integer id;
+  private static final long serialVersionUID = 6810729967374225224L;
+
   private String subjectName;
   private Person teacher;
   private Semester semester;
-  
-  public Integer getId() {
-    return id;
-  }
-  
-  public void setId(Integer subjectId) {
-    this.id = subjectId;
-  }
   
   public String getSubjectName() {
     return subjectName;

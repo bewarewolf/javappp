@@ -3,9 +3,10 @@ package com.nixsolutions.jdbc.bean;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Person {
+public class Person extends AbstractBean {
 
-  private Integer id;
+  private static final long serialVersionUID = -7363295378483616881L;
+  
   private String firstName;
   private String middleName;
   private String lastName;
@@ -15,14 +16,6 @@ public class Person {
   private PersonStatus personStatus;
   private List<PhoneNumber> phoneNumbers;
   
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
   public String getFirstName() {
     return firstName;
   }

@@ -10,7 +10,7 @@ public interface PersonDAO extends GenericDAO<Person> {
   Person getByName(String firstName, String lastName);
   boolean setPersonType(Person p, PersonType t);
   boolean setPersonStatus(Person p, PersonStatus t);
-  boolean addPhoneNumber(Person p, String number);
-  boolean addPhoneNumber(PhoneNumber pn);
+  int addPhoneNumber(Integer personId, String number);
+  int addPhoneNumber(PhoneNumber pn);
   boolean removePhoneNumber(PhoneNumber pn);
 }

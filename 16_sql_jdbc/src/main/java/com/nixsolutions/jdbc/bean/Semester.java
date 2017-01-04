@@ -2,20 +2,13 @@ package com.nixsolutions.jdbc.bean;
 
 import java.time.LocalDate;
 
-public class Semester {
+public class Semester extends AbstractBean {
   
-  private Integer id;
+  private static final long serialVersionUID = -4230804482238449898L;
+  
   private String semesterName;
   private LocalDate startDate;
   private LocalDate endDate;
-  
-  public Integer getId() {
-    return id;
-  }
-  
-  public void setId(Integer semesterId) {
-    this.id = semesterId;
-  }
   
   public String getSemesterName() {
     return semesterName;

@@ -8,12 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.nixsolutions.jdbc.bean.Journal;
-import com.nixsolutions.jdbc.bean.Person;
-import com.nixsolutions.jdbc.bean.Subject;
 import com.nixsolutions.jdbc.dao.JournalDAO;
 
 public class H2JournalDAOImpl implements JournalDAO {
@@ -21,7 +20,7 @@ public class H2JournalDAOImpl implements JournalDAO {
   private static final Logger LOG = LogManager.getLogger();
 
   @Override
-  public boolean create(Journal bean) {
+  public int create(Journal bean) {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -30,27 +29,22 @@ public class H2JournalDAOImpl implements JournalDAO {
       stat.setInt(1, bean.getPerson().getId());
       stat.setInt(2, bean.getSubject().getId());
       stat.setInt(2, bean.getGrade().getId());
-
-      return stat.executeUpdate() != 0;
+      stat.executeUpdate();
+      
+      ResultSet res = stat.getGeneratedKeys(); 
+      
+      while (res.next()) {
+        return res.getInt(1);
+      }
+      
+      return -1;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add journal resord [%s]", bean.toString()), ex);
+      return -1;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return false;
   }
 
   @Override
@@ -65,23 +59,11 @@ public class H2JournalDAOImpl implements JournalDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete journal record", ex);
+      return false;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
-    }
-    return false;
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }    
   }
 
   @Override
@@ -96,7 +78,7 @@ public class H2JournalDAOImpl implements JournalDAO {
 
       Journal rec = new Journal();
       while (res.next()) {
-	rec.setRecordId(res.getInt("subject_id"));
+	rec.setId(res.getInt("record_id"));
 	rec.setGradeDate(res.getDate("grade_date").toLocalDate());
 
 	H2PersonDAOImpl persDao = new H2PersonDAOImpl();
@@ -112,23 +94,11 @@ public class H2JournalDAOImpl implements JournalDAO {
       return rec;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get journal record [id = %d]", id), ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
   @Override
@@ -144,7 +114,7 @@ public class H2JournalDAOImpl implements JournalDAO {
       while (res.next()) {
 	Journal rec = new Journal();
 
-	rec.setRecordId(res.getInt("subject_id"));
+	rec.setId(res.getInt("record_id"));
 	rec.setGradeDate(res.getDate("grade_date").toLocalDate());
 
 	H2PersonDAOImpl persDao = new H2PersonDAOImpl();
@@ -161,29 +131,12 @@ public class H2JournalDAOImpl implements JournalDAO {
 
       return out;
     } catch (SQLException ex) {
-
+      LOG.error("Can't get journal records", ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
-  }
-
-  @Override
-  public List<Journal> getBySubject(Subject subject) {
-    return getBySubjectId(subject.getId());
   }
 
   @Override
@@ -200,7 +153,7 @@ public class H2JournalDAOImpl implements JournalDAO {
       while (res.next()) {
 	Journal rec = new Journal();
 
-	rec.setRecordId(res.getInt("subject_id"));
+	rec.setId(res.getInt("record_id"));
 	rec.setGradeDate(res.getDate("grade_date").toLocalDate());
 
 	H2PersonDAOImpl persDao = new H2PersonDAOImpl();
@@ -218,28 +171,11 @@ public class H2JournalDAOImpl implements JournalDAO {
       return out;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get journal record for subject [id = %d]", subjectId), ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
-  }
-
-  @Override
-  public List<Journal> getByPerson(Person person) {    
-    return getByPersonId(person.getId());
   }
 
   @Override
@@ -256,7 +192,7 @@ public class H2JournalDAOImpl implements JournalDAO {
       while (res.next()) {
 	Journal rec = new Journal();
 
-	rec.setRecordId(res.getInt("subject_id"));
+	rec.setId(res.getInt("record_id"));
 	rec.setGradeDate(res.getDate("grade_date").toLocalDate());
 
 	H2PersonDAOImpl persDao = new H2PersonDAOImpl();
@@ -273,24 +209,12 @@ public class H2JournalDAOImpl implements JournalDAO {
       
       return out;
     } catch (SQLException ex) {
-      LOG.error(String.format("Can't get journal record for subject [id = %d]", personId), ex);
+      LOG.error(String.format("Can't get journal record for person [id = %d]", personId), ex);
+      return null;
     } finally {
-      try {
-	if (stat != null) {
-	  stat.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close statement", ex);
-      }
-      try {
-	if (conn != null) {
-	  conn.close();
-	}
-      } catch (SQLException ex) {
-	LOG.error("Can't close connection", ex);
-      }
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
     }
-    return null;
   }
 
 }

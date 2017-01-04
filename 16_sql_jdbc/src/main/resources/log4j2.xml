@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="debug" strict="true" name="XMLConfigTest"
-               packages="org.apache.logging.log4j.test">
-  <Appenders>
-    <Appender type="Console" name="STDOUT">
-      <Layout type="PatternLayout" pattern="%d{HH:mm:ss.SSS} [%t] %-5level [%C{1}]: %msg%n"/>
-    </Appender>
-  </Appenders>
- 
-  <Loggers>
-    <Logger name="com.nixsolutions.jdbc" level="info" additivity="false">
-      <AppenderRef ref="STDOUT"/>
-    </Logger>
-    <Root level="error">
-      <AppenderRef ref="STDOUT"/>
-    </Root>
-  </Loggers>
- 
+	packages="org.apache.logging.log4j.test">
+	<Appenders>
+		<File name="FILE" fileName="log/app.log">
+			<PatternLayout>
+				<Pattern>%d{HH:mm:ss.SSS} [%t] %-5level [%C{1}]: %msg%n</Pattern>
+			</PatternLayout>
+		</File>
+		<Appender type="Console" name="STDOUT">
+			<Layout type="PatternLayout" pattern="%d{HH:mm:ss.SSS} [%t] %-5level [%C{1}]: %msg%n" />
+		</Appender>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="com.nixsolutions" level="info" additivity="false">
+			<AppenderRef ref="STDOUT" />
+		</Logger>
+		<Logger name="com.nixsolutions.jdbc" level="info">
+			<AppenderRef ref="FILE" />
+		</Logger>
+		<Root level="error">
+			<AppenderRef ref="STDOUT" />
+		</Root>
+	</Loggers>
+
 </Configuration>

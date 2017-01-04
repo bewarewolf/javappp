@@ -1,0 +1,7 @@
+<dataset>
+    <grade GRADE_ID="1" DESCRIPTION="Fail" VALUE="1"/>
+    <grade GRADE_ID="2" DESCRIPTION="Pass" VALUE="2"/>
+    <grade GRADE_ID="3" DESCRIPTION="Average" VALUE="3"/>
+    <grade GRADE_ID="3" DESCRIPTION="Good" VALUE="4"/>
+    <grade GRADE_ID="3" DESCRIPTION="Very good" VALUE="5"/>   
+</dataset>
