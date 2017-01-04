@@ -14,7 +14,7 @@ public class DAOExampleApp {
   private static final Logger LOG = LogManager.getLogger();
   
   public static void main (String[] args) throws Exception {
-    DAOFactory fact = DAOFactory.getFactory(DAOFactory.H2); 
+    DAOFactory fact = DAOFactory.getFactory(); 
     
 //    LOG.info("--- Grade DAO demo");
 //    runGradeDAO(fact.getGradeDAO());
