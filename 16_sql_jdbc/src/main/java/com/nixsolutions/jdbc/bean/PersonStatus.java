@@ -3,17 +3,18 @@ package com.nixsolutions.jdbc.bean;
 public class PersonStatus extends AbstractBean {
 
   private static final long serialVersionUID = -3617840613205325201L;
-  
+
   private String description;
   private String value;
-  
-  public PersonStatus() {}
-  
+
+  public PersonStatus() {
+  }
+
   public PersonStatus(String description, String value) {
     this.description = description;
     this.value = value;
   }
-  
+
   public PersonStatus(Integer id, String description, String value) {
     this(description, value);
     this.id = id;
@@ -22,25 +23,17 @@ public class PersonStatus extends AbstractBean {
   public String getDescription() {
     return description;
   }
-  
+
   public void setDescription(String description) {
-    if (description != null) {
-      this.description = description;
-    } else {
-      throw new RuntimeException("Description should not be null");
-    }
+    this.description = description;
   }
-  
+
   public String getValue() {
     return value;
   }
-  
+
   public void setValue(String value) {
-    if (value != null) {
-      this.value = value;
-    } else {
-      throw new RuntimeException("Value should not be null");
-    }
+    this.value = value;
   }
 
   @Override
@@ -68,14 +61,14 @@ public class PersonStatus extends AbstractBean {
     PersonStatus other = (PersonStatus) obj;
     if (description == null) {
       if (other.description != null)
-	return false;
+        return false;
     } else if (!description.equals(other.description))
       return false;
     if (value == null) {
       if (other.value != null)
-	return false;
+        return false;
     } else if (!value.equals(other.value))
       return false;
     return true;
-  }  
+  }
 }

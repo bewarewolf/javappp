@@ -63,8 +63,8 @@ public class Journal extends AbstractBean {
 
   @Override
   public String toString() {
-    return "Journal [personId=" + personId + ", subjectId=" + subjectId + ", gradeId=" + gradeId + ", gradeDate="
-	+ gradeDate + ", id=" + id + "]";
+    return "Journal [id=" + id + ", personId=" + personId + ", subjectId=" + subjectId + ", gradeId=" + gradeId + ", gradeDate="
+	+ gradeDate + "]";
   }
 
   @Override

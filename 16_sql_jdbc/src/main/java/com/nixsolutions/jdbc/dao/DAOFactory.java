@@ -12,7 +12,7 @@ public abstract class DAOFactory {
 
   private static final Logger LOG = LogManager.getLogger();
   
-  public static DAOFactory getFactory() {
+  public static DAOFactory getFactory() throws Exception {
     try (FileInputStream fis = new FileInputStream("jdbc.properties")) {
       Properties prop = new Properties();
       prop.load(fis);
@@ -27,7 +27,7 @@ public abstract class DAOFactory {
       }
     } catch (Exception ex) {
       LOG.error(ex);
-      return null;
+      throw ex;
     }
   }
   

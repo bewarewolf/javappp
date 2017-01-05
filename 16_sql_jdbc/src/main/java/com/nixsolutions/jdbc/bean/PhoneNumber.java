@@ -3,12 +3,13 @@ package com.nixsolutions.jdbc.bean;
 public class PhoneNumber extends AbstractBean {
 
   private static final long serialVersionUID = -8047594668701871392L;
-  
+
   private Integer personId;
   private String phoneNumber;
-  
-  public PhoneNumber() {}
-  
+
+  public PhoneNumber() {
+  }
+
   public PhoneNumber(Integer personId, String phoneNumber) {
     this.personId = personId;
     this.phoneNumber = phoneNumber;
@@ -18,29 +19,21 @@ public class PhoneNumber extends AbstractBean {
     this(personId, phoneNumber);
     this.id = id;
   }
-  
+
   public Integer getPersonId() {
     return personId;
   }
-  
+
   public void setPersonId(Integer personId) {
-    if (personId != null) {
-      this.personId = personId;
-    } else {
-      throw new RuntimeException("Person ID should not be null");
-    }
+    this.personId = personId;
   }
-  
+
   public String getPhoneNumber() {
     return phoneNumber;
   }
-  
+
   public void setPhoneNumber(String phoneNumber) {
-    if (phoneNumber != null) {
-      this.phoneNumber = phoneNumber;
-    } else {
-      throw new RuntimeException("Phone number should not be null");
-    }
+    this.phoneNumber = phoneNumber;
   }
 
   @Override
@@ -68,14 +61,14 @@ public class PhoneNumber extends AbstractBean {
     PhoneNumber other = (PhoneNumber) obj;
     if (personId == null) {
       if (other.personId != null)
-	return false;
+        return false;
     } else if (!personId.equals(other.personId))
       return false;
     if (phoneNumber == null) {
       if (other.phoneNumber != null)
-	return false;
+        return false;
     } else if (!phoneNumber.equals(other.phoneNumber))
       return false;
     return true;
-  }  
+  }
 }

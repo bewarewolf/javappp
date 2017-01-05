@@ -96,7 +96,7 @@ public class Person extends AbstractBean {
 
   @Override
   public String toString() {
-    return "Person [id=" + id + "firstName=" + firstName + ", middleName=" + middleName 
+    return "Person [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName 
 	+ ", lastName=" + lastName + ", birthday="
 	+ birthday + ", startDate=" + startDate + ", personTypeId=" + personTypeId + ", personStatusId="
 	+ personStatusId + "]";

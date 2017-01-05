@@ -34,7 +34,7 @@ public abstract class BaseTest extends DBTestCase {
   protected String deleteDataset;
   protected String tableName;
   
-  protected DAOFactory factory = H2DAOFactory.getFactory();
+  protected DAOFactory factory;
   @SuppressWarnings("rawtypes")
   protected GenericDAO dao;
   
@@ -42,8 +42,10 @@ public abstract class BaseTest extends DBTestCase {
   protected AbstractBean updateBean;
   protected Integer deleteId;
   
-  public BaseTest(String name) {
+  public BaseTest(String name) throws Exception {
     super(name);
+    
+    factory = H2DAOFactory.getFactory();
     
     Properties prop = new Properties();
 
