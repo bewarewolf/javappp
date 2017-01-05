@@ -88,6 +88,8 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       DbUtils.closeQuietly(stat);
     }
   }
+  
+  
 
   @Override
   public PhoneNumber getById(Integer id) throws SQLException {
