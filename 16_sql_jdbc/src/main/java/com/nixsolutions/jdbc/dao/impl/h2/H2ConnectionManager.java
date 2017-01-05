@@ -26,7 +26,6 @@ public class H2ConnectionManager {
 
 	String strDriver = prop.getProperty("db.driver.h2");
 	String strUrl = prop.getProperty("db.url.h2");
-	String strDbName = prop.getProperty("db.name.h2");
 	String strUsername = prop.getProperty("db.username.h2");
 	String strPassword = prop.getProperty("db.password.h2");
 	String strMaxConnections = prop.getProperty("db.maxConnections.h2");
@@ -36,7 +35,7 @@ public class H2ConnectionManager {
 	  localPool = pool;
 	  if (localPool == null) {
 	    Class.forName(strDriver);
-	    localPool = pool = JdbcConnectionPool.create(strUrl + "~/" + strDbName, strUsername, strPassword);
+	    localPool = pool = JdbcConnectionPool.create(strUrl, strUsername, strPassword);
 	    pool.setLoginTimeout(Integer.valueOf(strTimeout));
       	    pool.setMaxConnections(Integer.valueOf(strMaxConnections));
 	  }

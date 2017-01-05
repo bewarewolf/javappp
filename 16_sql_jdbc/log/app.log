@@ -291,3 +291,19 @@ java.sql.SQLException: No suitable driver found for null~/null
 16:34:13.861 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (teacher_id) REFERENCES person (person_id) ON DELETE CASCADE;
 16:34:13.861 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (semester_id) REFERENCES semester (semester_id) ON DELETE CASCADE;
 16:34:13.885 [main] INFO  [CreateSchemaApp]: Schema has been created
+18:19:18.110 [main] INFO  [DropSchemaApp]: Starting DROP SCHEMA application
+18:19:18.868 [main] INFO  [DropSchemaApp]: Schema has been dropped
+18:19:24.366 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+18:19:24.435 [main] INFO  [CreateSchemaApp]: CREATE TABLE grade ( grade_id INT IDENTITY, description VARCHAR(100) NOT NULL, value INT UNIQUE NOT NULL);
+18:19:24.435 [main] INFO  [CreateSchemaApp]: CREATE TABLE person ( person_id INT IDENTITY, first_name VARCHAR(100) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, birthday DATE NOT NULL, date_start DATE NOT NULL, person_type_id INT NOT NULL, person_status_id INT NOT NULL);
+18:19:24.436 [main] INFO  [CreateSchemaApp]: CREATE TABLE subject ( subject_id INT IDENTITY, subject_name VARCHAR(100) NOT NULL UNIQUE, teacher_id INT, semester_id INT NOT NULL);
+18:19:24.436 [main] INFO  [CreateSchemaApp]: CREATE TABLE semester ( semester_id INT IDENTITY, semester_name VARCHAR(20) NOT NULL UNIQUE, semester_date_start DATE NOT NULL, semester_date_end DATE NOT NULL);
+18:19:24.436 [main] INFO  [CreateSchemaApp]: CREATE TABLE journal ( record_id INT IDENTITY, person_id INT NOT NULL, subject_id INT NOT NULL, grade_id INT NOT NULL, grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(), FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE, FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE);
+18:19:24.436 [main] INFO  [CreateSchemaApp]: CREATE TABLE phone_number ( phone_number_id INT IDENTITY, phone_number VARCHAR(20) NOT NULL UNIQUE, person_id INT NOT NULL, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE);
+18:19:24.436 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_type ( person_type_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+18:19:24.436 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+18:19:24.436 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_type_id) REFERENCES person_type (person_type_id)
+18:19:24.437 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_status_id) REFERENCES person_status (person_status_id)
+18:19:24.437 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (teacher_id) REFERENCES person (person_id) ON DELETE CASCADE;
+18:19:24.437 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (semester_id) REFERENCES semester (semester_id) ON DELETE CASCADE;
+18:19:24.468 [main] INFO  [CreateSchemaApp]: Schema has been created

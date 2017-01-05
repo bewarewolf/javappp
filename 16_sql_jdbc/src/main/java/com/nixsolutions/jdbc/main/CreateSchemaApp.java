@@ -34,11 +34,10 @@ public class CreateSchemaApp {
       prop.load(fis);
 
       String strUrl = prop.getProperty("db.url.h2");
-      String strDbName = prop.getProperty("db.name.h2");
       String strUsername = prop.getProperty("db.username.h2");
       String strPassword = prop.getProperty("db.password.h2");
 
-      conn = DriverManager.getConnection(strUrl + "~/" + strDbName, strUsername, strPassword);
+      conn = DriverManager.getConnection(strUrl, strUsername, strPassword);
       st = conn.createStatement();
 
       StringBuilder sbCreateGrade = new StringBuilder("CREATE TABLE grade (")
