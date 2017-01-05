@@ -5,68 +5,61 @@ public class Subject extends AbstractBean {
   private static final long serialVersionUID = 6810729967374225224L;
 
   private String subjectName;
-  private Person teacher;
-  private Semester semester;
-  
-  public Subject() {}
-  
-  public Subject(String subjectName, Person teacher, Semester semester) {
+  private Integer teacherId;
+  private Integer semesterId;
+
+  public Subject() {
+  }
+
+  public Subject(String subjectName, Integer teacherId, Integer semesterId) {
     super();
     this.subjectName = subjectName;
-    this.teacher = teacher;
-    this.semester = semester;
+    this.teacherId = teacherId;
+    this.semesterId = semesterId;
   }
-  
-  public Subject(Integer id, String subjectName, Person teacher, Semester semester) {
-    this(subjectName, teacher, semester);
+
+  public Subject(Integer id, String subjectName, Integer teacherId, Integer semesterId) {
+    this(subjectName, teacherId, semesterId);
     this.id = id;
   }
 
   public String getSubjectName() {
     return subjectName;
   }
-  
+
   public void setSubjectName(String subjectName) {
-    if (subjectName != null) {
-      this.subjectName = subjectName;
-    } else {
-      throw new RuntimeException("Subject name should not be null");
-    }
+    this.subjectName = subjectName;
   }
-  
-  public Person getTeacher() {
-    return teacher;
+
+  public Integer getTeacherId() {
+    return teacherId;
   }
-  
-  public void setTeacher(Person teacher) {
-    if (teacher != null) {
-      this.teacher = teacher;
-    } else {
-      throw new RuntimeException("Teacher should not be null");
-    }
+
+  public void setTeacherId(Integer teacherId) {
+    this.teacherId = teacherId;
   }
-  
-  public Semester getSemester() {
-    return semester;
+
+  public Integer getSemesterId() {
+    return semesterId;
   }
-  
-  public void setSemester(Semester semester) {
-    this.semester = semester;
+
+  public void setSemesterId(Integer semesterId) {
+    this.semesterId = semesterId;
   }
 
   @Override
   public String toString() {
-    return "Subject [id=" + id	+ ", subjectName=" + subjectName 
-	+ ", teacher=" + teacher + ", semester=" + semester + "]";
+    return "Subject [id=" + id + ", subjectName=" + subjectName + ", teacher=" + teacherId + ", semester=" + semesterId
+	+ "]";
   }
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = super.hashCode();
-    result = prime * result + ((semester == null) ? 0 : semester.hashCode());
+    result = prime * result + ((semesterId == null) ? 0 : semesterId.hashCode());
     result = prime * result + ((subjectName == null) ? 0 : subjectName.hashCode());
-    result = prime * result + ((teacher == null) ? 0 : teacher.hashCode());
+    result = prime * result + ((teacherId == null) ? 0 : teacherId.hashCode());
     return result;
   }
 
@@ -79,20 +72,20 @@ public class Subject extends AbstractBean {
     if (getClass() != obj.getClass())
       return false;
     Subject other = (Subject) obj;
-    if (semester == null) {
-      if (other.semester != null)
+    if (semesterId == null) {
+      if (other.semesterId != null)
 	return false;
-    } else if (!semester.equals(other.semester))
+    } else if (!semesterId.equals(other.semesterId))
       return false;
     if (subjectName == null) {
       if (other.subjectName != null)
 	return false;
     } else if (!subjectName.equals(other.subjectName))
       return false;
-    if (teacher == null) {
-      if (other.teacher != null)
+    if (teacherId == null) {
+      if (other.teacherId != null)
 	return false;
-    } else if (!teacher.equals(other.teacher))
+    } else if (!teacherId.equals(other.teacherId))
       return false;
     return true;
   }

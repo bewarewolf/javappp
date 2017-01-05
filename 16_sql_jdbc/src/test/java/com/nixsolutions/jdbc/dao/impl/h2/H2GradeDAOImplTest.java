@@ -45,16 +45,10 @@ public class H2GradeDAOImplTest extends BaseTest {
     ITable actualTable = dbDataSet.getTable(tableName);
 
     Assert.assertEquals("Mismatch in list sizes", grList.size(), actualTable.getRowCount());
-
-    for (int i = 0; i < grList.size(); i++) {
-      Assert.assertEquals("Mismatch in description", grList.get(i).getDescription(),
-	  actualTable.getValue(i, "description"));
-      Assert.assertEquals("Mismatch in value", grList.get(i).getValue(), actualTable.getValue(i, "value"));
-    }
   }
 
   @Test
-  public void testShouldGradeById() throws Exception {
+  public void testShouldGetGradeById() throws Exception {
     // when
     Grade gr = ((GradeDAO) dao).getById(1);
 

@@ -6,72 +6,75 @@ public class Journal extends AbstractBean {
 
   private static final long serialVersionUID = -2433296202714953695L;
   
-  private Person person;
-  private Subject subject;
-  private Grade grade;
+  private Integer personId;
+  private Integer subjectId;
+  private Integer gradeId;
   private LocalDate gradeDate;
     
-  public Journal() {}
-  
-  public Journal(Person person, Subject subject, Grade grade, LocalDate gradeDate) {
-    super();
-    this.person = person;
-    this.subject = subject;
-    this.grade = grade;
-    this.gradeDate = gradeDate;
-  }
-  
-  public Journal(Integer id, Person person, Subject subject, Grade grade, LocalDate gradeDate) {
-    this(person, subject, grade, gradeDate);
-    this.id = id;
+  public Integer getPersonId() {
+    return personId;
   }
 
-  public Person getPerson() {
-    return person;
+  public void setPersonId(Integer personId) {
+    this.personId = personId;
   }
-  
-  public void setPerson(Person person) {
-    this.person = person;
+
+  public Integer getSubjectId() {
+    return subjectId;
   }
-  
-  public Subject getSubject() {
-    return subject;
+
+  public void setSubjectId(Integer subjectId) {
+    this.subjectId = subjectId;
   }
-  
-  public void setSubject(Subject subject) {
-    this.subject = subject;
+
+  public Integer getGradeId() {
+    return gradeId;
   }
-  
-  public Grade getGrade() {
-    return grade;
+
+  public void setGradeId(Integer gradeId) {
+    this.gradeId = gradeId;
   }
-  
-  public void setGrade(Grade grade) {
-    this.grade = grade;
-  }
-  
+
   public LocalDate getGradeDate() {
     return gradeDate;
   }
-  
+
   public void setGradeDate(LocalDate gradeDate) {
     this.gradeDate = gradeDate;
-  }  
- 
+  }
+
+  public Journal() {}
+
+  public Journal(Integer personId, Integer subjectId, Integer gradeId) {    
+    this.personId = personId;
+    this.subjectId = subjectId;
+    this.gradeId = gradeId;
+  }
+  
+  public Journal(Integer personId, Integer subjectId, Integer gradeId, LocalDate gradeDate) {
+    this(personId, subjectId, gradeId);
+    this.gradeDate = gradeDate;
+  }
+  
+  public Journal(Integer id, Integer personId, Integer subjectId, Integer gradeId, LocalDate gradeDate) {    
+    this(personId, subjectId, gradeId, gradeDate);
+    this.id = id;
+  }
+
   @Override
   public String toString() {
-    return "Journal [id=" + id + ", person=" + person + ", subject=" + subject 
-	+ ", grade=" + grade + ", gradeDate=" + gradeDate + "]";
+    return "Journal [personId=" + personId + ", subjectId=" + subjectId + ", gradeId=" + gradeId + ", gradeDate="
+	+ gradeDate + ", id=" + id + "]";
   }
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = super.hashCode();
-    result = prime * result + ((grade == null) ? 0 : grade.hashCode());
     result = prime * result + ((gradeDate == null) ? 0 : gradeDate.hashCode());
-    result = prime * result + ((person == null) ? 0 : person.hashCode());
-    result = prime * result + ((subject == null) ? 0 : subject.hashCode());
+    result = prime * result + ((gradeId == null) ? 0 : gradeId.hashCode());
+    result = prime * result + ((personId == null) ? 0 : personId.hashCode());
+    result = prime * result + ((subjectId == null) ? 0 : subjectId.hashCode());
     return result;
   }
 
@@ -84,25 +87,25 @@ public class Journal extends AbstractBean {
     if (getClass() != obj.getClass())
       return false;
     Journal other = (Journal) obj;
-    if (grade == null) {
-      if (other.grade != null)
-	return false;
-    } else if (!grade.equals(other.grade))
-      return false;
     if (gradeDate == null) {
       if (other.gradeDate != null)
 	return false;
     } else if (!gradeDate.equals(other.gradeDate))
       return false;
-    if (person == null) {
-      if (other.person != null)
+    if (gradeId == null) {
+      if (other.gradeId != null)
 	return false;
-    } else if (!person.equals(other.person))
+    } else if (!gradeId.equals(other.gradeId))
       return false;
-    if (subject == null) {
-      if (other.subject != null)
+    if (personId == null) {
+      if (other.personId != null)
 	return false;
-    } else if (!subject.equals(other.subject))
+    } else if (!personId.equals(other.personId))
+      return false;
+    if (subjectId == null) {
+      if (other.subjectId != null)
+	return false;
+    } else if (!subjectId.equals(other.subjectId))
       return false;
     return true;
   }

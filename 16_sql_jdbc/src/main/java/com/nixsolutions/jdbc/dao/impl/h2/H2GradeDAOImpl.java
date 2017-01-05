@@ -20,7 +20,7 @@ public class H2GradeDAOImpl implements GradeDAO {
   private static final Logger LOG = LogManager.getLogger();
     
   @Override
-  public int create(Grade bean) {
+  public int create(Grade bean) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {      
@@ -32,14 +32,14 @@ public class H2GradeDAOImpl implements GradeDAO {
       
       ResultSet res = stat.getGeneratedKeys(); 
       
-      while (res.next()) {
+      if (res.next()) {
         return res.getInt(1);
       }
       
       return -1;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
-      return -1;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -47,7 +47,7 @@ public class H2GradeDAOImpl implements GradeDAO {
   }
 
   @Override
-  public boolean update(Grade bean) {
+  public boolean update(Grade bean) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {      
@@ -63,7 +63,7 @@ public class H2GradeDAOImpl implements GradeDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
-      return false;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -71,7 +71,7 @@ public class H2GradeDAOImpl implements GradeDAO {
   }
   
   @Override
-  public boolean delete(Integer id) {
+  public boolean delete(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -82,7 +82,7 @@ public class H2GradeDAOImpl implements GradeDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete grade", ex);
-      return false;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -90,7 +90,7 @@ public class H2GradeDAOImpl implements GradeDAO {
   }
 
   @Override
-  public Grade getById(Integer id) {
+  public Grade getById(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -98,8 +98,6 @@ public class H2GradeDAOImpl implements GradeDAO {
       stat = conn.prepareStatement("SELECT * FROM grade where grade_id = ?");
       stat.setInt(1, id);
       ResultSet res = stat.executeQuery();
-      
-      
       
       if (res.next()) {
 	Grade gr = new Grade();
@@ -113,7 +111,7 @@ public class H2GradeDAOImpl implements GradeDAO {
       return null;
     } catch (SQLException ex) {
       LOG.error("Can't get grade [id = " + id + "]", ex);
-      return null;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -121,7 +119,7 @@ public class H2GradeDAOImpl implements GradeDAO {
   }
 
   @Override
-  public List<Grade> getAll() {
+  public List<Grade> getAll() throws SQLException {
     Connection conn = null;
     Statement stat = null;
     try {
@@ -143,11 +141,10 @@ public class H2GradeDAOImpl implements GradeDAO {
       return out;
     } catch (SQLException ex) {
       LOG.error("Can't get list of grades", ex);
-      return null;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
     }
   }
-
 }

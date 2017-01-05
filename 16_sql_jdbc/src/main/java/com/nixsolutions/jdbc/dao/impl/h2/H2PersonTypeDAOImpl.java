@@ -20,7 +20,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
   private static final Logger LOG = LogManager.getLogger();
   
   @Override
-  public int create(PersonType bean) {
+  public int create(PersonType bean) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -32,14 +32,14 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
       
       ResultSet res = stat.getGeneratedKeys(); 
       
-      while (res.next()) {
+      if (res.next()) {
         return res.getInt(1);
       }
       
       return -1;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add person type [%s]", bean.toString()), ex);
-      return -1;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -47,7 +47,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
   }
 
   @Override
-  public boolean update(PersonType bean) {
+  public boolean update(PersonType bean) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {      
@@ -63,7 +63,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
-      return false;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -71,7 +71,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
   }
   
   @Override
-  public boolean delete(Integer id) {
+  public boolean delete(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -82,7 +82,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete person type", ex);
-      return false;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -90,7 +90,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
   }
 
   @Override
-  public PersonType getById(Integer id) {
+  public PersonType getById(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -111,7 +111,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
       return null;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person type [id = %d]", id), ex);
-      return null;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -119,7 +119,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
   }
 
   @Override
-  public List<PersonType> getAll() {
+  public List<PersonType> getAll() throws SQLException {
     Connection conn = null;
     Statement stat = null;
     try {
@@ -141,11 +141,10 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
       return out;
     } catch (SQLException ex) {
       LOG.error("Can't get list of person type", ex);
-      return null;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
     }
   }
-
 }

@@ -1,16 +1,13 @@
 package com.nixsolutions.jdbc.dao;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import com.nixsolutions.jdbc.bean.Person;
-import com.nixsolutions.jdbc.bean.PersonStatus;
-import com.nixsolutions.jdbc.bean.PersonType;
-import com.nixsolutions.jdbc.bean.PhoneNumber;
 
 public interface PersonDAO extends GenericDAO<Person> {
 
-  Person getByName(String firstName, String lastName);
-  boolean setPersonType(Person p, PersonType t);
-  boolean setPersonStatus(Person p, PersonStatus t);
-  int addPhoneNumber(Integer personId, String number);
-  int addPhoneNumber(PhoneNumber pn);
-  boolean removePhoneNumber(PhoneNumber pn);
+  Person getByName(String firstName, String lastName) throws SQLException;
+  List<Person> getByType(Integer typeId) throws SQLException;
+  List<Person> getByStatus(Integer statusId) throws SQLException;
 }

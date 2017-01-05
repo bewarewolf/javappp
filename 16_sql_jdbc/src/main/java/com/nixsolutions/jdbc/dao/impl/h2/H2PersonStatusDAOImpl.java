@@ -20,7 +20,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
   private static final Logger LOG = LogManager.getLogger();
   
   @Override
-  public int create(PersonStatus bean) {
+  public int create(PersonStatus bean) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -32,14 +32,14 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       
       ResultSet res = stat.getGeneratedKeys(); 
       
-      while (res.next()) {
+      if (res.next()) {
         return res.getInt(1);
       }
       
       return -1;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add person status [%s]", bean.toString()), ex);
-      return -1;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -47,7 +47,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
   }
 
   @Override
-  public boolean update(PersonStatus bean) {
+  public boolean update(PersonStatus bean) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {      
@@ -63,7 +63,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
-      return false;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -71,7 +71,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
   }
   
   @Override
-  public boolean delete(Integer id) {
+  public boolean delete(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -82,7 +82,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete person status", ex);
-      return false;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -90,7 +90,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
   }
 
   @Override
-  public PersonStatus getById(Integer id) {
+  public PersonStatus getById(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -98,8 +98,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       stat = conn.prepareStatement("SELECT * FROM person_status where person_status_id = ?");
       stat.setInt(1, id);
       ResultSet res = stat.executeQuery();
-      
-      
+            
       if (res.next()) {
 	PersonStatus ps = new PersonStatus();
 	ps.setId(res.getInt("person_status_id"));
@@ -112,7 +111,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       return null;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person status [id = %d]", id), ex);
-      return null;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -120,7 +119,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
   }
 
   @Override
-  public List<PersonStatus> getAll() {
+  public List<PersonStatus> getAll() throws SQLException {
     Connection conn = null;
     Statement stat = null;
     try {
@@ -142,7 +141,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       return out;
     } catch (SQLException ex) {
       LOG.error("Can't get list of person status", ex);
-      return null;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);

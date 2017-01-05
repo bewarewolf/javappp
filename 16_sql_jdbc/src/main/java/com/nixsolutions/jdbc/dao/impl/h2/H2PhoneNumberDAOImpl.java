@@ -20,7 +20,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
   private static final Logger LOG = LogManager.getLogger();
   
   @Override
-  public int create(PhoneNumber bean) {
+  public int create(PhoneNumber bean) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -32,14 +32,14 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       
       ResultSet res = stat.getGeneratedKeys(); 
       
-      while (res.next()) {
+      if (res.next()) {
         return res.getInt(1);
       }
       
       return -1;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add phone number [%s]", bean.toString()), ex);
-      return -1;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -47,7 +47,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
   }
 
   @Override
-  public boolean update(PhoneNumber bean) {
+  public boolean update(PhoneNumber bean) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {      
@@ -63,7 +63,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
-      return false;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -71,7 +71,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
   }
   
   @Override
-  public boolean delete(Integer id) {
+  public boolean delete(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -82,7 +82,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error("Can't delete phone number", ex);
-      return false;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -90,7 +90,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
   }
 
   @Override
-  public PhoneNumber getById(Integer id) {
+  public PhoneNumber getById(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -111,7 +111,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       return null;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person status [id = %d]", id), ex);
-      return null;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -119,7 +119,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
   }
 
   @Override
-  public List<PhoneNumber> getAll() {
+  public List<PhoneNumber> getAll() throws SQLException {
     Connection conn = null;
     Statement stat = null;
     try {
@@ -141,7 +141,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       return out;
     } catch (SQLException ex) {
       LOG.error("Can't get list of phone numbers", ex);
-      return null;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -149,7 +149,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
   }
 
   @Override
-  public boolean deleteByPersonId(Integer id) {
+  public boolean deleteByPersonId(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -160,7 +160,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't delete phone numbers for person [id = %d]", id), ex);
-      return false;
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
@@ -168,7 +168,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
   }
 
   @Override
-  public List<PhoneNumber> getByPersonId(Integer id) {
+  public List<PhoneNumber> getByPersonId(Integer id) throws SQLException {
     Connection conn = null;
     PreparedStatement stat = null;
     try {
@@ -191,11 +191,10 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       return out;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get phone numbers for person [id = %d]", id), ex);
+      throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
       DbUtils.closeQuietly(stat);
     }
-    return null;
   }
-
 }

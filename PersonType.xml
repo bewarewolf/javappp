@@ -1,5 +1,0 @@
-<dataset>
-  <PERSON_TYPE PERSON_TYPE_ID="1" DESCRIPTION="Administration" VALUE="Dean"/>
-  <PERSON_TYPE PERSON_TYPE_ID="2" DESCRIPTION="Teaching and grading" VALUE="Teacher"/>
-  <PERSON_TYPE PERSON_TYPE_ID="3" DESCRIPTION="Studying" VALUE="Student"/>
-</dataset>
