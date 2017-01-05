@@ -42,16 +42,40 @@ public class PhoneNumber extends AbstractBean {
       throw new RuntimeException("Phone number should not be null");
     }
   }
-  
+
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("ID: ");
-    sb.append(id);
-    sb.append("; Person id: ");
-    sb.append(personId );
-    sb.append("; Number: ");
-    sb.append(phoneNumber);
-    return sb.toString();
+    return "PhoneNumber [id=" + id + ", personId=" + personId + ", phoneNumber=" + phoneNumber + "]";
   }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    result = prime * result + ((personId == null) ? 0 : personId.hashCode());
+    result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (!super.equals(obj))
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    PhoneNumber other = (PhoneNumber) obj;
+    if (personId == null) {
+      if (other.personId != null)
+	return false;
+    } else if (!personId.equals(other.personId))
+      return false;
+    if (phoneNumber == null) {
+      if (other.phoneNumber != null)
+	return false;
+    } else if (!phoneNumber.equals(other.phoneNumber))
+      return false;
+    return true;
+  }  
 }

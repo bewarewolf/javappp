@@ -52,19 +52,48 @@ public class Subject extends AbstractBean {
   
   public void setSemester(Semester semester) {
     this.semester = semester;
-  }  
-  
+  }
+
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("ID: ");
-    sb.append(id);
-    sb.append("; Name: ");
-    sb.append(subjectName);
-    sb.append("; Teacher: ");
-    sb.append(teacher.getFullName());
-    sb.append("; Semester: ");
-    sb.append(semester.getSemesterName());
-    return sb.toString();
+    return "Subject [id=" + id	+ ", subjectName=" + subjectName 
+	+ ", teacher=" + teacher + ", semester=" + semester + "]";
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    result = prime * result + ((semester == null) ? 0 : semester.hashCode());
+    result = prime * result + ((subjectName == null) ? 0 : subjectName.hashCode());
+    result = prime * result + ((teacher == null) ? 0 : teacher.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (!super.equals(obj))
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Subject other = (Subject) obj;
+    if (semester == null) {
+      if (other.semester != null)
+	return false;
+    } else if (!semester.equals(other.semester))
+      return false;
+    if (subjectName == null) {
+      if (other.subjectName != null)
+	return false;
+    } else if (!subjectName.equals(other.subjectName))
+      return false;
+    if (teacher == null) {
+      if (other.teacher != null)
+	return false;
+    } else if (!teacher.equals(other.teacher))
+      return false;
+    return true;
   }
 }
