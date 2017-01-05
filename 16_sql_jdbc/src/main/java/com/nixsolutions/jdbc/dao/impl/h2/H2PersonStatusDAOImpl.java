@@ -89,6 +89,15 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
     }
   }
 
+  protected PersonStatus processRecord(ResultSet res) throws SQLException {
+    PersonStatus ps = new PersonStatus();
+    ps.setId(res.getInt("person_status_id"));
+    ps.setDescription(res.getString("description"));
+    ps.setValue(res.getString("value"));
+    
+    return ps;
+  }
+  
   @Override
   public PersonStatus getById(Integer id) throws SQLException {
     Connection conn = null;
@@ -100,12 +109,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       ResultSet res = stat.executeQuery();
             
       if (res.next()) {
-	PersonStatus ps = new PersonStatus();
-	ps.setId(res.getInt("person_status_id"));
-	ps.setDescription(res.getString("description"));
-	ps.setValue(res.getString("value"));
-	
-	return ps;
+	return processRecord(res);
       }
       
       return null;
@@ -129,13 +133,7 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       
       List<PersonStatus> out = new ArrayList<>();
       while (res.next()) {
-	PersonStatus ps = new PersonStatus();
-	
-	ps.setId(res.getInt("person_status_id"));
-	ps.setDescription(res.getString("description"));
-	ps.setValue(res.getString("value"));
-	
-	out.add(ps);
+	out.add(processRecord(res));
       }
       
       return out;

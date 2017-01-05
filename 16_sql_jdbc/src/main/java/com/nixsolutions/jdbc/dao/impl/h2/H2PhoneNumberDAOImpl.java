@@ -89,7 +89,14 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
     }
   }
   
-  
+  protected PhoneNumber processRecord(ResultSet res) throws SQLException {
+    PhoneNumber pn = new PhoneNumber();
+    pn.setId(res.getInt("phone_number_id"));
+    pn.setPersonId(res.getInt("person_id"));
+    pn.setPhoneNumber(res.getString("phone_number"));
+    
+    return pn;
+  }
 
   @Override
   public PhoneNumber getById(Integer id) throws SQLException {
@@ -102,12 +109,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       ResultSet res = stat.executeQuery();
       
       if (res.next()) {
-	PhoneNumber pn = new PhoneNumber();
-	pn.setId(res.getInt("phone_number_id"));
-	pn.setPersonId(res.getInt("person_id"));
-	pn.setPhoneNumber(res.getString("phone_number"));
-	
-	return pn;
+	return processRecord(res);
       }
       
       return null;
@@ -131,13 +133,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       
       List<PhoneNumber> out = new ArrayList<>();
       while (res.next()) {
-	PhoneNumber pn = new PhoneNumber();
-	
-	pn.setId(res.getInt("phone_number_id"));
-	pn.setPersonId(res.getInt("person_id"));
-	pn.setPhoneNumber(res.getString("phone_number"));
-	
-	out.add(pn);
+	out.add(processRecord(res));
       }
       
       return out;

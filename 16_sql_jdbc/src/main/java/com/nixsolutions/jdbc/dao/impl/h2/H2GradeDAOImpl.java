@@ -89,6 +89,15 @@ public class H2GradeDAOImpl implements GradeDAO {
     }
   }
 
+  protected Grade processRecord(ResultSet res) throws SQLException {
+    Grade gr = new Grade();
+    gr.setId(res.getInt("grade_id"));
+    gr.setDescription(res.getString("description"));
+    gr.setValue(res.getInt("value"));
+    
+    return gr;
+  }
+  
   @Override
   public Grade getById(Integer id) throws SQLException {
     Connection conn = null;
@@ -100,12 +109,7 @@ public class H2GradeDAOImpl implements GradeDAO {
       ResultSet res = stat.executeQuery();
       
       if (res.next()) {
-	Grade gr = new Grade();
-	gr.setId(res.getInt("grade_id"));
-	gr.setDescription(res.getString("description"));
-	gr.setValue(res.getInt("value"));
-	
-	return gr;
+	return processRecord(res);
       }
       
       return null;
@@ -129,13 +133,7 @@ public class H2GradeDAOImpl implements GradeDAO {
       
       List<Grade> out = new ArrayList<>();
       while (res.next()) {
-	Grade gr = new Grade();
-	
-	gr.setId(res.getInt("grade_id"));
-	gr.setDescription(res.getString("description"));
-	gr.setValue(res.getInt("value"));
-	
-	out.add(gr);
+	out.add(processRecord(res));
       }
       
       return out;

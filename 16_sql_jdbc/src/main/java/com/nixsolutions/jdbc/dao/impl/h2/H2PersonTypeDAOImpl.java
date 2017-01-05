@@ -89,6 +89,15 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
     }
   }
 
+  protected PersonType processRecord(ResultSet res) throws SQLException {
+    PersonType pt = new PersonType();
+    pt.setId(res.getInt("person_type_id"));
+    pt.setDescription(res.getString("description"));
+    pt.setValue(res.getString("value"));
+    
+    return pt;
+  }
+  
   @Override
   public PersonType getById(Integer id) throws SQLException {
     Connection conn = null;
@@ -100,12 +109,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
       ResultSet res = stat.executeQuery();
       
       if (res.next()) {
-	PersonType pt = new PersonType();
-	pt.setId(res.getInt("person_type_id"));
-	pt.setDescription(res.getString("description"));
-	pt.setValue(res.getString("value"));
-	
-	return pt;
+	return processRecord(res);
       }
       
       return null;
@@ -129,13 +133,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
       
       List<PersonType> out = new ArrayList<>();
       while (res.next()) {
-	PersonType pt = new PersonType();
-	
-	pt.setId(res.getInt("person_type_id"));
-	pt.setDescription(res.getString("description"));
-	pt.setValue(res.getString("value"));
-	
-	out.add(pt);
+	out.add(processRecord(res));
       }
       
       return out;

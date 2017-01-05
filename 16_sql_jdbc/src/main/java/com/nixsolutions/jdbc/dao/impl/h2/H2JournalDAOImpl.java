@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,9 @@ public class H2JournalDAOImpl implements JournalDAO {
       stat.setInt(1, bean.getPersonId());
       stat.setInt(2, bean.getSubjectId());
       stat.setInt(3, bean.getGradeId());
-      stat.setDate(4, java.sql.Date.valueOf(bean.getGradeDate()));
+      stat.setDate(4, bean.getGradeDate() == null 
+          ? java.sql.Date.valueOf(LocalDate.now())
+          : java.sql.Date.valueOf(bean.getGradeDate()));
       stat.executeUpdate();
 
       ResultSet res = stat.getGeneratedKeys();

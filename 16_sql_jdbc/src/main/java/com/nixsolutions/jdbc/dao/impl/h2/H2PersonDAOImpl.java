@@ -25,6 +25,8 @@ public class H2PersonDAOImpl implements PersonDAO {
     PreparedStatement stat = null;
     try {
       conn = H2ConnectionManager.getConnection();
+      conn.setAutoCommit(false);
+      
       stat = conn.prepareStatement("INSERT INTO person (first_name, middle_name, last_name,"
 	  + "birthday, date_start, person_type_id, person_status_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
       stat.setString(1, bean.getFirstName());
@@ -36,6 +38,8 @@ public class H2PersonDAOImpl implements PersonDAO {
       stat.setInt(7, bean.getPersonStatusId());
       stat.executeUpdate();
 
+      conn.commit();
+      
       ResultSet res = stat.getGeneratedKeys();
 
       if (res.next()) {
@@ -45,6 +49,7 @@ public class H2PersonDAOImpl implements PersonDAO {
       return -1;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add person [%s]", bean.toString()), ex);
+      conn.rollback();
       throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
@@ -58,6 +63,8 @@ public class H2PersonDAOImpl implements PersonDAO {
     PreparedStatement stat = null;
     try {
       conn = H2ConnectionManager.getConnection();
+      conn.setAutoCommit(false);
+      
       stat = conn.prepareStatement(
 	  "UPDATE person SET " + "first_name = ?, " + "middle_name = ?, " + "last_name = ?, " + "birthday = ?, "
 	      + "date_start = ?, " + "person_type_id = ?, " + "person_status_id = ? " + "WHERE person_id = ?");
@@ -70,10 +77,14 @@ public class H2PersonDAOImpl implements PersonDAO {
       stat.setInt(6, bean.getPersonTypeId());
       stat.setInt(7, bean.getPersonStatusId());
       stat.setInt(8, bean.getId());
-
-      return stat.executeUpdate() != 0;
+      int result = stat.executeUpdate();
+      
+      conn.commit();
+      
+      return result != 0;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't update person [%s]", bean.toString()), ex);
+      conn.rollback();
       throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
@@ -87,12 +98,18 @@ public class H2PersonDAOImpl implements PersonDAO {
     PreparedStatement stat = null;
     try {
       conn = H2ConnectionManager.getConnection();
+      conn.setAutoCommit(false);
+      
       stat = conn.prepareStatement("DELETE FROM person where person_id = ?");
       stat.setInt(1, id);
-
-      return stat.executeUpdate() != 0;
+      int result = stat.executeUpdate();
+      
+      conn.commit();
+      
+      return result != 0;       
     } catch (SQLException ex) {
       LOG.error("Can't delete person", ex);
+      conn.rollback();
       throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
