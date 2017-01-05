@@ -14,6 +14,11 @@ public class Grade extends AbstractBean {
     this.value = value;
   }
   
+  public Grade(Integer id, String description, Integer value) {
+    this(description, value);
+    this.id = id;
+  }
+  
   public String getDescription() {
     return description;
   }

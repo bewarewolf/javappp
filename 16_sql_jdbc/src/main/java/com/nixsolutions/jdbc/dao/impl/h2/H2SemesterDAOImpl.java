@@ -12,7 +12,6 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.nixsolutions.jdbc.bean.PersonStatus;
 import com.nixsolutions.jdbc.bean.Semester;
 import com.nixsolutions.jdbc.dao.SemesterDAO;
 
@@ -56,7 +55,7 @@ public class H2SemesterDAOImpl implements SemesterDAO{
       conn = H2ConnectionManager.getConnection();
       stat = conn.prepareStatement("UPDATE semester SET "
           + "semester_name = ?, "
-          + "semester_date_start = ? "
+          + "semester_date_start = ?, "
           + "semester_date_end = ? "
           + "WHERE semester_id = ?");
       stat.setString(1, bean.getSemesterName());
@@ -66,7 +65,7 @@ public class H2SemesterDAOImpl implements SemesterDAO{
       
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
-      LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
+      LOG.error(String.format("Can't update semester [%s]", bean.toString()), ex);
       return false;
     } finally {
       DbUtils.closeQuietly(conn);
@@ -103,15 +102,17 @@ public class H2SemesterDAOImpl implements SemesterDAO{
       stat.setInt(1, id);
       ResultSet res = stat.executeQuery();
       
-      Semester sem = new Semester();
-      while (res.next()) {
+      if (res.next()) {
+	Semester sem = new Semester();
 	sem.setId(res.getInt("semester_id"));
 	sem.setSemesterName(res.getString("semester_name"));
 	sem.setStartDate(res.getDate("semester_date_start").toLocalDate());
 	sem.setEndDate(res.getDate("semester_date_end").toLocalDate());
+	
+	return sem;
       }
       
-      return sem;
+      return null;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get semester [id = %d]", id), ex);
       return null;

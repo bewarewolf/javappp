@@ -16,6 +16,11 @@ public class Subject extends AbstractBean {
     this.teacher = teacher;
     this.semester = semester;
   }
+  
+  public Subject(Integer id, String subjectName, Person teacher, Semester semester) {
+    this(subjectName, teacher, semester);
+    this.id = id;
+  }
 
   public String getSubjectName() {
     return subjectName;

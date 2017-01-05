@@ -12,7 +12,6 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.nixsolutions.jdbc.bean.Journal;
 import com.nixsolutions.jdbc.bean.PersonStatus;
 import com.nixsolutions.jdbc.dao.PersonStatusDAO;
 
@@ -100,14 +99,17 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       stat.setInt(1, id);
       ResultSet res = stat.executeQuery();
       
-      PersonStatus ps = new PersonStatus();
-      while (res.next()) {
+      
+      if (res.next()) {
+	PersonStatus ps = new PersonStatus();
 	ps.setId(res.getInt("person_status_id"));
 	ps.setDescription(res.getString("description"));
 	ps.setValue(res.getString("value"));
+	
+	return ps;
       }
       
-      return ps;
+      return null;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person status [id = %d]", id), ex);
       return null;

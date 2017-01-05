@@ -1,0 +1,6 @@
+<dataset>
+  <PERSON_STATUS PERSON_STATUS_ID="1" DESCRIPTION="Default" VALUE="Active"/>
+  <PERSON_STATUS PERSON_STATUS_ID="2" DESCRIPTION="Absent" VALUE="Sick leave"/>
+  <PERSON_STATUS PERSON_STATUS_ID="3" DESCRIPTION="Activity is suspended" VALUE="Academic leave"/>
+  <PERSON_STATUS PERSON_STATUS_ID="4" DESCRIPTION="Activity is terminated" VALUE="Expelled"/>
+</dataset>

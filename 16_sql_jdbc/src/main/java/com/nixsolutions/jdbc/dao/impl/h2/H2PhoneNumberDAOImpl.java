@@ -12,7 +12,6 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.nixsolutions.jdbc.bean.PersonStatus;
 import com.nixsolutions.jdbc.bean.PhoneNumber;
 import com.nixsolutions.jdbc.dao.PhoneNumberDAO;
 
@@ -100,14 +99,16 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       stat.setInt(1, id);
       ResultSet res = stat.executeQuery();
       
-      PhoneNumber pn = new PhoneNumber();
-      while (res.next()) {
+      if (res.next()) {
+	PhoneNumber pn = new PhoneNumber();
 	pn.setId(res.getInt("phone_number_id"));
 	pn.setPersonId(res.getInt("person_id"));
 	pn.setPhoneNumber(res.getString("phone_number"));
+	
+	return pn;
       }
       
-      return pn;
+      return null;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person status [id = %d]", id), ex);
       return null;

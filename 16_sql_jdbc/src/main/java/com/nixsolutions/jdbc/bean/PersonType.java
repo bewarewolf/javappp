@@ -14,6 +14,11 @@ public class PersonType extends AbstractBean {
     this.value = value;
   }
   
+  public PersonType(Integer id, String description, String value) {
+    this(description, value);
+    this.id = id;
+  }
+  
   public String getDescription() {
     return description;
   }

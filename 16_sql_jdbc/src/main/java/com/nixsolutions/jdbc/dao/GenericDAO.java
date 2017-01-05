@@ -2,7 +2,9 @@ package com.nixsolutions.jdbc.dao;
 
 import java.util.List;
 
-public interface GenericDAO<T> {
+import com.nixsolutions.jdbc.bean.AbstractBean;
+
+public interface GenericDAO<T extends AbstractBean> {
 
   int create(T bean);
   boolean delete(Integer id);

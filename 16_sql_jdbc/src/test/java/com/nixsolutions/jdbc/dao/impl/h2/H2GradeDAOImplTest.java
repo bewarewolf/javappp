@@ -1,67 +1,65 @@
 package com.nixsolutions.jdbc.dao.impl.h2;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Properties;
 
-import org.dbunit.Assertion;
-import org.dbunit.DBTestCase;
-import org.dbunit.PropertiesBasedJdbcDatabaseTester;
-import org.dbunit.database.DatabaseConfig;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
-import org.dbunit.dataset.filter.DefaultColumnFilter;
-import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.Assert;
 
 import com.nixsolutions.jdbc.bean.Grade;
 import com.nixsolutions.jdbc.dao.GradeDAO;
 
-public class H2GradeDAOImplTest extends DBTestCase {
-
-  private GradeDAO dao = new H2GradeDAOImpl();
+public class H2GradeDAOImplTest extends BaseTest {
 
   public H2GradeDAOImplTest(String name) throws Exception {
     super(name);
-    FileInputStream fis = new FileInputStream("jdbc.properties");
-    Properties prop = new Properties();
-    prop.load(fis);
-
-    System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, prop.getProperty("db.driver.h2"));
-    System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, prop.getProperty("db.url.h2"));
-    System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, prop.getProperty("db.username.h2"));
-    System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, prop.getProperty("db.password.h2"));
+    
+    dao = factory.getGradeDAO();
+    
+    insertDataset = "src/test/resources/Grade_insert.xml";
+    updateDataset = "src/test/resources/Grade_update.xml";
+    deleteDataset = "src/test/resources/Grade_delete.xml";
+    tableName = "grade";
+    
+    insertBean = new Grade("new grade", 15);
+    updateBean = new Grade(5, "upd", 6);
+    deleteId = 3;
   }
 
   @Override
   protected IDataSet getDataSet() throws Exception {
-    // TODO Auto-generated method stub
-    return new FlatXmlDataSetBuilder().build(new FileInputStream("src/test/resources/Grade.xml"));
+    return new FlatXmlDataSetBuilder().build(
+	new File(initialDataset));
   }
 
   @Test
-  public void testCreateNewGrade() throws Exception {
+  public void testShouldGetAllGrades() throws Exception {
     // when
-    dao.create(new Grade("new grade", 15));
+    List<Grade> grList = ((GradeDAO) dao).getAll();
 
-    // Fetch database data after executing your code
-    IDataSet databaseDataSet = getConnection().createDataSet();
-    ITable actualTable = databaseDataSet.getTable("grade");
+    // then
+    IDataSet dbDataSet = getConnection().createDataSet();
+    ITable actualTable = dbDataSet.getTable(tableName);
 
-    // Load expected data from an XML dataset
-    IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/resources/Grade_insert.xml"));
-    ITable expectedTable = expectedDataSet.getTable("grade");
+    Assert.assertEquals("Mismatch in list sizes", grList.size(), actualTable.getRowCount());
 
-    ITable filteredTable = DefaultColumnFilter.includedColumnsTable(actualTable,
-        expectedTable.getTableMetaData().getColumns());
+    for (int i = 0; i < grList.size(); i++) {
+      Assert.assertEquals("Mismatch in description", grList.get(i).getDescription(),
+	  actualTable.getValue(i, "description"));
+      Assert.assertEquals("Mismatch in value", grList.get(i).getValue(), actualTable.getValue(i, "value"));
+    }
+  }
 
-    // Assert actual database table match expected table
-    Assertion.assertEquals(expectedTable, filteredTable);
+  @Test
+  public void testShouldGradeById() throws Exception {
+    // when
+    Grade gr = ((GradeDAO) dao).getById(1);
+
+    // then
+    Assert.assertEquals("Mismatch in description", gr.getDescription(), "Fail");
+    Assert.assertEquals("Mismatch in value", gr.getValue(), (Integer) 1);
   }
 }

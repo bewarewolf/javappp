@@ -18,8 +18,9 @@ public class Person extends AbstractBean {
   
   public Person() {}
   
-  public Person(String firstName, String middleName, String lastName, LocalDate birthday, LocalDate startDate,
-      PersonType personType, PersonStatus personStatus, List<PhoneNumber> phoneNumbers) {
+  public Person(String firstName, String middleName, String lastName, 
+      LocalDate birthday, LocalDate startDate, PersonType personType, 
+      PersonStatus personStatus, List<PhoneNumber> phoneNumbers) {
     super();
     this.firstName = firstName;
     this.middleName = middleName;
@@ -29,6 +30,13 @@ public class Person extends AbstractBean {
     this.personType = personType;
     this.personStatus = personStatus;
     this.phoneNumbers = phoneNumbers;
+  }
+  
+  public Person(Integer id, String firstName, String middleName, String lastName, 
+      LocalDate birthday, LocalDate startDate, PersonType personType, 
+      PersonStatus personStatus, List<PhoneNumber> phoneNumbers) {
+    this(firstName, middleName, lastName, birthday, startDate, personType, personStatus, phoneNumbers);
+    this.id = id;
   }
 
   public String getFirstName() {

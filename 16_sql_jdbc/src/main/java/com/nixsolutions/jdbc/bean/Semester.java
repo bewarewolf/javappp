@@ -18,6 +18,11 @@ public class Semester extends AbstractBean {
     this.startDate = startDate;
     this.endDate = endDate;
   }
+  
+  public Semester(Integer id, String semesterName, LocalDate startDate, LocalDate endDate) {
+    this(semesterName, startDate, endDate);
+    this.id = id;
+  }
 
   public String getSemesterName() {
     return semesterName;

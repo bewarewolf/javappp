@@ -20,6 +20,11 @@ public class Journal extends AbstractBean {
     this.grade = grade;
     this.gradeDate = gradeDate;
   }
+  
+  public Journal(Integer id, Person person, Subject subject, Grade grade, LocalDate gradeDate) {
+    this(person, subject, grade, gradeDate);
+    this.id = id;
+  }
 
   public Person getPerson() {
     return person;

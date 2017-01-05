@@ -10,9 +10,13 @@ public class PersonStatus extends AbstractBean {
   public PersonStatus() {}
   
   public PersonStatus(String description, String value) {
-    super();
     this.description = description;
     this.value = value;
+  }
+  
+  public PersonStatus(Integer id, String description, String value) {
+    this(description, value);
+    this.id = id;
   }
 
   public String getDescription() {

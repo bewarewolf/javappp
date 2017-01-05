@@ -99,14 +99,18 @@ public class H2GradeDAOImpl implements GradeDAO {
       stat.setInt(1, id);
       ResultSet res = stat.executeQuery();
       
-      Grade gr = new Grade();
-      while (res.next()) {
+      
+      
+      if (res.next()) {
+	Grade gr = new Grade();
 	gr.setId(res.getInt("grade_id"));
 	gr.setDescription(res.getString("description"));
 	gr.setValue(res.getInt("value"));
+	
+	return gr;
       }
       
-      return gr;
+      return null;
     } catch (SQLException ex) {
       LOG.error("Can't get grade [id = " + id + "]", ex);
       return null;

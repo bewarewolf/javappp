@@ -12,7 +12,6 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.nixsolutions.jdbc.bean.PersonStatus;
 import com.nixsolutions.jdbc.bean.Subject;
 import com.nixsolutions.jdbc.dao.SubjectDAO;
 
@@ -29,7 +28,7 @@ public class H2SubjectDAOImpl implements SubjectDAO {
       stat = conn.prepareStatement("INSERT INTO subject (subject_name, teacher_id, semester_id) VALUES (?, ?, ?)");
       stat.setString(1, bean.getSubjectName());
       stat.setInt(2, bean.getTeacher().getId());
-      stat.setInt(2, bean.getSemester().getId());
+      stat.setInt(3, bean.getSemester().getId());
       stat.executeUpdate();
       
       ResultSet res = stat.getGeneratedKeys(); 
@@ -56,7 +55,7 @@ public class H2SubjectDAOImpl implements SubjectDAO {
       conn = H2ConnectionManager.getConnection();
       stat = conn.prepareStatement("UPDATE subject SET "
           + "subject_name = ?, "
-          + "teacher_id = ? "
+          + "teacher_id = ?, "
           + "semester_id = ? "
           + "WHERE subject_id = ?");
       stat.setString(1, bean.getSubjectName());
@@ -66,7 +65,7 @@ public class H2SubjectDAOImpl implements SubjectDAO {
       
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
-      LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
+      LOG.error(String.format("Can't update subject [%s]", bean.toString()), ex);
       return false;
     } finally {
       DbUtils.closeQuietly(conn);
@@ -103,8 +102,10 @@ public class H2SubjectDAOImpl implements SubjectDAO {
       stat.setInt(1, id);
       ResultSet res = stat.executeQuery();
       
-      Subject sub = new Subject();
-      while (res.next()) {
+      
+      if (res.next()) {
+	Subject sub = new Subject();
+	
 	sub.setId(res.getInt("subject_id"));
 	sub.setSubjectName(res.getString("subject_name"));
 	
@@ -113,9 +114,11 @@ public class H2SubjectDAOImpl implements SubjectDAO {
 	
 	H2PersonDAOImpl persDao = new H2PersonDAOImpl();
 	sub.setTeacher(persDao.getById(res.getInt("teacher_id")));
+	
+	return sub;
       }
       
-      return sub;
+      return null;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get subject [id = %d]", id), ex);
       return null;

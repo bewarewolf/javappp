@@ -12,7 +12,6 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.nixsolutions.jdbc.bean.Grade;
 import com.nixsolutions.jdbc.bean.Journal;
 import com.nixsolutions.jdbc.dao.JournalDAO;
 
@@ -26,10 +25,11 @@ public class H2JournalDAOImpl implements JournalDAO {
     PreparedStatement stat = null;
     try {
       conn = H2ConnectionManager.getConnection();
-      stat = conn.prepareStatement("INSERT INTO journal (person_id, subject_id, grade_id) VALUES (?, ?, ?)");
+      stat = conn.prepareStatement("INSERT INTO journal (person_id, subject_id, grade_id, grade_date) VALUES (?, ?, ?, ?)");
       stat.setInt(1, bean.getPerson().getId());
       stat.setInt(2, bean.getSubject().getId());
-      stat.setInt(2, bean.getGrade().getId());
+      stat.setInt(3, bean.getGrade().getId());
+      stat.setDate(4, java.sql.Date.valueOf(bean.getGradeDate()));
       stat.executeUpdate();
       
       ResultSet res = stat.getGeneratedKeys(); 
@@ -56,17 +56,19 @@ public class H2JournalDAOImpl implements JournalDAO {
       conn = H2ConnectionManager.getConnection();
       stat = conn.prepareStatement("UPDATE journal SET "
           + "person_id = ?, "
-          + "subject_id = ? "
-          + "grade_id = ? "
+          + "subject_id = ?, "
+          + "grade_id = ?, "
+          + "grade_date = ? "
           + "WHERE record_id = ?");
       stat.setInt(1, bean.getPerson().getId());
       stat.setInt(2, bean.getSubject().getId());
       stat.setInt(3, bean.getGrade().getId());
-      stat.setInt(4, bean.getId());
+      stat.setDate(4, java.sql.Date.valueOf(bean.getGradeDate()));
+      stat.setInt(5, bean.getId());
       
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
-      LOG.error(String.format("Can't add grade [%s]", bean.toString()), ex);
+      LOG.error(String.format("Can't update journal [%s]", bean.toString()), ex);
       return false;
     } finally {
       DbUtils.closeQuietly(conn);
@@ -102,9 +104,10 @@ public class H2JournalDAOImpl implements JournalDAO {
       stat = conn.prepareStatement("SELECT * FROM journal where record_id = ?");
       stat.setInt(1, id);
       ResultSet res = stat.executeQuery();
-
-      Journal rec = new Journal();
-      while (res.next()) {
+      
+      if (res.next()) {
+	Journal rec = new Journal();
+	
 	rec.setId(res.getInt("record_id"));
 	rec.setGradeDate(res.getDate("grade_date").toLocalDate());
 
@@ -116,9 +119,11 @@ public class H2JournalDAOImpl implements JournalDAO {
 
 	H2SubjectDAOImpl subjDao = new H2SubjectDAOImpl();
 	rec.setSubject(subjDao.getById(res.getInt("subject_id")));
+	
+	return rec;
       }
 
-      return rec;
+      return null;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get journal record [id = %d]", id), ex);
       return null;

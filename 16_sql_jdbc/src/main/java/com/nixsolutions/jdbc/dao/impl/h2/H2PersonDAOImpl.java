@@ -16,7 +16,6 @@ import com.nixsolutions.jdbc.bean.Person;
 import com.nixsolutions.jdbc.bean.PersonStatus;
 import com.nixsolutions.jdbc.bean.PersonType;
 import com.nixsolutions.jdbc.bean.PhoneNumber;
-import com.nixsolutions.jdbc.bean.Subject;
 import com.nixsolutions.jdbc.dao.PersonDAO;
 
 public class H2PersonDAOImpl implements PersonDAO {
@@ -90,7 +89,7 @@ public class H2PersonDAOImpl implements PersonDAO {
             
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
-      LOG.error(String.format("Can't add person [%s]", bean.toString()), ex);
+      LOG.error(String.format("Can't update person [%s]", bean.toString()), ex);
       return false;
     } finally {
       DbUtils.closeQuietly(conn);
@@ -127,8 +126,10 @@ public class H2PersonDAOImpl implements PersonDAO {
       stat.setInt(1, id);
       ResultSet res = stat.executeQuery();
 
-      Person pers = new Person();
-      while (res.next()) {
+      
+      if (res.next()) {
+	Person pers = new Person();
+	
 	pers.setId(res.getInt("subject_id"));
 	pers.setFirstName(res.getString("first_name"));
 	pers.setMiddleName(res.getString("middle_name"));
@@ -141,9 +142,11 @@ public class H2PersonDAOImpl implements PersonDAO {
 
 	H2PersonStatusDAOImpl statusDao = new H2PersonStatusDAOImpl();
 	pers.setPersonStatus(statusDao.getById(res.getInt("person_status_id")));
+	
+	return pers;
       }
 
-      return pers;
+      return null;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person [id = %d]", id), ex);
       return null;

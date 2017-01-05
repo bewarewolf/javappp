@@ -12,7 +12,6 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.nixsolutions.jdbc.bean.PersonStatus;
 import com.nixsolutions.jdbc.bean.PersonType;
 import com.nixsolutions.jdbc.dao.PersonTypeDAO;
 
@@ -100,14 +99,16 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
       stat.setInt(1, id);
       ResultSet res = stat.executeQuery();
       
-      PersonType pt = new PersonType();
-      while (res.next()) {
+      if (res.next()) {
+	PersonType pt = new PersonType();
 	pt.setId(res.getInt("person_type_id"));
 	pt.setDescription(res.getString("description"));
 	pt.setValue(res.getString("value"));
+	
+	return pt;
       }
       
-      return pt;
+      return null;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person type [id = %d]", id), ex);
       return null;

@@ -10,11 +10,15 @@ public class PhoneNumber extends AbstractBean {
   public PhoneNumber() {}
   
   public PhoneNumber(Integer personId, String phoneNumber) {
-    super();
     this.personId = personId;
     this.phoneNumber = phoneNumber;
   }
 
+  public PhoneNumber(Integer id, Integer personId, String phoneNumber) {
+    this(personId, phoneNumber);
+    this.id = id;
+  }
+  
   public Integer getPersonId() {
     return personId;
   }
