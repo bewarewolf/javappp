@@ -145,4 +145,28 @@ public class H2PersonStatusDAOImpl implements PersonStatusDAO {
       DbUtils.closeQuietly(stat);
     }
   }
+
+  @Override
+  public PersonStatus getByValue(String value) throws SQLException {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("SELECT * FROM person_status where value = ?");
+      stat.setString(1, value);
+      ResultSet res = stat.executeQuery();
+            
+      if (res.next()) {
+	return processRecord(res);
+      }
+      
+      return null;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't get person status [value = %d]", value), ex);
+      throw ex;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
 }

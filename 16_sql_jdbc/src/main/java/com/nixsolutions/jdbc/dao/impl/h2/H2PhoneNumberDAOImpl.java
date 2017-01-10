@@ -195,4 +195,28 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
       DbUtils.closeQuietly(stat);
     }
   }
+
+  @Override
+  public PhoneNumber getByNumber(String number) throws SQLException {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("SELECT * FROM phone_number where number = ?");
+      stat.setString(1, number);
+      ResultSet res = stat.executeQuery();
+      
+      if (res.next()) {
+	return processRecord(res);
+      }
+      
+      return null;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't get person status [number = %d]", number), ex);
+      throw ex;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
 }

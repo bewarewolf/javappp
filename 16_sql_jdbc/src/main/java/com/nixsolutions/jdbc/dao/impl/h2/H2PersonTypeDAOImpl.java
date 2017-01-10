@@ -145,4 +145,28 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
       DbUtils.closeQuietly(stat);
     }
   }
+
+  @Override
+  public PersonType getByValue(String value) throws SQLException {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("SELECT * FROM person_type where value = ?");
+      stat.setString(1, value);
+      ResultSet res = stat.executeQuery();
+      
+      if (res.next()) {
+	return processRecord(res);
+      }
+      
+      return null;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't get person type [value = %d]", value), ex);
+      throw ex;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
 }

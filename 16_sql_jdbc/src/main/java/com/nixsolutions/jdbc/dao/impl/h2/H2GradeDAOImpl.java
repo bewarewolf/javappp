@@ -145,4 +145,28 @@ public class H2GradeDAOImpl implements GradeDAO {
       DbUtils.closeQuietly(stat);
     }
   }
+
+  @Override
+  public Grade getByDescription(String description) throws SQLException {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("SELECT * FROM grade where description = ?");
+      stat.setString(1, description);
+      ResultSet res = stat.executeQuery();
+      
+      if (res.next()) {
+	return processRecord(res);
+      }
+      
+      return null;
+    } catch (SQLException ex) {
+      LOG.error("Can't get grade [description = " + description + "]", ex);
+      throw ex;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
 }

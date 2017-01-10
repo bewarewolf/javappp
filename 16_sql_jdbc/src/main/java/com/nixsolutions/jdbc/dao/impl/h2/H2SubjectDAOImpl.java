@@ -197,4 +197,28 @@ public class H2SubjectDAOImpl implements SubjectDAO {
       DbUtils.closeQuietly(stat);
     }
   }
+
+  @Override
+  public Subject getByName(String name) throws SQLException {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("SELECT * FROM subject where name = ?");
+      stat.setString(1, name);
+      ResultSet res = stat.executeQuery();
+
+      if (res.next()) {
+	return processRecord(res);
+      }
+
+      return null;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't get subject [name = %d]", name), ex);
+      throw ex;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
 }
