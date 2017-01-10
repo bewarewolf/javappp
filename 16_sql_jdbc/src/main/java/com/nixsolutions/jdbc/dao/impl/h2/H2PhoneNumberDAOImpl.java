@@ -202,7 +202,7 @@ public class H2PhoneNumberDAOImpl implements PhoneNumberDAO {
     PreparedStatement stat = null;
     try {
       conn = H2ConnectionManager.getConnection();
-      stat = conn.prepareStatement("SELECT * FROM phone_number where number = ?");
+      stat = conn.prepareStatement("SELECT * FROM phone_number where phone_number = ?");
       stat.setString(1, number);
       ResultSet res = stat.executeQuery();
       

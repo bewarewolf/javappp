@@ -2065,3 +2065,294 @@ INSERT INTO subject (subject_name, teacher_id, semester_id) VALUES (?, ?, ?) [23
 21:28:50.629 [main] INFO  [DAOExampleApp]: Journal by person id:Journal [personId=8, subjectId=4, gradeId=10, gradeDate=2017-01-05, id=2]
 21:28:50.630 [main] INFO  [DAOExampleApp]: Journal by subject id:Journal [personId=8, subjectId=4, gradeId=10, gradeDate=2017-01-05, id=2]
 21:28:50.633 [main] INFO  [DAOExampleApp]: --- Journal DAO demo finished
+12:56:15.473 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+12:56:15.473 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new, value=34]
+12:56:15.523 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=35]
+12:56:15.533 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=36]
+12:56:15.533 [main] INFO  [DAOExampleApp]: Grade [id=9, description=new, value=34]
+12:56:15.533 [main] INFO  [DAOExampleApp]: Grade [id=1, description=Fail, value=1]
+12:56:15.533 [main] INFO  [DAOExampleApp]: Grade [id=2, description=Pass, value=2]
+12:56:15.533 [main] INFO  [DAOExampleApp]: Grade [id=3, description=Average, value=3]
+12:56:15.533 [main] INFO  [DAOExampleApp]: Grade [id=4, description=Good, value=4]
+12:56:15.533 [main] INFO  [DAOExampleApp]: Grade [id=5, description=Very good, value=5]
+12:56:15.533 [main] INFO  [DAOExampleApp]: Grade [id=10, description=new1, value=35]
+12:56:15.533 [main] INFO  [DAOExampleApp]: Grade [id=11, description=new1, value=36]
+12:56:15.533 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+12:56:15.533 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+12:56:15.533 [main] INFO  [DAOExampleApp]: Creating type: PersonType [id=null, description=descr, value=val]
+12:56:15.533 [main] INFO  [DAOExampleApp]: PersonType [id=6, description=descr, value=val]
+12:56:15.533 [main] INFO  [DAOExampleApp]: Updated:PersonType [id=6, description=Updated, value=val]
+12:56:15.533 [main] INFO  [DAOExampleApp]: PersonType [id=1, description=Administration, value=Dean]
+12:56:15.533 [main] INFO  [DAOExampleApp]: PersonType [id=2, description=Teaching and grading, value=Teacher]
+12:56:15.533 [main] INFO  [DAOExampleApp]: PersonType [id=3, description=Studying, value=Student]
+12:56:15.533 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo finished
+12:56:15.533 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo
+12:56:15.543 [main] INFO  [DAOExampleApp]: Creating statusPersonStatus [id=null, description=desc, value=val]
+12:56:15.543 [main] INFO  [DAOExampleApp]: PersonStatus [id=7, description=desc, value=val]
+12:56:15.543 [main] INFO  [DAOExampleApp]: Updated:PersonStatus [id=7, description=Updated, value=val]
+12:56:15.543 [main] INFO  [DAOExampleApp]: PersonStatus [id=1, description=Default, value=Active]
+12:56:15.543 [main] INFO  [DAOExampleApp]: PersonStatus [id=2, description=Absent, value=Sick leave]
+12:56:15.543 [main] INFO  [DAOExampleApp]: PersonStatus [id=3, description=Activity is suspended, value=Academic leave]
+12:56:15.543 [main] INFO  [DAOExampleApp]: PersonStatus [id=4, description=Activity is terminated, value=Expelled]
+12:56:15.543 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo finished
+12:56:15.543 [main] INFO  [DAOExampleApp]: --- Person DAO demo
+12:56:15.553 [main] INFO  [DAOExampleApp]: Creating personPerson [id=null, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=7, personStatusId=8]
+12:56:15.563 [main] INFO  [DAOExampleApp]: Person by id:null
+12:56:15.563 [main] INFO  [DAOExampleApp]: Person by name:Person [id=12, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=7, personStatusId=8]
+12:56:15.563 [main] INFO  [DAOExampleApp]: Person by status:Person [id=1, firstName=Averill, middleName=Humphrey, lastName=Samuelson, birthday=1916-09-25, startDate=2006-06-25, personTypeId=1, personStatusId=2]
+12:56:15.563 [main] INFO  [DAOExampleApp]: Person by type:Person [id=2, firstName=Aden, middleName=Giffard, lastName=Lyon, birthday=1975-03-20, startDate=2012-08-15, personTypeId=2, personStatusId=1]
+12:56:15.563 [main] INFO  [DAOExampleApp]: Person by type:Person [id=3, firstName=Matt, middleName=Sullivan, lastName=Hochberg, birthday=1963-02-13, startDate=2012-08-15, personTypeId=2, personStatusId=1]
+12:56:15.563 [main] INFO  [DAOExampleApp]: Updated:Person [id=12, firstName=New, middleName=Updated, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=7, personStatusId=8]
+12:56:15.563 [main] INFO  [DAOExampleApp]: Person [id=1, firstName=Averill, middleName=Humphrey, lastName=Samuelson, birthday=1916-09-25, startDate=2006-06-25, personTypeId=1, personStatusId=2]
+12:56:15.563 [main] INFO  [DAOExampleApp]: Person [id=2, firstName=Aden, middleName=Giffard, lastName=Lyon, birthday=1975-03-20, startDate=2012-08-15, personTypeId=2, personStatusId=1]
+12:56:15.563 [main] INFO  [DAOExampleApp]: Person [id=3, firstName=Matt, middleName=Sullivan, lastName=Hochberg, birthday=1963-02-13, startDate=2012-08-15, personTypeId=2, personStatusId=1]
+12:56:15.563 [main] INFO  [DAOExampleApp]: Person [id=12, firstName=New, middleName=Updated, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=7, personStatusId=8]
+12:56:15.573 [main] ERROR [H2PersonTypeDAOImpl]: Can't delete person type
+org.h2.jdbc.JdbcSQLException: Referential integrity constraint violation: "CONSTRAINT_8C: PUBLIC.PERSON FOREIGN KEY(PERSON_TYPE_ID) REFERENCES PUBLIC.PERSON_TYPE(PERSON_TYPE_ID) (7)"; SQL statement:
+DELETE FROM person_type where person_type_id = ? [23503-193]
+	at org.h2.engine.SessionRemote.done(SessionRemote.java:624) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.command.CommandRemote.executeUpdate(CommandRemote.java:191) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:160) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:146) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2PersonTypeDAOImpl.delete(H2PersonTypeDAOImpl.java:82) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runPersonDAO(DAOExampleApp.java:173) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:49) [classes/:?]
+12:58:37.735 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+12:58:37.735 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new, value=34]
+12:58:37.785 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=35]
+12:58:37.785 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=36]
+12:58:37.795 [main] INFO  [DAOExampleApp]: Grade [id=12, description=new, value=34]
+12:58:37.795 [main] INFO  [DAOExampleApp]: Grade [id=1, description=Fail, value=1]
+12:58:37.795 [main] INFO  [DAOExampleApp]: Grade [id=2, description=Pass, value=2]
+12:58:37.795 [main] INFO  [DAOExampleApp]: Grade [id=3, description=Average, value=3]
+12:58:37.795 [main] INFO  [DAOExampleApp]: Grade [id=4, description=Good, value=4]
+12:58:37.795 [main] INFO  [DAOExampleApp]: Grade [id=5, description=Very good, value=5]
+12:58:37.795 [main] INFO  [DAOExampleApp]: Grade [id=13, description=new1, value=35]
+12:58:37.795 [main] INFO  [DAOExampleApp]: Grade [id=14, description=new1, value=36]
+12:58:37.795 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+12:58:37.795 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+12:58:37.795 [main] INFO  [DAOExampleApp]: Creating type: PersonType [id=null, description=descr, value=val]
+12:58:37.795 [main] INFO  [DAOExampleApp]: PersonType [id=8, description=descr, value=val]
+12:58:37.795 [main] INFO  [DAOExampleApp]: Updated:PersonType [id=8, description=Updated, value=val]
+12:58:37.795 [main] INFO  [DAOExampleApp]: PersonType [id=1, description=Administration, value=Dean]
+12:58:37.795 [main] INFO  [DAOExampleApp]: PersonType [id=2, description=Teaching and grading, value=Teacher]
+12:58:37.795 [main] INFO  [DAOExampleApp]: PersonType [id=3, description=Studying, value=Student]
+12:58:37.795 [main] INFO  [DAOExampleApp]: PersonType [id=7, description=type, value=forPerson]
+12:58:37.795 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo finished
+12:58:37.795 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo
+12:58:37.795 [main] INFO  [DAOExampleApp]: Creating statusPersonStatus [id=null, description=desc, value=val]
+12:58:37.805 [main] INFO  [DAOExampleApp]: PersonStatus [id=9, description=desc, value=val]
+12:58:37.805 [main] INFO  [DAOExampleApp]: Updated:PersonStatus [id=9, description=Updated, value=val]
+12:58:37.805 [main] INFO  [DAOExampleApp]: PersonStatus [id=1, description=Default, value=Active]
+12:58:37.805 [main] INFO  [DAOExampleApp]: PersonStatus [id=2, description=Absent, value=Sick leave]
+12:58:37.805 [main] INFO  [DAOExampleApp]: PersonStatus [id=3, description=Activity is suspended, value=Academic leave]
+12:58:37.805 [main] INFO  [DAOExampleApp]: PersonStatus [id=4, description=Activity is terminated, value=Expelled]
+12:58:37.805 [main] INFO  [DAOExampleApp]: PersonStatus [id=8, description=status, value=forPerson]
+12:58:37.805 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo finished
+12:58:37.805 [main] INFO  [DAOExampleApp]: --- Person DAO demo
+12:58:37.805 [main] ERROR [H2PersonTypeDAOImpl]: Can't add person type [PersonType [id=null, description=type, value=forPerson]]
+org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "CONSTRAINT_INDEX_6 ON PUBLIC.PERSON_TYPE(VALUE) VALUES ('forPerson', 7)"; SQL statement:
+INSERT INTO person_type (description, value) VALUES (?, ?) [23505-193]
+	at org.h2.engine.SessionRemote.done(SessionRemote.java:624) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.command.CommandRemote.executeUpdate(CommandRemote.java:191) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:160) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:146) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2PersonTypeDAOImpl.create(H2PersonTypeDAOImpl.java:31) [classes/:?]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2PersonTypeDAOImpl.create(H2PersonTypeDAOImpl.java:18) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runPersonDAO(DAOExampleApp.java:137) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:49) [classes/:?]
+12:59:08.284 [main] INFO  [DropSchemaApp]: Starting DROP SCHEMA application
+12:59:08.324 [main] INFO  [DropSchemaApp]: Schema has been dropped
+12:59:12.928 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+12:59:12.968 [main] INFO  [CreateSchemaApp]: CREATE TABLE grade ( grade_id INT IDENTITY, description VARCHAR(100) NOT NULL, value INT UNIQUE NOT NULL);
+12:59:12.968 [main] INFO  [CreateSchemaApp]: CREATE TABLE person ( person_id INT IDENTITY, first_name VARCHAR(100) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, birthday DATE NOT NULL, date_start DATE NOT NULL, person_type_id INT NOT NULL, person_status_id INT NOT NULL);
+12:59:12.968 [main] INFO  [CreateSchemaApp]: CREATE TABLE subject ( subject_id INT IDENTITY, subject_name VARCHAR(100) NOT NULL UNIQUE, teacher_id INT, semester_id INT NOT NULL);
+12:59:12.968 [main] INFO  [CreateSchemaApp]: CREATE TABLE semester ( semester_id INT IDENTITY, semester_name VARCHAR(20) NOT NULL UNIQUE, semester_date_start DATE NOT NULL, semester_date_end DATE NOT NULL);
+12:59:12.968 [main] INFO  [CreateSchemaApp]: CREATE TABLE journal ( record_id INT IDENTITY, person_id INT NOT NULL, subject_id INT NOT NULL, grade_id INT NOT NULL, grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(), FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE, FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE);
+12:59:12.968 [main] INFO  [CreateSchemaApp]: CREATE TABLE phone_number ( phone_number_id INT IDENTITY, phone_number VARCHAR(20) NOT NULL UNIQUE, person_id INT NOT NULL, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE);
+12:59:12.968 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_type ( person_type_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+12:59:12.968 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+12:59:12.968 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_type_id) REFERENCES person_type (person_type_id)
+12:59:12.968 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_status_id) REFERENCES person_status (person_status_id)
+12:59:12.968 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (teacher_id) REFERENCES person (person_id) ON DELETE CASCADE;
+12:59:12.968 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (semester_id) REFERENCES semester (semester_id) ON DELETE CASCADE;
+12:59:12.978 [main] INFO  [CreateSchemaApp]: Schema has been created
+12:59:18.030 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+12:59:18.030 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new, value=34]
+12:59:18.090 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=35]
+12:59:18.090 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=36]
+12:59:18.090 [main] INFO  [DAOExampleApp]: Grade [id=1, description=new, value=34]
+12:59:18.090 [main] INFO  [DAOExampleApp]: Grade [id=2, description=new1, value=35]
+12:59:18.090 [main] INFO  [DAOExampleApp]: Grade [id=3, description=new1, value=36]
+12:59:18.090 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+12:59:18.090 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+12:59:18.090 [main] INFO  [DAOExampleApp]: Creating type: PersonType [id=null, description=descr, value=val]
+12:59:18.090 [main] INFO  [DAOExampleApp]: PersonType [id=1, description=descr, value=val]
+12:59:18.090 [main] INFO  [DAOExampleApp]: Updated:PersonType [id=1, description=Updated, value=val]
+12:59:18.090 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo finished
+12:59:18.090 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo
+12:59:18.100 [main] INFO  [DAOExampleApp]: Creating statusPersonStatus [id=null, description=desc, value=val]
+12:59:18.100 [main] INFO  [DAOExampleApp]: PersonStatus [id=1, description=desc, value=val]
+12:59:18.100 [main] INFO  [DAOExampleApp]: Updated:PersonStatus [id=1, description=Updated, value=val]
+12:59:18.100 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo finished
+12:59:18.100 [main] INFO  [DAOExampleApp]: --- Person DAO demo
+12:59:18.110 [main] INFO  [DAOExampleApp]: Creating personPerson [id=null, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+12:59:18.120 [main] INFO  [DAOExampleApp]: Person by id:null
+12:59:18.120 [main] INFO  [DAOExampleApp]: Person by name:Person [id=1, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+12:59:18.120 [main] INFO  [DAOExampleApp]: Person by status:Person [id=1, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+12:59:18.120 [main] INFO  [DAOExampleApp]: Person by type:Person [id=1, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+12:59:18.120 [main] INFO  [DAOExampleApp]: Updated:Person [id=1, firstName=New, middleName=Updated, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+12:59:18.120 [main] INFO  [DAOExampleApp]: Person [id=1, firstName=New, middleName=Updated, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+12:59:18.120 [main] ERROR [H2PersonTypeDAOImpl]: Can't delete person type
+org.h2.jdbc.JdbcSQLException: Referential integrity constraint violation: "CONSTRAINT_8C: PUBLIC.PERSON FOREIGN KEY(PERSON_TYPE_ID) REFERENCES PUBLIC.PERSON_TYPE(PERSON_TYPE_ID) (2)"; SQL statement:
+DELETE FROM person_type where person_type_id = ? [23503-193]
+	at org.h2.engine.SessionRemote.done(SessionRemote.java:624) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.command.CommandRemote.executeUpdate(CommandRemote.java:191) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:160) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:146) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.dao.impl.h2.H2PersonTypeDAOImpl.delete(H2PersonTypeDAOImpl.java:82) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.runPersonDAO(DAOExampleApp.java:173) [classes/:?]
+	at com.nixsolutions.jdbc.main.DAOExampleApp.main(DAOExampleApp.java:49) [classes/:?]
+12:59:39.537 [main] INFO  [DropSchemaApp]: Starting DROP SCHEMA application
+12:59:39.577 [main] INFO  [DropSchemaApp]: Schema has been dropped
+12:59:42.459 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+12:59:42.499 [main] INFO  [CreateSchemaApp]: CREATE TABLE grade ( grade_id INT IDENTITY, description VARCHAR(100) NOT NULL, value INT UNIQUE NOT NULL);
+12:59:42.499 [main] INFO  [CreateSchemaApp]: CREATE TABLE person ( person_id INT IDENTITY, first_name VARCHAR(100) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, birthday DATE NOT NULL, date_start DATE NOT NULL, person_type_id INT NOT NULL, person_status_id INT NOT NULL);
+12:59:42.499 [main] INFO  [CreateSchemaApp]: CREATE TABLE subject ( subject_id INT IDENTITY, subject_name VARCHAR(100) NOT NULL UNIQUE, teacher_id INT, semester_id INT NOT NULL);
+12:59:42.499 [main] INFO  [CreateSchemaApp]: CREATE TABLE semester ( semester_id INT IDENTITY, semester_name VARCHAR(20) NOT NULL UNIQUE, semester_date_start DATE NOT NULL, semester_date_end DATE NOT NULL);
+12:59:42.499 [main] INFO  [CreateSchemaApp]: CREATE TABLE journal ( record_id INT IDENTITY, person_id INT NOT NULL, subject_id INT NOT NULL, grade_id INT NOT NULL, grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(), FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE, FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE);
+12:59:42.499 [main] INFO  [CreateSchemaApp]: CREATE TABLE phone_number ( phone_number_id INT IDENTITY, phone_number VARCHAR(20) NOT NULL UNIQUE, person_id INT NOT NULL, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE);
+12:59:42.499 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_type ( person_type_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+12:59:42.499 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+12:59:42.499 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_type_id) REFERENCES person_type (person_type_id)
+12:59:42.499 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_status_id) REFERENCES person_status (person_status_id)
+12:59:42.499 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (teacher_id) REFERENCES person (person_id) ON DELETE CASCADE;
+12:59:42.499 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (semester_id) REFERENCES semester (semester_id) ON DELETE CASCADE;
+12:59:42.509 [main] INFO  [CreateSchemaApp]: Schema has been created
+13:02:14.632 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+13:02:14.632 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new, value=34]
+13:02:14.702 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=35]
+13:02:14.702 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=36]
+13:02:14.702 [main] INFO  [DAOExampleApp]: Grade [id=1, description=new, value=34]
+13:02:14.702 [main] INFO  [DAOExampleApp]: Grade [id=2, description=new1, value=35]
+13:02:14.702 [main] INFO  [DAOExampleApp]: Grade [id=3, description=new1, value=36]
+13:02:14.702 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+13:02:14.702 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+13:02:14.702 [main] INFO  [DAOExampleApp]: Creating type: PersonType [id=null, description=descr, value=val]
+13:02:14.712 [main] INFO  [DAOExampleApp]: PersonType [id=1, description=descr, value=val]
+13:02:14.712 [main] INFO  [DAOExampleApp]: Updated:PersonType [id=1, description=Updated, value=val]
+13:02:14.712 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo finished
+13:02:14.712 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo
+13:02:14.712 [main] INFO  [DAOExampleApp]: Creating statusPersonStatus [id=null, description=desc, value=val]
+13:02:14.712 [main] INFO  [DAOExampleApp]: PersonStatus [id=1, description=desc, value=val]
+13:02:14.712 [main] INFO  [DAOExampleApp]: Updated:PersonStatus [id=1, description=Updated, value=val]
+13:02:14.712 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo finished
+13:02:14.712 [main] INFO  [DAOExampleApp]: --- Person DAO demo
+13:02:28.739 [main] INFO  [DAOExampleApp]: Creating personPerson [id=null, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+13:02:44.632 [main] INFO  [DropSchemaApp]: Starting DROP SCHEMA application
+13:02:44.672 [main] INFO  [DropSchemaApp]: Schema has been dropped
+13:02:47.270 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+13:02:47.310 [main] INFO  [CreateSchemaApp]: CREATE TABLE grade ( grade_id INT IDENTITY, description VARCHAR(100) NOT NULL, value INT UNIQUE NOT NULL);
+13:02:47.310 [main] INFO  [CreateSchemaApp]: CREATE TABLE person ( person_id INT IDENTITY, first_name VARCHAR(100) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, birthday DATE NOT NULL, date_start DATE NOT NULL, person_type_id INT NOT NULL, person_status_id INT NOT NULL);
+13:02:47.310 [main] INFO  [CreateSchemaApp]: CREATE TABLE subject ( subject_id INT IDENTITY, subject_name VARCHAR(100) NOT NULL UNIQUE, teacher_id INT, semester_id INT NOT NULL);
+13:02:47.310 [main] INFO  [CreateSchemaApp]: CREATE TABLE semester ( semester_id INT IDENTITY, semester_name VARCHAR(20) NOT NULL UNIQUE, semester_date_start DATE NOT NULL, semester_date_end DATE NOT NULL);
+13:02:47.310 [main] INFO  [CreateSchemaApp]: CREATE TABLE journal ( record_id INT IDENTITY, person_id INT NOT NULL, subject_id INT NOT NULL, grade_id INT NOT NULL, grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(), FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE, FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE);
+13:02:47.310 [main] INFO  [CreateSchemaApp]: CREATE TABLE phone_number ( phone_number_id INT IDENTITY, phone_number VARCHAR(20) NOT NULL UNIQUE, person_id INT NOT NULL, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE);
+13:02:47.310 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_type ( person_type_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+13:02:47.310 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+13:02:47.310 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_type_id) REFERENCES person_type (person_type_id)
+13:02:47.310 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_status_id) REFERENCES person_status (person_status_id)
+13:02:47.310 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (teacher_id) REFERENCES person (person_id) ON DELETE CASCADE;
+13:02:47.310 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (semester_id) REFERENCES semester (semester_id) ON DELETE CASCADE;
+13:02:47.320 [main] INFO  [CreateSchemaApp]: Schema has been created
+13:03:29.335 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+13:03:29.335 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new, value=34]
+13:03:29.405 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=35]
+13:03:29.405 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=36]
+13:03:29.405 [main] INFO  [DAOExampleApp]: Grade [id=1, description=new, value=34]
+13:03:29.405 [main] INFO  [DAOExampleApp]: Grade [id=2, description=new1, value=35]
+13:03:29.405 [main] INFO  [DAOExampleApp]: Grade [id=3, description=new1, value=36]
+13:03:29.405 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+13:03:29.405 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+13:03:29.415 [main] INFO  [DAOExampleApp]: Creating type: PersonType [id=null, description=descr, value=val]
+13:03:29.415 [main] INFO  [DAOExampleApp]: PersonType [id=1, description=descr, value=val]
+13:03:29.415 [main] INFO  [DAOExampleApp]: Updated:PersonType [id=1, description=Updated, value=val]
+13:03:29.415 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo finished
+13:03:29.415 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo
+13:03:29.415 [main] INFO  [DAOExampleApp]: Creating statusPersonStatus [id=null, description=desc, value=val]
+13:03:29.415 [main] INFO  [DAOExampleApp]: PersonStatus [id=1, description=desc, value=val]
+13:03:29.415 [main] INFO  [DAOExampleApp]: Updated:PersonStatus [id=1, description=Updated, value=val]
+13:03:29.415 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo finished
+13:03:29.415 [main] INFO  [DAOExampleApp]: --- Person DAO demo
+13:03:34.305 [main] INFO  [DAOExampleApp]: Creating personPerson [id=null, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+13:04:17.500 [main] INFO  [DropSchemaApp]: Starting DROP SCHEMA application
+13:04:17.550 [main] INFO  [DropSchemaApp]: Schema has been dropped
+13:04:20.801 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+13:04:20.841 [main] INFO  [CreateSchemaApp]: CREATE TABLE grade ( grade_id INT IDENTITY, description VARCHAR(100) NOT NULL, value INT UNIQUE NOT NULL);
+13:04:20.841 [main] INFO  [CreateSchemaApp]: CREATE TABLE person ( person_id INT IDENTITY, first_name VARCHAR(100) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, birthday DATE NOT NULL, date_start DATE NOT NULL, person_type_id INT NOT NULL, person_status_id INT NOT NULL);
+13:04:20.841 [main] INFO  [CreateSchemaApp]: CREATE TABLE subject ( subject_id INT IDENTITY, subject_name VARCHAR(100) NOT NULL UNIQUE, teacher_id INT, semester_id INT NOT NULL);
+13:04:20.841 [main] INFO  [CreateSchemaApp]: CREATE TABLE semester ( semester_id INT IDENTITY, semester_name VARCHAR(20) NOT NULL UNIQUE, semester_date_start DATE NOT NULL, semester_date_end DATE NOT NULL);
+13:04:20.841 [main] INFO  [CreateSchemaApp]: CREATE TABLE journal ( record_id INT IDENTITY, person_id INT NOT NULL, subject_id INT NOT NULL, grade_id INT NOT NULL, grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(), FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE, FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE);
+13:04:20.841 [main] INFO  [CreateSchemaApp]: CREATE TABLE phone_number ( phone_number_id INT IDENTITY, phone_number VARCHAR(20) NOT NULL UNIQUE, person_id INT NOT NULL, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE);
+13:04:20.841 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_type ( person_type_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+13:04:20.841 [main] INFO  [CreateSchemaApp]: CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE);
+13:04:20.841 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_type_id) REFERENCES person_type (person_type_id)
+13:04:20.841 [main] INFO  [CreateSchemaApp]: ALTER TABLE person ADD FOREIGN KEY (person_status_id) REFERENCES person_status (person_status_id)
+13:04:20.841 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (teacher_id) REFERENCES person (person_id) ON DELETE CASCADE;
+13:04:20.841 [main] INFO  [CreateSchemaApp]: ALTER TABLE subject ADD FOREIGN KEY (semester_id) REFERENCES semester (semester_id) ON DELETE CASCADE;
+13:04:20.851 [main] INFO  [CreateSchemaApp]: Schema has been created
+13:04:23.254 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+13:04:23.254 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new, value=34]
+13:04:23.314 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=35]
+13:04:23.314 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=36]
+13:04:23.314 [main] INFO  [DAOExampleApp]: Grade [id=1, description=new, value=34]
+13:04:23.314 [main] INFO  [DAOExampleApp]: Grade [id=2, description=new1, value=35]
+13:04:23.314 [main] INFO  [DAOExampleApp]: Grade [id=3, description=new1, value=36]
+13:04:23.314 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+13:04:23.314 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+13:04:23.314 [main] INFO  [DAOExampleApp]: Creating type: PersonType [id=null, description=descr, value=val]
+13:04:23.324 [main] INFO  [DAOExampleApp]: PersonType [id=1, description=descr, value=val]
+13:04:23.324 [main] INFO  [DAOExampleApp]: Updated:PersonType [id=1, description=Updated, value=val]
+13:04:23.324 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo finished
+13:04:23.324 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo
+13:04:23.324 [main] INFO  [DAOExampleApp]: Creating statusPersonStatus [id=null, description=desc, value=val]
+13:04:23.324 [main] INFO  [DAOExampleApp]: PersonStatus [id=1, description=desc, value=val]
+13:04:23.324 [main] INFO  [DAOExampleApp]: Updated:PersonStatus [id=1, description=Updated, value=val]
+13:04:23.324 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo finished
+13:04:23.324 [main] INFO  [DAOExampleApp]: --- Person DAO demo
+13:04:23.334 [main] INFO  [DAOExampleApp]: Creating personPerson [id=null, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+13:04:23.344 [main] INFO  [DAOExampleApp]: Person by id:Person [id=1, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+13:04:23.344 [main] INFO  [DAOExampleApp]: Person by name:Person [id=1, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+13:04:23.344 [main] INFO  [DAOExampleApp]: Person by status:Person [id=1, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+13:04:23.344 [main] INFO  [DAOExampleApp]: Person by type:Person [id=1, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+13:04:23.344 [main] INFO  [DAOExampleApp]: Updated:Person [id=1, firstName=New, middleName=Updated, lastName=Name, birthday=2017-01-10, startDate=2017-01-10, personTypeId=2, personStatusId=2]
+13:04:23.344 [main] INFO  [DAOExampleApp]: --- Person DAO demo finished
+13:04:23.344 [main] INFO  [DAOExampleApp]: --- Phone Number DAO demo
+13:04:23.354 [main] INFO  [DAOExampleApp]: Creating phone number:PhoneNumber [id=null, personId=2, phoneNumber=123-456-7890]
+13:04:23.354 [main] INFO  [DAOExampleApp]: Phone number by id:PhoneNumber [id=1, personId=2, phoneNumber=123-456-7890]
+13:04:23.354 [main] INFO  [DAOExampleApp]: Updated:PhoneNumber [id=1, personId=2, phoneNumber=Updated]
+13:04:23.354 [main] INFO  [DAOExampleApp]: Deleting by phone id
+13:04:23.354 [main] INFO  [DAOExampleApp]: PhoneNumber [id=2, personId=2, phoneNumber=45-54-12]
+13:04:23.354 [main] INFO  [DAOExampleApp]: Deleting by person id
+13:04:23.354 [main] INFO  [DAOExampleApp]: --- Phone Number DAO demo finished
+13:04:23.354 [main] INFO  [DAOExampleApp]: --- Semester DAO demo
+13:04:23.354 [main] INFO  [DAOExampleApp]: Creating semester:Semester [id=null, semesterName=new, startDate=2017-01-20, endDate=2017-01-25]
+13:04:23.354 [main] INFO  [DAOExampleApp]: Semester by id:Semester [id=1, semesterName=new, startDate=2017-01-20, endDate=2017-01-25]
+13:04:23.354 [main] INFO  [DAOExampleApp]: Semester by name:Semester [id=1, semesterName=new, startDate=2017-01-20, endDate=2017-01-25]
+13:04:23.364 [main] INFO  [DAOExampleApp]: Updated:Semester [id=1, semesterName=Updated, startDate=2017-01-20, endDate=2017-01-25]
+13:04:23.364 [main] INFO  [DAOExampleApp]: Current semester:null
+13:04:23.364 [main] INFO  [DAOExampleApp]: --- Semester DAO demo finished
+13:04:23.364 [main] INFO  [DAOExampleApp]: --- Subject DAO demo
+13:04:23.364 [main] INFO  [DAOExampleApp]: Creating subject:Subject [id=null, subjectName=new, teacher=3, semester=2]
+13:04:23.364 [main] INFO  [DAOExampleApp]: Subject by id:Subject [id=1, subjectName=new, teacher=3, semester=2]
+13:04:23.364 [main] INFO  [DAOExampleApp]: Updated:Subject [id=1, subjectName=Updated, teacher=3, semester=2]
+13:04:23.364 [main] INFO  [DAOExampleApp]: Subject by semester:Subject [id=1, subjectName=Updated, teacher=3, semester=2]
+13:04:23.364 [main] INFO  [DAOExampleApp]: Subject by teacher:Subject [id=1, subjectName=Updated, teacher=3, semester=2]
+13:04:23.374 [main] INFO  [DAOExampleApp]: --- Subject DAO demo finished
+13:04:23.374 [main] INFO  [DAOExampleApp]: --- Journal DAO demo
+13:04:23.374 [main] INFO  [DAOExampleApp]: Creating journal:Journal [id=null, personId=4, subjectId=2, gradeId=4, gradeDate=null]
+13:04:23.374 [main] INFO  [DAOExampleApp]: Journal by id:Journal [id=1, personId=4, subjectId=2, gradeId=4, gradeDate=2017-01-10]
+13:04:23.374 [main] INFO  [DAOExampleApp]: Updated:Journal [id=1, personId=4, subjectId=2, gradeId=5, gradeDate=2017-01-10]
+13:04:23.374 [main] INFO  [DAOExampleApp]: Journal by person id:Journal [id=1, personId=4, subjectId=2, gradeId=5, gradeDate=2017-01-10]
+13:04:23.384 [main] INFO  [DAOExampleApp]: Journal by subject id:Journal [id=1, personId=4, subjectId=2, gradeId=5, gradeDate=2017-01-10]
+13:04:23.384 [main] INFO  [DAOExampleApp]: --- Journal DAO demo finished

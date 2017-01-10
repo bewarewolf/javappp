@@ -37,15 +37,14 @@ public class H2PersonDAOImpl implements PersonDAO {
       stat.setInt(6, bean.getPersonTypeId());
       stat.setInt(7, bean.getPersonStatusId());
       stat.executeUpdate();
-
-      conn.commit();
       
       ResultSet res = stat.getGeneratedKeys();
-
+      conn.commit();
+      
       if (res.next()) {
 	return res.getInt(1);
       }
-
+      
       return -1;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't add person [%s]", bean.toString()), ex);

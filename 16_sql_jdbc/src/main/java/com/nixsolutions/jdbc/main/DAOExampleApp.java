@@ -1,6 +1,5 @@
 package com.nixsolutions.jdbc.main;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;

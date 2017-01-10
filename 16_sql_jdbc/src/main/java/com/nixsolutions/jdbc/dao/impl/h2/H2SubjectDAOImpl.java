@@ -204,7 +204,7 @@ public class H2SubjectDAOImpl implements SubjectDAO {
     PreparedStatement stat = null;
     try {
       conn = H2ConnectionManager.getConnection();
-      stat = conn.prepareStatement("SELECT * FROM subject where name = ?");
+      stat = conn.prepareStatement("SELECT * FROM subject where subject_name = ?");
       stat.setString(1, name);
       ResultSet res = stat.executeQuery();
 
