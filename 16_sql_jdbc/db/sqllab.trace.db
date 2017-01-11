@@ -1,0 +1,122 @@
+2017-01-11 16:30:09 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/git/homework/javappp/16_sql_jdbc/db/sqllab.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.nixsolutions.jdbc.main.CreateSchemaApp.main(CreateSchemaApp.java:43)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/git/homework/javappp/16_sql_jdbc/db/sqllab.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 24 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/git/homework/javappp/16_sql_jdbc/db/sqllab.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 19 more
+2017-01-11 16:30:17 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/git/homework/javappp/16_sql_jdbc/db/sqllab.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.message.DbException.convert(DbException.java:295)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:94)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:379)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:362)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2923)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:154)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:99)
+	at org.h2.engine.Database.getPageStore(Database.java:2468)
+	at org.h2.engine.Database.open(Database.java:695)
+	at org.h2.engine.Database.openDatabase(Database.java:273)
+	at org.h2.engine.Database.<init>(Database.java:267)
+	at org.h2.engine.Engine.openSession(Engine.java:64)
+	at org.h2.engine.Engine.openSession(Engine.java:176)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154)
+	at org.h2.engine.Engine.createSession(Engine.java:137)
+	at org.h2.engine.Engine.createSession(Engine.java:27)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.nixsolutions.jdbc.main.CreateSchemaApp.main(CreateSchemaApp.java:47)
+Caused by: org.h2.jdbc.JdbcSQLException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/git/homework/javappp/16_sql_jdbc/db/sqllab.mv.db [1.4.193/7]" [50000-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 24 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/git/homework/javappp/16_sql_jdbc/db/sqllab.mv.db [1.4.193/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:765)
+	at org.h2.mvstore.FileStore.open(FileStore.java:173)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:348)
+	... 19 more
+2017-01-11 16:30:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GRADE" already exists; SQL statement:
+CREATE TABLE grade ( grade_id INT IDENTITY, description VARCHAR(100) NOT NULL, value INT UNIQUE NOT NULL); [42101-193]
+2017-01-11 16:30:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "PERSON" already exists; SQL statement:
+CREATE TABLE person ( person_id INT IDENTITY, first_name VARCHAR(100) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, birthday DATE NOT NULL, date_start DATE NOT NULL, person_type_id INT NOT NULL, person_status_id INT NOT NULL); [42101-193]
+2017-01-11 16:30:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBJECT" already exists; SQL statement:
+CREATE TABLE subject ( subject_id INT IDENTITY, subject_name VARCHAR(100) NOT NULL UNIQUE, teacher_id INT, semester_id INT NOT NULL); [42101-193]
+2017-01-11 16:30:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SEMESTER" already exists; SQL statement:
+CREATE TABLE semester ( semester_id INT IDENTITY, semester_name VARCHAR(20) NOT NULL UNIQUE, semester_date_start DATE NOT NULL, semester_date_end DATE NOT NULL); [42101-193]
+2017-01-11 16:30:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "JOURNAL" already exists; SQL statement:
+CREATE TABLE journal ( record_id INT IDENTITY, person_id INT NOT NULL, subject_id INT NOT NULL, grade_id INT NOT NULL, grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(), FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE, FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE); [42101-193]
+2017-01-11 16:30:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "PHONE_NUMBER" already exists; SQL statement:
+CREATE TABLE phone_number ( phone_number_id INT IDENTITY, phone_number VARCHAR(20) NOT NULL UNIQUE, person_id INT NOT NULL, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE); [42101-193]
+2017-01-11 16:30:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "PERSON_TYPE" already exists; SQL statement:
+CREATE TABLE person_type ( person_type_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE); [42101-193]
+2017-01-11 16:30:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "PERSON_STATUS" already exists; SQL statement:
+CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE); [42101-193]
+2017-01-11 16:30:48 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Table "PERSON_STATUS" already exists; SQL statement:
+CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE); [42101-193]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:676)
+	at com.nixsolutions.jdbc.main.CreateSchemaApp.main(CreateSchemaApp.java:154)
+org.h2.jdbc.JdbcSQLException: Table "PERSON_STATUS" already exists; SQL statement:
+CREATE TABLE person_status ( person_status_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE); [42101-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:115)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:98)
+	at org.h2.command.Command.executeUpdate(Command.java:258)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:130)
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:661)
+	at com.nixsolutions.jdbc.main.CreateSchemaApp.main(CreateSchemaApp.java:154)
+org.h2.jdbc.JdbcSQLException: Table "PERSON_TYPE" already exists; SQL statement:
+CREATE TABLE person_type ( person_type_id INT IDENTITY, description VARCHAR(100), value VARCHAR(20) NOT NULL UNIQUE); [42101-193]
+org.h2.jdbc.JdbcSQLException: Table "PHONE_NUMBER" already exists; SQL statement:
+CREATE TABLE phone_number ( phone_number_id INT IDENTITY, phone_number VARCHAR(20) NOT NULL UNIQUE, person_id INT NOT NULL, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE); [42101-193]
+org.h2.jdbc.JdbcSQLException: Table "JOURNAL" already exists; SQL statement:
+CREATE TABLE journal ( record_id INT IDENTITY, person_id INT NOT NULL, subject_id INT NOT NULL, grade_id INT NOT NULL, grade_date TIMESTAMP NOT NULL DEFAULT CURRENT_DATE(), FOREIGN KEY (grade_id) REFERENCES grade (grade_id) ON DELETE CASCADE, FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE, FOREIGN KEY (subject_id) REFERENCES subject (subject_id) ON DELETE CASCADE); [42101-193]
+org.h2.jdbc.JdbcSQLException: Table "SEMESTER" already exists; SQL statement:
+CREATE TABLE semester ( semester_id INT IDENTITY, semester_name VARCHAR(20) NOT NULL UNIQUE, semester_date_start DATE NOT NULL, semester_date_end DATE NOT NULL); [42101-193]
+org.h2.jdbc.JdbcSQLException: Table "SUBJECT" already exists; SQL statement:
+CREATE TABLE subject ( subject_id INT IDENTITY, subject_name VARCHAR(100) NOT NULL UNIQUE, teacher_id INT, semester_id INT NOT NULL); [42101-193]
+org.h2.jdbc.JdbcSQLException: Table "PERSON" already exists; SQL statement:
+CREATE TABLE person ( person_id INT IDENTITY, first_name VARCHAR(100) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, birthday DATE NOT NULL, date_start DATE NOT NULL, person_type_id INT NOT NULL, person_status_id INT NOT NULL); [42101-193]
+org.h2.jdbc.JdbcSQLException: Table "GRADE" already exists; SQL statement:
+CREATE TABLE grade ( grade_id INT IDENTITY, description VARCHAR(100) NOT NULL, value INT UNIQUE NOT NULL); [42101-193]

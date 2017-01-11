@@ -1,0 +1,117 @@
+12:11:47.874 [main] INFO  [DAOExampleApp]: --- Grade DAO demo
+12:11:47.876 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new, value=34]
+12:11:48.034 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=35]
+12:11:48.035 [main] INFO  [DAOExampleApp]: Creating grade: Grade [id=null, description=new1, value=36]
+12:11:48.038 [main] INFO  [DAOExampleApp]: Grade [id=43, description=new, value=34]
+12:11:48.039 [main] INFO  [DAOExampleApp]: Grade [id=1, description=Fail, value=1]
+12:11:48.039 [main] INFO  [DAOExampleApp]: Grade [id=2, description=Pass, value=2]
+12:11:48.040 [main] INFO  [DAOExampleApp]: Grade [id=3, description=Average, value=3]
+12:11:48.040 [main] INFO  [DAOExampleApp]: Grade [id=4, description=Good, value=4]
+12:11:48.040 [main] INFO  [DAOExampleApp]: Grade [id=5, description=Very good, value=5]
+12:11:48.040 [main] INFO  [DAOExampleApp]: Grade [id=44, description=new1, value=35]
+12:11:48.040 [main] INFO  [DAOExampleApp]: Grade [id=45, description=new1, value=36]
+12:11:48.041 [main] INFO  [DAOExampleApp]: --- Grade DAO demo finished
+12:11:48.041 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo
+12:11:48.042 [main] INFO  [DAOExampleApp]: Creating type: PersonType [id=null, description=descr, value=val]
+12:11:48.043 [main] INFO  [DAOExampleApp]: PersonType [id=43, description=descr, value=val]
+12:11:48.044 [main] INFO  [DAOExampleApp]: Updated:PersonType [id=43, description=Updated, value=val]
+12:11:48.044 [main] INFO  [DAOExampleApp]: PersonType [id=1, description=Administration, value=Dean]
+12:11:48.044 [main] INFO  [DAOExampleApp]: PersonType [id=2, description=Teaching and grading, value=Teacher]
+12:11:48.045 [main] INFO  [DAOExampleApp]: PersonType [id=3, description=Studying, value=Student]
+12:11:48.045 [main] INFO  [DAOExampleApp]: --- Person Type DAO demo finished
+12:11:48.045 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo
+12:11:48.045 [main] INFO  [DAOExampleApp]: Creating statusPersonStatus [id=null, description=desc, value=val]
+12:11:48.047 [main] INFO  [DAOExampleApp]: PersonStatus [id=43, description=desc, value=val]
+12:11:48.048 [main] INFO  [DAOExampleApp]: Updated:PersonStatus [id=43, description=Updated, value=val]
+12:11:48.048 [main] INFO  [DAOExampleApp]: PersonStatus [id=1, description=Default, value=Active]
+12:11:48.048 [main] INFO  [DAOExampleApp]: PersonStatus [id=2, description=Absent, value=Sick leave]
+12:11:48.049 [main] INFO  [DAOExampleApp]: PersonStatus [id=3, description=Activity is suspended, value=Academic leave]
+12:11:48.049 [main] INFO  [DAOExampleApp]: PersonStatus [id=4, description=Activity is terminated, value=Expelled]
+12:11:48.049 [main] INFO  [DAOExampleApp]: --- Person Status DAO demo finished
+12:11:48.049 [main] INFO  [DAOExampleApp]: --- Person DAO demo
+12:11:48.064 [main] INFO  [DAOExampleApp]: Creating personPerson [id=null, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-11, startDate=2017-01-11, personTypeId=44, personStatusId=44]
+12:11:48.067 [main] INFO  [DAOExampleApp]: Person by id:Person [id=41, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-11, startDate=2017-01-11, personTypeId=44, personStatusId=44]
+12:11:48.068 [main] INFO  [DAOExampleApp]: Person by name:Person [id=41, firstName=New, middleName=Middle, lastName=Name, birthday=2017-01-11, startDate=2017-01-11, personTypeId=44, personStatusId=44]
+12:11:48.068 [main] INFO  [DAOExampleApp]: Person by status:Person [id=1, firstName=Averill, middleName=Humphrey, lastName=Samuelson, birthday=1916-09-25, startDate=2006-06-25, personTypeId=1, personStatusId=2]
+12:11:48.069 [main] INFO  [DAOExampleApp]: Person by type:Person [id=2, firstName=Aden, middleName=Giffard, lastName=Lyon, birthday=1975-03-20, startDate=2012-08-15, personTypeId=2, personStatusId=1]
+12:11:48.069 [main] INFO  [DAOExampleApp]: Person by type:Person [id=3, firstName=Matt, middleName=Sullivan, lastName=Hochberg, birthday=1963-02-13, startDate=2012-08-15, personTypeId=2, personStatusId=1]
+12:11:48.070 [main] INFO  [DAOExampleApp]: Updated:Person [id=41, firstName=New, middleName=Updated, lastName=Name, birthday=2017-01-11, startDate=2017-01-11, personTypeId=44, personStatusId=44]
+12:11:48.071 [main] INFO  [DAOExampleApp]: Person [id=1, firstName=Averill, middleName=Humphrey, lastName=Samuelson, birthday=1916-09-25, startDate=2006-06-25, personTypeId=1, personStatusId=2]
+12:11:48.071 [main] INFO  [DAOExampleApp]: Person [id=2, firstName=Aden, middleName=Giffard, lastName=Lyon, birthday=1975-03-20, startDate=2012-08-15, personTypeId=2, personStatusId=1]
+12:11:48.071 [main] INFO  [DAOExampleApp]: Person [id=3, firstName=Matt, middleName=Sullivan, lastName=Hochberg, birthday=1963-02-13, startDate=2012-08-15, personTypeId=2, personStatusId=1]
+12:11:48.072 [main] INFO  [DAOExampleApp]: --- Person DAO demo finished
+12:11:48.072 [main] INFO  [DAOExampleApp]: --- Phone Number DAO demo
+12:11:48.075 [main] INFO  [DAOExampleApp]: Creating phone number:PhoneNumber [id=null, personId=42, phoneNumber=123-456-7890]
+12:11:48.076 [main] INFO  [DAOExampleApp]: Phone number by id:PhoneNumber [id=41, personId=42, phoneNumber=123-456-7890]
+12:11:48.077 [main] INFO  [DAOExampleApp]: Updated:PhoneNumber [id=41, personId=42, phoneNumber=Updated]
+12:11:48.078 [main] INFO  [DAOExampleApp]: Deleting by phone id
+12:11:48.078 [main] INFO  [DAOExampleApp]: PhoneNumber [id=1, personId=1, phoneNumber=202-555-0195]
+12:11:48.078 [main] INFO  [DAOExampleApp]: PhoneNumber [id=2, personId=2, phoneNumber=+1-202-555-0167]
+12:11:48.078 [main] INFO  [DAOExampleApp]: PhoneNumber [id=3, personId=2, phoneNumber=+1-850-974-8113]
+12:11:48.079 [main] INFO  [DAOExampleApp]: PhoneNumber [id=4, personId=3, phoneNumber=+1-262-709-3127]
+12:11:48.079 [main] INFO  [DAOExampleApp]: PhoneNumber [id=42, personId=42, phoneNumber=45-54-12]
+12:11:48.079 [main] INFO  [DAOExampleApp]: Deleting by person id
+12:11:48.079 [main] INFO  [DAOExampleApp]: PhoneNumber [id=1, personId=1, phoneNumber=202-555-0195]
+12:11:48.079 [main] INFO  [DAOExampleApp]: PhoneNumber [id=2, personId=2, phoneNumber=+1-202-555-0167]
+12:11:48.079 [main] INFO  [DAOExampleApp]: PhoneNumber [id=3, personId=2, phoneNumber=+1-850-974-8113]
+12:11:48.080 [main] INFO  [DAOExampleApp]: PhoneNumber [id=4, personId=3, phoneNumber=+1-262-709-3127]
+12:11:48.081 [main] INFO  [DAOExampleApp]: --- Phone Number DAO demo finished
+12:11:48.081 [main] INFO  [DAOExampleApp]: --- Semester DAO demo
+12:11:48.082 [main] INFO  [DAOExampleApp]: Creating semester:Semester [id=null, semesterName=new, startDate=2017-01-21, endDate=2017-01-26]
+12:11:48.084 [main] INFO  [DAOExampleApp]: Semester by id:Semester [id=43, semesterName=new, startDate=2017-01-21, endDate=2017-01-26]
+12:11:48.085 [main] INFO  [DAOExampleApp]: Semester by name:Semester [id=43, semesterName=new, startDate=2017-01-21, endDate=2017-01-26]
+12:11:48.085 [main] INFO  [DAOExampleApp]: Updated:Semester [id=43, semesterName=Updated, startDate=2017-01-21, endDate=2017-01-26]
+12:11:48.086 [main] INFO  [DAOExampleApp]: Current semester:Semester [id=4, semesterName=4th, startDate=2017-01-01, endDate=2017-05-31]
+12:11:48.087 [main] INFO  [DAOExampleApp]: Semester [id=1, semesterName=1st, startDate=2015-09-01, endDate=2015-12-31]
+12:11:48.087 [main] INFO  [DAOExampleApp]: Semester [id=2, semesterName=2nd, startDate=2016-01-01, endDate=2016-05-31]
+12:11:48.087 [main] INFO  [DAOExampleApp]: Semester [id=3, semesterName=3rd, startDate=2016-09-01, endDate=2016-12-31]
+12:11:48.087 [main] INFO  [DAOExampleApp]: Semester [id=4, semesterName=4th, startDate=2017-01-01, endDate=2017-05-31]
+12:11:48.088 [main] INFO  [DAOExampleApp]: --- Semester DAO demo finished
+12:11:48.088 [main] INFO  [DAOExampleApp]: --- Subject DAO demo
+12:11:48.092 [main] INFO  [DAOExampleApp]: Creating subject:Subject [id=null, subjectName=new, teacher=43, semester=44]
+12:11:48.093 [main] INFO  [DAOExampleApp]: Subject by id:Subject [id=40, subjectName=new, teacher=43, semester=44]
+12:11:48.094 [main] INFO  [DAOExampleApp]: Updated:Subject [id=40, subjectName=Updated, teacher=43, semester=44]
+12:11:48.095 [main] INFO  [DAOExampleApp]: Subject by semester:Subject [id=40, subjectName=Updated, teacher=43, semester=44]
+12:11:48.095 [main] INFO  [DAOExampleApp]: Subject by teacher:Subject [id=40, subjectName=Updated, teacher=43, semester=44]
+12:11:48.096 [main] INFO  [DAOExampleApp]: Subject [id=1, subjectName=JUnit, teacher=2, semester=1]
+12:11:48.096 [main] INFO  [DAOExampleApp]: Subject [id=2, subjectName=Reflection upd, teacher=2, semester=3]
+12:11:48.096 [main] INFO  [DAOExampleApp]: Subject [id=3, subjectName=SQL, teacher=2, semester=2]
+12:11:48.098 [main] INFO  [DAOExampleApp]: --- Subject DAO demo finished
+12:11:48.098 [main] INFO  [DAOExampleApp]: --- Journal DAO demo
+12:11:48.104 [main] INFO  [DAOExampleApp]: Creating journal:Journal [id=null, personId=44, subjectId=41, gradeId=46, gradeDate=null]
+12:11:48.105 [main] INFO  [DAOExampleApp]: Journal by id:Journal [id=38, personId=44, subjectId=41, gradeId=46, gradeDate=2017-01-11]
+12:11:48.106 [main] INFO  [DAOExampleApp]: Updated:Journal [id=38, personId=44, subjectId=41, gradeId=47, gradeDate=2017-01-11]
+12:11:48.107 [main] INFO  [DAOExampleApp]: Journal by person id:Journal [id=38, personId=44, subjectId=41, gradeId=47, gradeDate=2017-01-11]
+12:11:48.107 [main] INFO  [DAOExampleApp]: Journal by subject id:Journal [id=38, personId=44, subjectId=41, gradeId=47, gradeDate=2017-01-11]
+12:11:48.108 [main] INFO  [DAOExampleApp]: Journal [id=1, personId=1, subjectId=1, gradeId=5, gradeDate=2017-01-03]
+12:11:48.108 [main] INFO  [DAOExampleApp]: Journal [id=2, personId=2, subjectId=1, gradeId=3, gradeDate=2017-01-01]
+12:11:48.108 [main] INFO  [DAOExampleApp]: Journal [id=3, personId=2, subjectId=2, gradeId=3, gradeDate=2017-01-02]
+12:11:48.110 [main] INFO  [DAOExampleApp]: --- Journal DAO demo finished
+12:17:09.570 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+12:17:09.715 [main] INFO  [CreateSchemaApp]: CREATE TABLE role ( role_id INT IDENTITY, role_name VARCHAR(100) UNIQUE NOT NULL);
+12:17:09.715 [main] INFO  [CreateSchemaApp]: CREATE TABLE user ( user_id INT IDENTITY, person_id INT UNIQUE, login VARCHAR(100) UNIQUE NOT NULL password VARCHAR(100) NOT NULL role_id INT, FOREIGN KEY (role_id) REFERENCES role (role_id));
+12:17:09.733 [main] ERROR [CreateSchemaApp]: Can't create schema
+org.h2.jdbc.JdbcBatchUpdateException: Syntax error in SQL statement "CREATE TABLE USER ( USER_ID INT IDENTITY, PERSON_ID INT UNIQUE, LOGIN VARCHAR(100) UNIQUE NOT NULL PASSWORD[*] VARCHAR(100) NOT NULL ROLE_ID INT, FOREIGN KEY (ROLE_ID) REFERENCES ROLE (ROLE_ID)); "; expected "CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE user ( user_id INT IDENTITY, person_id INT UNIQUE, login VARCHAR(100) UNIQUE NOT NULL password VARCHAR(100) NOT NULL role_id INT, FOREIGN KEY (role_id) REFERENCES role (role_id)); [42001-193]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:676) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.main.CreateSchemaApp.main(CreateSchemaApp.java:61) [classes/:?]
+12:17:50.629 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+12:17:50.769 [main] INFO  [CreateSchemaApp]: CREATE TABLE role ( role_id INT IDENTITY, role_name VARCHAR(100) UNIQUE NOT NULL);
+12:17:50.770 [main] INFO  [CreateSchemaApp]: CREATE TABLE user ( user_id INT IDENTITY, person_id INT UNIQUE, login VARCHAR(100) UNIQUE NOT NULL, password VARCHAR(100) NOT NULL, role_id INT, FOREIGN KEY (role_id) REFERENCES role (role_id));
+12:17:50.795 [main] ERROR [CreateSchemaApp]: Can't create schema
+org.h2.jdbc.JdbcBatchUpdateException: Table "ROLE" already exists; SQL statement:
+CREATE TABLE role ( role_id INT IDENTITY, role_name VARCHAR(100) UNIQUE NOT NULL); [42101-193]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:676) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.main.CreateSchemaApp.main(CreateSchemaApp.java:61) [classes/:?]
+12:17:57.015 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+12:17:57.160 [main] INFO  [CreateSchemaApp]: CREATE TABLE role ( role_id INT IDENTITY, role_name VARCHAR(100) UNIQUE NOT NULL);
+12:17:57.161 [main] INFO  [CreateSchemaApp]: CREATE TABLE user ( user_id INT IDENTITY, person_id INT UNIQUE, login VARCHAR(100) UNIQUE NOT NULL, password VARCHAR(100) NOT NULL, role_id INT, FOREIGN KEY (role_id) REFERENCES role (role_id));
+12:17:57.164 [main] ERROR [CreateSchemaApp]: Can't create schema
+org.h2.jdbc.JdbcBatchUpdateException: Table "USER" already exists; SQL statement:
+CREATE TABLE user ( user_id INT IDENTITY, person_id INT UNIQUE, login VARCHAR(100) UNIQUE NOT NULL, password VARCHAR(100) NOT NULL, role_id INT, FOREIGN KEY (role_id) REFERENCES role (role_id)); [42101-193]
+	at org.h2.jdbc.JdbcStatement.executeBatch(JdbcStatement.java:676) ~[h2-1.4.193.jar:1.4.193]
+	at com.nixsolutions.jdbc.main.CreateSchemaApp.main(CreateSchemaApp.java:61) [classes/:?]
+12:19:37.783 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+12:19:37.929 [main] INFO  [CreateSchemaApp]: Schema has been created
+12:20:59.050 [main] INFO  [CreateSchemaApp]: Starting CREATE SCHEMA application
+12:20:59.198 [main] INFO  [CreateSchemaApp]: Schema has been created
