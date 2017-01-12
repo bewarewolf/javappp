@@ -1,0 +1,22 @@
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+form {
+	display: inline;
+}
+
+#outer {
+	width: 100%;
+	text-align: center;
+}
+
+.inner {
+	display: inline-block;
+}
+
+#login {
+	border: 3px solid green;
+	text-align: center;
+}

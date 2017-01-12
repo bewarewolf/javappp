@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +82,7 @@ public class H2UserDAOImpl implements UserDAO {
       stat.setString(2, bean.getLogin());
       stat.setString(3, bean.getPassword());
       stat.setInt(4, bean.getRoleId());
-      stat.setInt(3, bean.getId());
+      stat.setInt(5, bean.getId());
       
       return stat.executeUpdate() != 0;
     } catch (SQLException ex) {
@@ -160,14 +159,7 @@ public class H2UserDAOImpl implements UserDAO {
     PreparedStatement stat = null;
     try {
       conn = H2ConnectionManager.getConnection();
-      
-      Statement st = conn.createStatement();
-      ResultSet r = st.executeQuery("show tables");
-      
-      while (r.next()) {
-	int i = 0;
-      }
-      
+            
       stat = conn.prepareStatement("SELECT * FROM user where login = ?");
       stat.setString(1, login);
       ResultSet res = stat.executeQuery();
