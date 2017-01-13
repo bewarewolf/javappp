@@ -1,6 +1,7 @@
 package com.nixsolutions.jsp.servlet;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +24,12 @@ public class InsertServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    Map<String, String> cookies = Utils.getCookies(req, resp);
+    
+    if (cookies == null) {
+      return;
+    }
+    
     String userName = Utils.getCookies(req, resp).get("user");
 
     if (userName == null) {

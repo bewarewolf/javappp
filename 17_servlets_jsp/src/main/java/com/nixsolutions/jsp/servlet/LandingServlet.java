@@ -26,19 +26,19 @@ public class LandingServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     Map<String, String> cookies = Utils.getCookies(req, resp);
     
-    final String userName =cookies.get("user");
-    final String role = cookies.get("role");
-
-    if (userName == null) {
-      resp.sendRedirect("index.html");
+    if (cookies == null) {
+      return;
     }
+    
+    final String userName = cookies.get("user");
+    final String role = cookies.get("role");
 
     PrintWriter pw = resp.getWriter();
 
     pw.write(Utils.formatHeadHtml("Welcome"));
+    pw.write("<h1>Welcome, " + userName + "</h1>");
 
     if ("Admin".equals(role)) {
       try {

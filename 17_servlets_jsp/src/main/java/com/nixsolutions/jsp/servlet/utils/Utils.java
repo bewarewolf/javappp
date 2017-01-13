@@ -62,7 +62,7 @@ public class Utils {
     Role role = roleDao.getById(user.getRoleId());
 
     String out = "<tr><td>" + user.getLogin() + "</td><td>" + user.getPassword() + "</td><td>" + role.getRoleName()
-	+ "</td><td><div id=\"outer\">" + formatUpdateActionHtml(user.getId()) 
+	+ "</td><td id=\"actionTd\"><div id=\"outer\">" + formatUpdateActionHtml(user.getId()) 
 	+ formatDeleteActionHtml(user.getId())
 	+ "</div></td></tr>";
 
@@ -72,11 +72,11 @@ public class Utils {
   public static String formatUpdateActionHtml(Integer userId) {
     StringBuilder update = new StringBuilder();
 
-    update.append("<div class=\"inner\">");
+    update.append("<div class=\"innerEdit\">");
     update.append("<form action=\"editUser\" method=\"post\">");
     update.append("<input type=\"hidden\" name=\"userid\" value=\"" + userId + "\">");
     update.append("<input type=\"submit\" value=\"Edit\" />");
-    update.append("</form></div><br />");
+    update.append("</form></div>");
 
     return update.toString();
   }
@@ -84,11 +84,11 @@ public class Utils {
   public static String formatDeleteActionHtml(Integer userId) {
     StringBuilder delete = new StringBuilder();
 
-    delete.append("<div class=\"inner\">");
+    delete.append("<div class=\"innerDelete\">");
     delete.append("<form action=\"delete\" method=\"post\">");
     delete.append("<input type=\"hidden\" name=\"userid\" value=\"" + userId + "\">");
     delete.append("<input type=\"submit\" value=\"Delete\" />");
-    delete.append("</form></div><br />");
+    delete.append("</form></div>");
 
     return delete.toString();
   }

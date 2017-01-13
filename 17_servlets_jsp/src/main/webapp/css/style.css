@@ -3,20 +3,32 @@ table, th, td {
 	border-collapse: collapse;
 }
 
-form {
-	display: inline;
-}
-
 #outer {
 	width: 100%;
 	text-align: center;
 }
 
-.inner {
+.innerEdit {
 	display: inline-block;
 }
 
+.innerDelete {
+   display: inline-block;
+}
+
 #login {
-	border: 3px solid green;
 	text-align: center;
+	width: 300px;
+	margin: 0 auto;
+	position: absolute;
+	top: 40%;	
+   left: 40%;
+}
+
+#formTable th td {
+	border: none;
+}
+
+#actionTd {
+	width: 120px;
 }
