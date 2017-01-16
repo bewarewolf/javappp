@@ -3,6 +3,7 @@ package com.nixsolutions.jsp.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,15 +28,23 @@ public class EditUserServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String userName = Utils.getCookies(req, resp).get("user");
+    Map<String, String> cookies = Utils.getCookies(req, resp);
 
-    if (userName == null) {
+    if (cookies == null) {
+      return;
+    }
+    
+    final String userName = cookies.get("user");
+    final String role = cookies.get("role");
+
+    if (!"Admin".equals(role)) {
       return;
     }
     
     PrintWriter pw = resp.getWriter();
 
-    pw.write(Utils.formatHeadHtml("Add user"));
+    pw.write(Utils.formatHeadHtml("Edit user"));
+    pw.write(Utils.formatBodyHeaderHtml(userName));
     
     try {
       DAOFactory fact = DAOFactory.getFactory();
@@ -61,6 +70,10 @@ public class EditUserServlet extends HttpServlet {
       pw.write("<input type=\"hidden\" name=\"userid\" value=\"" + user.getId() + "\">");
       pw.write("<input type=\"submit\" value=\"Update\" />");    
       pw.write("</form>");
+      
+      pw.write("<form action=\"landing\" method=\"post\">");
+      pw.write("<input type=\"submit\" value=\"Cancel\" />");
+      pw.write("</form>");      
     } catch (Exception ex) {
       throw new ServletException(ex);
     }

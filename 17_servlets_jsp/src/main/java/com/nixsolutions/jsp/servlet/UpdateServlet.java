@@ -1,6 +1,7 @@
 package com.nixsolutions.jsp.servlet;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,9 +24,15 @@ public class UpdateServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String userName = Utils.getCookies(req, resp).get("user");
+    Map<String, String> cookies = Utils.getCookies(req, resp);
 
-    if (userName == null) {
+    if (cookies == null) {
+      return;
+    }
+    
+    final String role = cookies.get("role");
+
+    if (!"Admin".equals(role)) {
       return;
     }
     

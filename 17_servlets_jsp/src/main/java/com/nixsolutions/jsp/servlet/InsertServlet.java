@@ -30,9 +30,10 @@ public class InsertServlet extends HttpServlet {
       return;
     }
     
-    String userName = Utils.getCookies(req, resp).get("user");
+    final String userName = Utils.getCookies(req, resp).get("user");
+    final String role = cookies.get("role");
 
-    if (userName == null) {
+    if (userName == null || !"Admin".equals(role)) {
       return;
     }
     

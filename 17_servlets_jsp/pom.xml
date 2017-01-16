@@ -5,8 +5,9 @@
   <artifactId>17_servlets_jsp</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>17_servlets_jsp Maven Webapp</name>
+  <name>17_servlets_jsp</name>
   <url>http://maven.apache.org</url>
+
   <dependencies>
     <dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -27,12 +28,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-		</dependency>
-		<dependency>
-			<groupId>org.dbunit</groupId>
-			<artifactId>dbunit</artifactId>
-			<version>2.5.3</version>
-			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
 		<dependency>
@@ -55,6 +50,8 @@
 
   </dependencies>
   <build>
+    <finalName>${project.name}</finalName>
+  
     <plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -64,28 +61,6 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.1.1</version>
-        <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-          <webResources>
-            <resource>
-              <directory>src/main/resources</directory>
-              <includes>
-                <include>**/*.properties</include>
-              </includes>
-            </resource>
-            <resource>
-              <directory>db</directory>
-              <includes>
-                <include>**/*.db</include>
-              </includes>
-            </resource>
-          </webResources>
-        </configuration>
-      </plugin>
 		</plugins>
   </build>
 </project>

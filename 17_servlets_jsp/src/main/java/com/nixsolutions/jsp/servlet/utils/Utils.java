@@ -55,6 +55,22 @@ public class Utils {
     return sb.toString();
   }
   
+  public static String formatBodyHeaderHtml(String userName) {
+    StringBuilder sb = new StringBuilder();
+    
+    sb.append("<div id=\"header\">");
+    sb.append("<div id=\"h1\">");
+    sb.append("<h1>Welcome, " + userName + "</h1>");
+    sb.append("</div>");
+    sb.append("<div id=\"logout\">");
+    sb.append("<form action=\"logout\" method=\"post\">");
+    sb.append("<input type=\"submit\" value=\"Logout\" />");
+    sb.append("</form><br />");
+    sb.append("</div>");
+    sb.append("</div>");
+    return sb.toString();
+  }
+  
   public static String formatUserHtml(User user) throws Exception {
     DAOFactory fact = DAOFactory.getFactory();
     RoleDAO roleDao = fact.getRoleDAO();

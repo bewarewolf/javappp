@@ -38,7 +38,7 @@ public class LandingServlet extends HttpServlet {
     PrintWriter pw = resp.getWriter();
 
     pw.write(Utils.formatHeadHtml("Welcome"));
-    pw.write("<h1>Welcome, " + userName + "</h1>");
+    pw.write(Utils.formatBodyHeaderHtml(userName));
 
     if ("Admin".equals(role)) {
       try {
@@ -68,14 +68,11 @@ public class LandingServlet extends HttpServlet {
       pw.write("</form><br />");
     }
 
-    StringBuilder logout = new StringBuilder();
-
-    logout.append("<form action=\"logout\" method=\"post\">");
-    logout.append("<input type=\"submit\" value=\"Logout\" />");
-    logout.append("</form><br />");
-
-    pw.write(logout.toString());
-
     pw.write("</body></html>");
   }  
+  
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    doGet(req, resp);
+  }
 }
