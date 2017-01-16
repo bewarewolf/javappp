@@ -3,6 +3,9 @@ package com.nixsolutions.jdbc.dao.impl.h2;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Map;
@@ -50,7 +53,12 @@ public class H2ConnectionManager {
 	prop.load(fis);
 
 	String strDriver = prop.getProperty("db.driver.h2");
-	String strUrl = resolveValueWithEnvVars(prop.getProperty("db.url.h2"));
+	String strDbFileName = prop.getProperty("db.filename");
+	
+	URL resource = H2ConnectionManager.class.getClassLoader().getResource(strDbFileName);
+	String strFullPath = Paths.get(resource.toURI()).toFile().getAbsolutePath();
+	
+	String strUrl = String.format(prop.getProperty("db.url.h2"), strFullPath.replace(".mv.db", ""));
 	String strUsername = prop.getProperty("db.username.h2");
 	String strPassword = prop.getProperty("db.password.h2");
 	String strMaxConnections = prop.getProperty("db.maxConnections.h2");
@@ -65,7 +73,7 @@ public class H2ConnectionManager {
 	    pool.setMaxConnections(Integer.valueOf(strMaxConnections));
 	  }
 	}
-      } catch (IOException | ClassNotFoundException ex) {
+      } catch (IOException | ClassNotFoundException | URISyntaxException ex) {
 	LOG.error(ex);
       }
     }
