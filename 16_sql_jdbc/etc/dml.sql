@@ -118,3 +118,15 @@ INSERT INTO journal (person_id, subject_id, grade_id, grade_date) VALUES (8, 3, 
 INSERT INTO journal (person_id, subject_id, grade_id, grade_date) VALUES (8, 4, 4, TIMESTAMPADD('DAY', -6, CURRENT_TIMESTAMP()));
 INSERT INTO journal (person_id, subject_id, grade_id, grade_date) VALUES (8, 5, 5, TIMESTAMPADD('DAY', -4, CURRENT_TIMESTAMP()));
 INSERT INTO journal (person_id, subject_id, grade_id, grade_date) VALUES (8, 5, 4, TIMESTAMPADD('DAY', -5, CURRENT_TIMESTAMP()));
+
+UPDATE person SET login = 'root', password = 'root'
+WHERE person_id = 1;
+
+UPDATE person SET login = LOWER(first_name), password = LOWER(first_name)
+WHERE person_id != 1;
+
+ALTER TABLE person
+ALTER COLUMN login SET NOT NULL;
+
+ALTER TABLE person
+ALTER COLUMN password SET NOT NULL;

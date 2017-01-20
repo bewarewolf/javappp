@@ -14,7 +14,7 @@ import com.nixsolutions.jdbc.dao.DAOFactory;
 import com.nixsolutions.jdbc.dao.UserDAO;
 import com.nixsolutions.jsp.servlet.utils.Utils;
 
-@WebServlet("/update")
+@WebServlet("/admin/update")
 public class UpdateServlet extends HttpServlet {
 
   /**
@@ -51,6 +51,6 @@ public class UpdateServlet extends HttpServlet {
       throw new ServletException(ex);
     } 
     
-    resp.sendRedirect("landing");
+    resp.sendRedirect("home");
   }
 }

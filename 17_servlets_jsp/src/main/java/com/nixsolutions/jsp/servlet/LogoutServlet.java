@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
@@ -20,29 +21,11 @@ public class LogoutServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     resp.setContentType("text/html");
-    Cookie loginCookie = null;
-    Cookie roleCookie = null;
-    Cookie[] cookies = req.getCookies();
 
-    if (cookies != null) {
-      for (Cookie cookie : cookies) {
-	if (cookie.getName().equals("user")) {
-	  loginCookie = cookie;
-	}
-	if (cookie.getName().equals("role")) {
-	  roleCookie = cookie;
-	}
-      }
-    }
+    HttpSession ses = req.getSession(false);
     
-    if (loginCookie != null) {
-      loginCookie.setMaxAge(0);
-      resp.addCookie(loginCookie);
-    }
-    
-    if (roleCookie != null) {
-      roleCookie.setMaxAge(0);
-      resp.addCookie(roleCookie);
+    if (ses != null) {
+      ses.invalidate();
     }
     
     resp.sendRedirect("index.html");

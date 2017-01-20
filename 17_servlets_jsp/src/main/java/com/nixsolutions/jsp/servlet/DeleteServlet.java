@@ -1,6 +1,7 @@
 package com.nixsolutions.jsp.servlet;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -10,10 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.nixsolutions.jdbc.dao.DAOFactory;
+import com.nixsolutions.jdbc.dao.PersonDAO;
 import com.nixsolutions.jdbc.dao.UserDAO;
 import com.nixsolutions.jsp.servlet.utils.Utils;
 
-@WebServlet("/delete")
+@WebServlet("/admin/deletePerson")
 public class DeleteServlet extends HttpServlet {
 
   /**
@@ -23,29 +25,23 @@ public class DeleteServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    Map<String, String> cookies = Utils.getCookies(req, resp);
-
-    if (cookies == null) {
-      return;
-    }
     
-    final String role = cookies.get("role");
+    Integer userId = Integer.valueOf(req.getParameter("userId"));
 
-    if (!"Admin".equals(role)) {
-      return;
-    }
-    
-    Integer userId = Integer.valueOf(req.getParameter("userid"));
-
+    URL referer = new URL(req.getHeader("referer"));
+    String ref = referer.getPath();
+   
     try {
       DAOFactory fact = DAOFactory.getFactory();
-      UserDAO userDao = fact.getUserDAO();
+      PersonDAO personDao = fact.getPersonDAO();
 
-      userDao.delete(userId);
+      personDao.delete(userId);
     } catch (Exception ex) {
       throw new ServletException(ex);
     }
-
-    resp.sendRedirect("landing");
+    
+    
+    //req.getRequestDispatcher(ref.substring(ref.lastIndexOf('/')) + '?' + referer.getQuery()).forward(req, resp);
+    resp.sendRedirect(referer.toString());
   }
 }

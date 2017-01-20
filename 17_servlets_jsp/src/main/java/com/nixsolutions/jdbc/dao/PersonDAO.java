@@ -10,4 +10,5 @@ public interface PersonDAO extends GenericDAO<Person> {
   Person getByName(String firstName, String lastName) throws SQLException;
   List<Person> getByType(Integer typeId) throws SQLException;
   List<Person> getByStatus(Integer statusId) throws SQLException;
+  Person getByCredentials(String login, String password) throws SQLException;
 }

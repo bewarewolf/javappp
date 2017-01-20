@@ -12,7 +12,9 @@ CREATE TABLE person (
   birthday DATE NOT NULL,
   date_start DATE NOT NULL,
   person_type_id INT NOT NULL,
-  person_status_id INT NOT NULL
+  person_status_id INT NOT NULL,
+  login VARCHAR(100) UNIQUE,
+  password VARCHAR(200)
 );
 
 CREATE TABLE subject (

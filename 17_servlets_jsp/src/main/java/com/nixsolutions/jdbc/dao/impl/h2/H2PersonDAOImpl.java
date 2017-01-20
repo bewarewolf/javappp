@@ -28,7 +28,7 @@ public class H2PersonDAOImpl implements PersonDAO {
       conn.setAutoCommit(false);
       
       stat = conn.prepareStatement("INSERT INTO person (first_name, middle_name, last_name,"
-	  + "birthday, date_start, person_type_id, person_status_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+	  + "birthday, date_start, person_type_id, person_status_id, login, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
       stat.setString(1, bean.getFirstName());
       stat.setString(2, bean.getMiddleName());
       stat.setString(3, bean.getLastName());
@@ -36,6 +36,8 @@ public class H2PersonDAOImpl implements PersonDAO {
       stat.setDate(5, java.sql.Date.valueOf(bean.getStartDate()));
       stat.setInt(6, bean.getPersonTypeId());
       stat.setInt(7, bean.getPersonStatusId());
+      stat.setString(8, bean.getLogin());
+      stat.setString(9, bean.getPassword());
       stat.executeUpdate();
       
       ResultSet res = stat.getGeneratedKeys();
@@ -66,7 +68,9 @@ public class H2PersonDAOImpl implements PersonDAO {
       
       stat = conn.prepareStatement(
 	  "UPDATE person SET " + "first_name = ?, " + "middle_name = ?, " + "last_name = ?, " + "birthday = ?, "
-	      + "date_start = ?, " + "person_type_id = ?, " + "person_status_id = ? " + "WHERE person_id = ?");
+	      + "date_start = ?, " + "person_type_id = ?, " + "person_status_id = ?, " 
+	      + "login = ?, " + "password = ? "
+	      + "WHERE person_id = ?");
 
       stat.setString(1, bean.getFirstName());
       stat.setString(2, bean.getMiddleName());
@@ -75,7 +79,9 @@ public class H2PersonDAOImpl implements PersonDAO {
       stat.setDate(5, java.sql.Date.valueOf(bean.getStartDate()));
       stat.setInt(6, bean.getPersonTypeId());
       stat.setInt(7, bean.getPersonStatusId());
-      stat.setInt(8, bean.getId());
+      stat.setString(8, bean.getLogin());
+      stat.setString(9, bean.getPassword());
+      stat.setInt(10, bean.getId());
       int result = stat.executeUpdate();
       
       conn.commit();
@@ -127,6 +133,8 @@ public class H2PersonDAOImpl implements PersonDAO {
     pers.setStartDate(res.getDate("date_start").toLocalDate());
     pers.setPersonTypeId(res.getInt("person_type_id"));
     pers.setPersonStatusId(res.getInt("person_status_id"));
+    pers.setLogin(res.getString("login"));
+    pers.setPassword(res.getString("password"));
 
     return pers;
   }
@@ -247,6 +255,31 @@ public class H2PersonDAOImpl implements PersonDAO {
       return out;
     } catch (SQLException ex) {
       LOG.error(String.format("Can't get person [status id = %d]", statusId), ex);
+      throw ex;
+    } finally {
+      DbUtils.closeQuietly(conn);
+      DbUtils.closeQuietly(stat);
+    }
+  }
+
+  @Override
+  public Person getByCredentials(String login, String password) throws SQLException {
+    Connection conn = null;
+    PreparedStatement stat = null;
+    try {
+      conn = H2ConnectionManager.getConnection();
+      stat = conn.prepareStatement("SELECT * FROM person where login = ? and password = ?");
+      stat.setString(1, login);
+      stat.setString(2, password);
+      ResultSet res = stat.executeQuery();
+
+      if (res.next()) {	
+	return processRecord(res);
+      }
+
+      return null;
+    } catch (SQLException ex) {
+      LOG.error(String.format("Can't get person [login = %s]", login), ex);
       throw ex;
     } finally {
       DbUtils.closeQuietly(conn);

@@ -1,6 +1,8 @@
 package com.nixsolutions.jsp.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -9,12 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.h2.util.StringUtils;
+
+import com.nixsolutions.jdbc.bean.Person;
 import com.nixsolutions.jdbc.bean.User;
 import com.nixsolutions.jdbc.dao.DAOFactory;
+import com.nixsolutions.jdbc.dao.PersonDAO;
+import com.nixsolutions.jdbc.dao.PersonStatusDAO;
+import com.nixsolutions.jdbc.dao.PersonTypeDAO;
 import com.nixsolutions.jdbc.dao.UserDAO;
+import com.nixsolutions.jsp.servlet.utils.DAOUtils;
 import com.nixsolutions.jsp.servlet.utils.Utils;
 
-@WebServlet("/insert")
+@WebServlet("/admin/processPerson")
 public class InsertServlet extends HttpServlet {
 
   /**
@@ -24,33 +33,40 @@ public class InsertServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    Map<String, String> cookies = Utils.getCookies(req, resp);
+    Person pers = new Person(); 
     
-    if (cookies == null) {
-      return;
+    String id = req.getParameter("personId");
+    if (!StringUtils.isNullOrEmpty(id)) {
+      pers.setId(Integer.valueOf(id));
     }
+    pers.setLogin(req.getParameter("login"));
+    pers.setPassword(req.getParameter("password"));    
+    pers.setFirstName(req.getParameter("fName"));
+    pers.setMiddleName(req.getParameter("mName"));
+    pers.setLastName(req.getParameter("lName"));
+    pers.setBirthday(LocalDate.parse(req.getParameter("birthday"), DateTimeFormatter.ISO_LOCAL_DATE));
+    pers.setStartDate(LocalDate.parse(req.getParameter("startDate"), DateTimeFormatter.ISO_LOCAL_DATE));        
     
-    final String userName = Utils.getCookies(req, resp).get("user");
-    final String role = cookies.get("role");
-
-    if (userName == null || !"Admin".equals(role)) {
-      return;
-    }
-    
-    User user = new User();
-    user.setLogin(req.getParameter("login"));
-    user.setPassword(req.getParameter("password"));
-    user.setRoleId(Integer.valueOf(req.getParameter("roles")));
+    String pt = req.getParameter("pt");
+    String ps = req.getParameter("ps");
+    pers.setPersonTypeId(Integer.valueOf(pt));
+    pers.setPersonStatusId(Integer.valueOf(ps));
     
     try {
       DAOFactory fact = DAOFactory.getFactory();
-      UserDAO userDao = fact.getUserDAO();
+      PersonDAO personDao = fact.getPersonDAO();
       
-      userDao.create(user);
+      if (pers.getId() != null) {
+	personDao.update(pers);
+      } else {
+	personDao.create(pers);
+      }
+      
+      req.getRequestDispatcher("/admin?" + req.getParameter("entity")).forward(req, resp);
     } catch (Exception ex) {
       throw new ServletException(ex);
     } 
     
-    resp.sendRedirect("landing");
+    resp.sendRedirect("home");
   } 
 }

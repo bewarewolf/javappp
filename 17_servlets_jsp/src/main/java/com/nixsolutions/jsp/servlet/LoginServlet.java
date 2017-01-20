@@ -18,15 +18,22 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.nixsolutions.jdbc.bean.Person;
+import com.nixsolutions.jdbc.bean.PersonType;
 import com.nixsolutions.jdbc.bean.Role;
 import com.nixsolutions.jdbc.bean.User;
 import com.nixsolutions.jdbc.dao.DAOFactory;
+import com.nixsolutions.jdbc.dao.PersonDAO;
+import com.nixsolutions.jdbc.dao.PersonStatusDAO;
+import com.nixsolutions.jdbc.dao.PersonTypeDAO;
 import com.nixsolutions.jdbc.dao.RoleDAO;
 import com.nixsolutions.jdbc.dao.UserDAO;
+import com.nixsolutions.jsp.servlet.utils.DAOUtils;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -39,35 +46,48 @@ public class LoginServlet extends HttpServlet {
   private static final Logger LOG = LogManager.getLogger();
     
   @Override
+  public void init() throws ServletException {
+    super.init();
+    
+    try {
+      DAOFactory fact = DAOFactory.getFactory();
+      PersonTypeDAO ptDao = fact.getPersonTypeDAO();
+      PersonStatusDAO psDao = fact.getPersonStatusDAO();
+      
+      DAOUtils.setPersonStatuses(psDao.getAll());
+      DAOUtils.setPersonTypes(ptDao.getAll());
+    } catch (Exception e) {
+      throw new ServletException(e);
+    } 
+  }
+  
+  @Override
   public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String login = req.getParameter("login");
     String password = req.getParameter("password");
     
     try {
       DAOFactory fact = DAOFactory.getFactory();
-      UserDAO usrDao = fact.getUserDAO();
+      PersonDAO usrDao = fact.getPersonDAO();
 
-      User user = usrDao.getByLogin(login);
+      Person user = usrDao.getByCredentials(login, password);
 
-      if (user == null || !user.getPassword().equals(password)) {
+      if (user == null) {
 	RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
 	PrintWriter out = resp.getWriter();
 	out.println("<font color=red>Either user name or password is wrong.</font>");
 	rd.include(req, resp);
       } else {
 
-	RoleDAO roleDao = fact.getRoleDAO();
-	Role r = roleDao.getById(user.getRoleId());
-
-	Cookie loginCookie = new Cookie("user", user.getLogin());
-	loginCookie.setMaxAge(10 * 60);
-	Cookie roleCookie = new Cookie("role", r.getRoleName());
-	roleCookie.setMaxAge(10 * 60);
+	PersonTypeDAO roleDao = fact.getPersonTypeDAO();
+	PersonType r = roleDao.getById(user.getPersonTypeId());
 	
-	resp.addCookie(loginCookie);
-	resp.addCookie(roleCookie);
+	HttpSession ses = req.getSession(true);
+	ses.setAttribute("user", user);
+	ses.setAttribute("role", r);
+	ses.setMaxInactiveInterval(30 * 60);
 	
-	resp.sendRedirect("landing");
+	req.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
       }
     } catch (Exception ex) {
       throw new ServletException(ex);

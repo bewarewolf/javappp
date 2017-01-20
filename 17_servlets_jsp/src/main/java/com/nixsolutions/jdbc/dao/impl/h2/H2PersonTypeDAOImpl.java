@@ -162,7 +162,7 @@ public class H2PersonTypeDAOImpl implements PersonTypeDAO {
       
       return null;
     } catch (SQLException ex) {
-      LOG.error(String.format("Can't get person type [value = %d]", value), ex);
+      LOG.error(String.format("Can't get person type [value = %s]", value), ex);
       throw ex;
     } finally {
       DbUtils.closeQuietly(conn);
