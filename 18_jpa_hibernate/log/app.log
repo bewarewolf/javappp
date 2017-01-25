@@ -1,0 +1,248 @@
+14:37:14.003 [main] INFO  [Main]: Started
+14:41:30.400 [main] INFO  [Main]: Started
+14:41:30.542 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+org.hibernate.MappingException: invalid configuration
+	at org.hibernate.cfg.Configuration.doConfigure(Configuration.java:2160) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.configure(Configuration.java:2077) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.configure(Configuration.java:2056) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:19) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:19) [classes/:?]
+Caused by: org.xml.sax.SAXParseException: Document is invalid: no grammar found.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:134) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:223) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:613) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3132) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:852) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1213) ~[?:1.8.0_111]
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:643) ~[?:1.8.0_111]
+	at org.dom4j.io.SAXReader.read(SAXReader.java:465) ~[dom4j-1.6.1.jar:1.6.1]
+	at org.hibernate.cfg.Configuration.doConfigure(Configuration.java:2157) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	... 4 more
+14:45:05.424 [main] INFO  [Main]: Started
+14:45:05.675 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+org.hibernate.exception.JDBCConnectionException: Error calling Driver#connect
+	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator$1$1.convert(BasicConnectionCreator.java:122) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.convertSqlException(BasicConnectionCreator.java:140) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:58) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.createConnection(BasicConnectionCreator.java:75) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.configure(DriverManagerConnectionProviderImpl.java:106) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:111) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:234) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:206) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.buildJdbcConnectionAccess(JdbcServicesImpl.java:260) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:94) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:111) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:234) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:206) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.buildTypeRegistrations(Configuration.java:1887) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1845) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:21) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:19) [classes/:?]
+Caused by: org.h2.jdbc.JdbcSQLException: Database "/home/roman/git/javappp/18_jpa_hibernate/sqllab" not found [90013-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.message.DbException.get(DbException.java:155) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.engine.Engine.openSession(Engine.java:62) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.engine.Engine.openSession(Engine.java:176) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:154) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.engine.Engine.createSession(Engine.java:137) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.engine.Engine.createSession(Engine.java:27) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:349) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:115) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:99) ~[h2-1.4.193.jar:1.4.193]
+	at org.h2.Driver.connect(Driver.java:69) ~[h2-1.4.193.jar:1.4.193]
+	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:55) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	... 14 more
+15:02:53.659 [main] INFO  [Main]: Started
+15:02:53.750 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+java.lang.NullPointerException: null
+	at java.util.regex.Matcher.getTextLength(Matcher.java:1283) ~[?:1.8.0_111]
+	at java.util.regex.Matcher.reset(Matcher.java:309) ~[?:1.8.0_111]
+	at java.util.regex.Matcher.<init>(Matcher.java:229) ~[?:1.8.0_111]
+	at java.util.regex.Pattern.matcher(Pattern.java:1093) ~[?:1.8.0_111]
+	at java.util.Formatter.parse(Formatter.java:2547) ~[?:1.8.0_111]
+	at java.util.Formatter.format(Formatter.java:2501) ~[?:1.8.0_111]
+	at java.util.Formatter.format(Formatter.java:2455) ~[?:1.8.0_111]
+	at java.lang.String.format(String.java:2940) ~[?:1.8.0_111]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:21) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:19) [classes/:?]
+15:03:43.125 [main] INFO  [Main]: Started
+15:08:35.136 [main] INFO  [Main]: Started
+15:09:06.053 [main] INFO  [Main]: Started
+15:12:05.728 [main] INFO  [Main]: Started
+15:12:12.047 [main] INFO  [HibernateUtil]: null
+15:12:17.997 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:12:40.664 [main] INFO  [Main]: Started
+15:12:42.175 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:12:56.725 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:13:12.143 [main] INFO  [Main]: Started
+15:13:12.308 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:13:12.309 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:13:12.839 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+org.hibernate.AnnotationException: @OneToOne or @ManyToOne on com.nixsolutions.jdbc.bean.Subject.teacher references an unknown entity: com.nixsolutions.jdbc.bean.Person
+	at org.hibernate.cfg.ToOneFkSecondPass.doSecondPass(ToOneFkSecondPass.java:109) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.processEndOfQueue(Configuration.java:1598) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.processFkSecondPassInOrder(Configuration.java:1521) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.secondPassCompile(Configuration.java:1422) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1846) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:33) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:19) [classes/:?]
+15:17:36.945 [main] INFO  [Main]: Started
+15:17:37.082 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:17:37.083 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:17:37.572 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+org.hibernate.HibernateException: Wrong column type in SQLLAB.PUBLIC.PERSON for column birthday. Found: date, expected: binary(255)
+	at org.hibernate.mapping.Table.validateColumns(Table.java:373) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.validateSchema(Configuration.java:1338) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.tool.hbm2ddl.SchemaValidator.validate(SchemaValidator.java:175) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:525) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1859) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:33) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:19) [classes/:?]
+15:18:06.894 [main] INFO  [Main]: Started
+15:18:07.027 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:18:07.028 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:18:07.479 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+org.hibernate.HibernateException: Wrong column type in SQLLAB.PUBLIC.PERSON for column birthday. Found: date, expected: binary(255)
+	at org.hibernate.mapping.Table.validateColumns(Table.java:373) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.validateSchema(Configuration.java:1338) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.tool.hbm2ddl.SchemaValidator.validate(SchemaValidator.java:175) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:525) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1859) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:33) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:19) [classes/:?]
+15:23:19.409 [main] INFO  [Main]: Started
+15:23:19.559 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:23:19.559 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:23:20.101 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+org.hibernate.HibernateException: Wrong column type in SQLLAB.PUBLIC.PERSON for column birthday. Found: date, expected: binary(255)
+	at org.hibernate.mapping.Table.validateColumns(Table.java:373) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.validateSchema(Configuration.java:1338) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.tool.hbm2ddl.SchemaValidator.validate(SchemaValidator.java:175) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:525) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1859) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:33) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:19) [classes/:?]
+15:25:50.713 [main] INFO  [Main]: Started
+15:25:51.095 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:25:51.096 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:26:31.388 [main] INFO  [Main]: Started
+15:26:31.601 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:26:31.602 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:26:43.529 [main] INFO  [Main]: Started
+15:26:48.899 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:26:48.900 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:33:40.027 [main] INFO  [Main]: Started
+15:33:40.258 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:33:40.259 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:35:05.743 [main] INFO  [Main]: Started
+15:35:05.882 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:35:05.883 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:35:06.430 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+org.hibernate.HibernateException: Wrong column type in SQLLAB.PUBLIC.PERSON for column birthday. Found: date, expected: binary(255)
+	at org.hibernate.mapping.Table.validateColumns(Table.java:373) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.validateSchema(Configuration.java:1338) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.tool.hbm2ddl.SchemaValidator.validate(SchemaValidator.java:175) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:525) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1859) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:33) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:20) [classes/:?]
+15:39:00.410 [main] INFO  [Main]: Started
+15:39:00.548 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:39:00.549 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:39:01.074 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+org.hibernate.HibernateException: Missing table: PersonStatus
+	at org.hibernate.cfg.Configuration.validateSchema(Configuration.java:1335) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.tool.hbm2ddl.SchemaValidator.validate(SchemaValidator.java:175) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:525) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1859) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:33) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:20) [classes/:?]
+15:42:45.580 [main] INFO  [Main]: Started
+15:42:45.714 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:42:45.714 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:42:46.168 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+org.hibernate.HibernateException: Missing column: gradeDate in SQLLAB.PUBLIC.JOURNAL
+	at org.hibernate.mapping.Table.validateColumns(Table.java:366) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.validateSchema(Configuration.java:1338) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.tool.hbm2ddl.SchemaValidator.validate(SchemaValidator.java:175) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:525) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1859) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:33) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:20) [classes/:?]
+15:43:28.234 [main] INFO  [Main]: Started
+15:43:28.375 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:43:28.376 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:43:28.864 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+org.hibernate.HibernateException: Wrong column type in SQLLAB.PUBLIC.JOURNAL for column grade_date. Found: timestamp, expected: date
+	at org.hibernate.mapping.Table.validateColumns(Table.java:373) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.validateSchema(Configuration.java:1338) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.tool.hbm2ddl.SchemaValidator.validate(SchemaValidator.java:175) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:525) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1859) ~[hibernate-core-4.3.10.Final.jar:4.3.10.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:33) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:20) [classes/:?]
+15:43:51.343 [main] INFO  [Main]: Started
+15:43:51.477 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:43:51.478 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:43:52.163 [main] INFO  [Main]: Grade [id=1, description=Fail, value=1]
+15:43:52.163 [main] INFO  [Main]: Grade [id=2, description=Pass, value=2]
+15:43:52.164 [main] INFO  [Main]: Grade [id=3, description=Average, value=3]
+15:43:52.165 [main] INFO  [Main]: Grade [id=4, description=Good, value=4]
+15:43:52.165 [main] INFO  [Main]: Grade [id=5, description=Very good, value=5]
+15:43:52.172 [main] INFO  [Main]: PersonType [id=1, description=Administration, value=Dean]
+15:43:52.172 [main] INFO  [Main]: PersonType [id=2, description=Teaching and grading, value=Teacher]
+15:43:52.173 [main] INFO  [Main]: PersonType [id=3, description=Studying, value=Student]
+15:44:49.729 [main] INFO  [Main]: Started
+15:44:49.879 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:44:49.880 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:44:50.460 [main] INFO  [Main]: Grade [id=1, description=Fail, value=1]
+15:44:50.460 [main] INFO  [Main]: Grade [id=2, description=Pass, value=2]
+15:44:50.461 [main] INFO  [Main]: Grade [id=3, description=Average, value=3]
+15:44:50.461 [main] INFO  [Main]: Grade [id=4, description=Good, value=4]
+15:44:50.461 [main] INFO  [Main]: Grade [id=5, description=Very good, value=5]
+15:44:50.463 [main] INFO  [Main]: PersonType [id=1, description=Administration, value=Dean]
+15:44:50.463 [main] INFO  [Main]: PersonType [id=2, description=Teaching and grading, value=Teacher]
+15:44:50.463 [main] INFO  [Main]: PersonType [id=3, description=Studying, value=Student]
+15:46:18.887 [main] INFO  [Main]: Started
+15:46:19.085 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:46:19.086 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:52:25.135 [main] INFO  [Main]: Started
+15:52:25.283 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:52:25.283 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:53:34.803 [main] INFO  [Main]: Started
+15:53:35.044 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:53:35.045 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+15:56:03.271 [main] INFO  [Main]: Started
+15:56:03.290 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+java.lang.NoClassDefFoundError: javax/transaction/SystemException
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_111]
+	at java.lang.Class.forName(Class.java:348) ~[?:1.8.0_111]
+	at org.jboss.logging.Logger$1.run(Logger.java:2554) ~[jboss-logging-3.3.0.Final.jar:3.3.0.Final]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:1.8.0_111]
+	at org.jboss.logging.Logger.getMessageLogger(Logger.java:2529) ~[jboss-logging-3.3.0.Final.jar:3.3.0.Final]
+	at org.jboss.logging.Logger.getMessageLogger(Logger.java:2516) ~[jboss-logging-3.3.0.Final.jar:3.3.0.Final]
+	at org.hibernate.internal.CoreLogging.messageLogger(CoreLogging.java:28) ~[hibernate-core-5.0.5.Final.jar:5.0.5.Final]
+	at org.hibernate.internal.CoreLogging.messageLogger(CoreLogging.java:24) ~[hibernate-core-5.0.5.Final.jar:5.0.5.Final]
+	at org.hibernate.cfg.Configuration.<clinit>(Configuration.java:86) ~[hibernate-core-5.0.5.Final.jar:5.0.5.Final]
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:20) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:21) [classes/:?]
+Caused by: java.lang.ClassNotFoundException: javax.transaction.SystemException
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381) ~[?:1.8.0_111]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[?:1.8.0_111]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331) ~[?:1.8.0_111]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_111]
+	... 11 more
+15:59:25.450 [main] INFO  [Main]: Started
+15:59:25.594 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+15:59:25.594 [main] INFO  [HibernateUtil]: file:/home/roman/git/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
