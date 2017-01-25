@@ -6,14 +6,20 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Converter;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Type;
+
+import com.nixsolutions.jdbc.util.LocalDateAttributeConverter;
 
 @Entity
 public class Person implements Serializable {
@@ -34,18 +40,18 @@ public class Person implements Serializable {
   @Column(name = "last_name")
   private String lastName;
   @Column(name = "birthday", columnDefinition = "date")
-  @Type(type = "java.time.LocalDate")
+  @Convert(converter = LocalDateAttributeConverter.class)
   private LocalDate birthday;
   @Column(name = "date_start", columnDefinition = "date")
-  @Type(type = "java.time.LocalDate")
+  @Convert(converter = LocalDateAttributeConverter.class)
   private LocalDate startDate;
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "person_type_id", referencedColumnName = "person_type_id")
   private PersonType personType;
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "person_status_id", referencedColumnName = "person_status_id")
   private PersonStatus personStatus;
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "person_id", referencedColumnName = "person_id")
   private List<PhoneNumber> phoneNumbers;
 
@@ -132,9 +138,10 @@ public class Person implements Serializable {
 
   @Override
   public String toString() {
-    return "Person [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
-        + ", birthday=" + birthday + ", startDate=" + startDate + ", personType=" + personType + ", personStatus="
-        + personStatus + "]";
+    return "Person [id=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstName
+	+ ", middleName=" + middleName + ", lastName=" + lastName + ", birthday=" + birthday + ", startDate="
+	+ startDate + ", personType=" + personType + ", personStatus=" + personStatus + ", phoneNumbers=" + phoneNumbers
+	+ "]";
   }
 
   public PersonType getPersonType() {

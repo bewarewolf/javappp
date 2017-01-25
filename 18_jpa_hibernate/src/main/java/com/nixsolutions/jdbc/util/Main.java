@@ -8,8 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.nixsolutions.jdbc.bean.Grade;
+import com.nixsolutions.jdbc.bean.Journal;
 import com.nixsolutions.jdbc.bean.Person;
 import com.nixsolutions.jdbc.bean.PersonType;
+import com.nixsolutions.jdbc.bean.PhoneNumber;
 
 public class Main {
 
@@ -21,10 +23,12 @@ public class Main {
     SessionFactory fact = HibernateUtil.getSessionFactory();
     Session ses = fact.openSession();
         
-    List<Person> list3 = (List<Person>) ses.createCriteria(Person.class).list();
-    for (Person g : list3) {
-      LOG.info(g);
-    }
+    Person p = (Person) ses.get(Person.class, new Integer(8));
+    LOG.info(p);
+    
+//    for (PhoneNumber pn : p.getPhoneNumbers()) {
+//      LOG.info(pn);
+//    }
   }
 
 }

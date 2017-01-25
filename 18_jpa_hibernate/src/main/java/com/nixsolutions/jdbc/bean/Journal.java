@@ -5,11 +5,14 @@ import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.nixsolutions.jdbc.util.LocalDateAttributeConverter;
 
 @Entity
 public class Journal implements Serializable {
@@ -29,6 +32,7 @@ public class Journal implements Serializable {
   @JoinColumn(name = "grade_id", referencedColumnName = "grade_id")
   private Grade grade;
   @Column(name = "grade_date", columnDefinition = "timestamp")
+  @Convert(converter = LocalDateAttributeConverter.class)
   private LocalDate gradeDate;
 
   public Integer getId() {

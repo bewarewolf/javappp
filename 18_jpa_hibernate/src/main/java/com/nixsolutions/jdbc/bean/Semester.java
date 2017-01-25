@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import com.nixsolutions.jdbc.util.LocalDateAttributeConverter;
 
 @Entity
 public class Semester implements Serializable {
@@ -18,8 +21,10 @@ public class Semester implements Serializable {
   @Column(name = "semester_name")
   private String semesterName;
   @Column(name = "semester_date_start", columnDefinition = "date")
+  @Convert(converter = LocalDateAttributeConverter.class)
   private LocalDate startDate;
   @Column(name = "semester_date_end", columnDefinition = "date")
+  @Convert(converter = LocalDateAttributeConverter.class)
   private LocalDate endDate;
 
   public Semester() {
