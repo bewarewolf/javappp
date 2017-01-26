@@ -18,13 +18,16 @@ public class Subject implements Serializable {
   @Id
   @Column(name = "subject_id")
   private Integer id;
-  @Column(name = "subject_name")
+  
+  @Column(name = "subject_name", length = 100, nullable = false, unique = true)
   private String subjectName;
+  
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "teacher_id", referencedColumnName = "person_id")
   private Person teacher;
+  
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "semester_id", referencedColumnName = "semester_id")
+  @JoinColumn(name = "semester_id", referencedColumnName = "semester_id", nullable = false)
   private Semester semester;
 
   public Subject() {

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Grade implements Serializable {
@@ -15,9 +15,13 @@ public class Grade implements Serializable {
   @Id
   @Column(name = "grade_id")
   private Integer id;
-  @Column(name = "description")
+  
+  @Column(name = "description", length = 100, nullable = false)
+  @NotNull
   private String description;
-  @Column(name = "value")
+  
+  @Column(name = "value", nullable = false, unique = true)
+  @NotNull
   private Integer value;
   
   public Grade() {}

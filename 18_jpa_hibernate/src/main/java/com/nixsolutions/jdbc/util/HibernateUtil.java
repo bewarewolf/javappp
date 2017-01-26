@@ -1,7 +1,5 @@
 package com.nixsolutions.jdbc.util;
 
-import java.net.URL;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
@@ -21,12 +19,12 @@ public class HibernateUtil {
       
       configuration.configure();
       
-      String url = configuration.getProperty("hibernate.connection.url");
-      LOG.info(url);
-      URL db = HibernateUtil.class.getClassLoader().getResource("sqllab.mv.db"); 
-      LOG.info(db);
+      String urlPattern = configuration.getProperty("hibernate.connection.url");
+      String schema = configuration.getProperty("db.schema");
+      String url = HibernateUtil.class.getClassLoader().getResource(schema + ".mv.db").toString();
+      
       configuration.setProperty("hibernate.connection.url", 
-          String.format(url, db.toString().replace(".mv.db", "")));
+          String.format(urlPattern, url.substring(0, url.lastIndexOf(schema) + schema.length())));
       
       
       serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();

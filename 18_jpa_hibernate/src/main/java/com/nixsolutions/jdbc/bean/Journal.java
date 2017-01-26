@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import com.nixsolutions.jdbc.util.LocalDateAttributeConverter;
 
@@ -22,17 +23,25 @@ public class Journal implements Serializable {
   @Id
   @Column(name = "record_id")
   private Integer id;
+  
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "person_id", referencedColumnName = "person_id")
+  @JoinColumn(name = "person_id", referencedColumnName = "person_id", nullable = false)
+  @NotNull
   private Person person;
+  
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
+  @JoinColumn(name = "subject_id", referencedColumnName = "subject_id", nullable = false)
+  @NotNull
   private Subject subject;
+  
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "grade_id", referencedColumnName = "grade_id")
+  @JoinColumn(name = "grade_id", referencedColumnName = "grade_id", nullable = false)
+  @NotNull
   private Grade grade;
-  @Column(name = "grade_date", columnDefinition = "timestamp")
+  
+  @Column(name = "grade_date", columnDefinition = "timestamp", nullable = false)
   @Convert(converter = LocalDateAttributeConverter.class)
+  @NotNull
   private LocalDate gradeDate;
 
   public Integer getId() {

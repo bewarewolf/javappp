@@ -18,12 +18,15 @@ public class Semester implements Serializable {
   @Id
   @Column(name = "semester_id")
   private Integer id;
-  @Column(name = "semester_name")
+  
+  @Column(name = "semester_name", length = 20, nullable = false, unique = true)
   private String semesterName;
-  @Column(name = "semester_date_start", columnDefinition = "date")
+  
+  @Column(name = "semester_date_start", columnDefinition = "date", nullable = false)
   @Convert(converter = LocalDateAttributeConverter.class)
   private LocalDate startDate;
-  @Column(name = "semester_date_end", columnDefinition = "date")
+  
+  @Column(name = "semester_date_end", columnDefinition = "date", nullable = false)
   @Convert(converter = LocalDateAttributeConverter.class)
   private LocalDate endDate;
 

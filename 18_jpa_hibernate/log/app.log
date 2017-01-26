@@ -357,3 +357,30 @@ org.hibernate.AnnotationException: AttributeConverter and explicit Type cannot b
 17:09:42.976 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
 17:09:42.977 [main] INFO  [HibernateUtil]: file:/D:/git/homework/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
 17:09:43.619 [main] INFO  [Main]: Person [id=8, login=darnell, password=darnell, firstName=Darnell, middleName=Tim, lastName=Sandford, birthday=1992-06-14, startDate=2015-12-20, personType=PersonType [id=3, description=Studying, value=Student], personStatus=PersonStatus [id=3, description=Activity is suspended, value=Academic leave], phoneNumbers=[PhoneNumber [id=11, phoneNumber=+1-928-293-6658], PhoneNumber [id=12, phoneNumber=602-369-7307], PhoneNumber [id=13, phoneNumber=602-468-7493]]]
+12:47:22.877 [main] INFO  [Main]: Started
+12:47:23.048 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+12:47:23.048 [main] INFO  [HibernateUtil]: file:/D:/git/homework/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+12:47:23.729 [main] INFO  [Main]: Person [id=8, login=darnell, password=darnell, firstName=Darnell, middleName=Tim, lastName=Sandford, birthday=1992-06-14, startDate=2015-12-20, personType=PersonType [id=3, description=Studying, value=Student], personStatus=PersonStatus [id=3, description=Activity is suspended, value=Academic leave], phoneNumbers=[PhoneNumber [id=11, phoneNumber=+1-928-293-6658], PhoneNumber [id=12, phoneNumber=602-369-7307], PhoneNumber [id=13, phoneNumber=602-468-7493]]]
+12:47:48.820 [main] INFO  [Main]: Started
+12:47:48.970 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+12:47:48.970 [main] INFO  [HibernateUtil]: file:/D:/git/homework/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+12:47:49.602 [main] INFO  [Main]: Person [id=8, login=darnell, password=darnell, firstName=Darnell, middleName=Tim, lastName=Sandford, birthday=1992-06-14, startDate=2015-12-20, personType=PersonType [id=3, description=Studying, value=Student], personStatus=PersonStatus [id=3, description=Activity is suspended, value=Academic leave], phoneNumbers=[PhoneNumber [id=11, phoneNumber=+1-928-293-6658], PhoneNumber [id=12, phoneNumber=602-369-7307], PhoneNumber [id=13, phoneNumber=602-468-7493]]]
+12:48:08.734 [main] INFO  [Main]: Started
+12:48:08.884 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+12:48:08.884 [main] INFO  [HibernateUtil]: file:/D:/git/homework/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+12:48:09.529 [main] INFO  [Main]: Person [id=8, login=darnell, password=darnell, firstName=Darnell, middleName=Tim, lastName=Sandford, birthday=1992-06-14, startDate=2015-12-20, personType=PersonType [id=3, description=Studying, value=Student], personStatus=PersonStatus [id=3, description=Activity is suspended, value=Academic leave], phoneNumbers=[PhoneNumber [id=11, phoneNumber=+1-928-293-6658], PhoneNumber [id=12, phoneNumber=602-369-7307], PhoneNumber [id=13, phoneNumber=602-468-7493]]]
+12:58:21.700 [main] INFO  [Main]: Started
+12:58:21.850 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+12:58:21.850 [main] INFO  [HibernateUtil]: file:/D:/git/homework/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+12:58:22.622 [main] INFO  [Main]: Person [id=8, login=darnell, password=darnell, firstName=Darnell, middleName=Tim, lastName=Sandford, birthday=1992-06-14, startDate=2015-12-20, personType=PersonType [id=3, description=Studying, value=Student], personStatus=PersonStatus [id=3, description=Activity is suspended, value=Academic leave], phoneNumbers=[PhoneNumber [id=11, phoneNumber=+1-928-293-6658], PhoneNumber [id=12, phoneNumber=602-369-7307], PhoneNumber [id=13, phoneNumber=602-468-7493]]]
+13:18:49.130 [main] INFO  [Main]: Started
+13:18:49.280 [main] INFO  [HibernateUtil]: jdbc:h2:file:%s;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE
+13:18:49.280 [main] INFO  [HibernateUtil]: file:/D:/git/homework/javappp/18_jpa_hibernate/target/classes/sqllab.mv.db
+13:18:50.212 [main] INFO  [Main]: Person [id=8, login=darnell, password=darnell, firstName=Darnell, middleName=Tim, lastName=Sandford, birthday=1992-06-14, startDate=2015-12-20, personType=PersonType [id=3, description=Studying, value=Student], personStatus=PersonStatus [id=3, description=Activity is suspended, value=Academic leave], phoneNumbers=[PhoneNumber [id=11, phoneNumber=+1-928-293-6658], PhoneNumber [id=12, phoneNumber=602-369-7307], PhoneNumber [id=13, phoneNumber=602-468-7493]]]
+13:21:53.957 [main] INFO  [Main]: Started
+13:21:54.107 [main] ERROR [HibernateUtil]: Initial SessionFactory creation failed.
+java.lang.NullPointerException: null
+	at com.nixsolutions.jdbc.util.HibernateUtil.<clinit>(HibernateUtil.java:26) [classes/:?]
+	at com.nixsolutions.jdbc.util.Main.main(Main.java:17) [classes/:?]
+13:24:00.343 [main] INFO  [Main]: Started
+13:24:01.323 [main] INFO  [Main]: Person [id=8, login=darnell, password=darnell, firstName=Darnell, middleName=Tim, lastName=Sandford, birthday=1992-06-14, startDate=2015-12-20, personType=PersonType [id=3, description=Studying, value=Student], personStatus=PersonStatus [id=3, description=Activity is suspended, value=Academic leave], phoneNumbers=[PhoneNumber [id=11, phoneNumber=+1-928-293-6658], PhoneNumber [id=12, phoneNumber=602-369-7307], PhoneNumber [id=13, phoneNumber=602-468-7493]]]

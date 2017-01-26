@@ -14,9 +14,11 @@ public class PersonStatus implements Serializable {
   @Id
   @Column(name = "person_status_id")
   private Integer id;
-  @Column(name = "description")
+  
+  @Column(name = "description", length = 100)
   private String description;
-  @Column(name = "value")
+  
+  @Column(name = "value", length = 20, nullable = false, unique = true)
   private String value;
 
   public PersonStatus() {

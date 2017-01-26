@@ -14,9 +14,11 @@ public class PersonType implements Serializable {
   @Id
   @Column(name = "person_type_id")
   private Integer id; 
-  @Column(name = "description")
+  
+  @Column(name = "description", length = 100)
   private String description;
-  @Column(name = "value")
+  
+  @Column(name = "value", length = 20, nullable = false, unique = true)
   private String value;
 
   public PersonType() {

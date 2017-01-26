@@ -14,7 +14,8 @@ public class PhoneNumber implements Serializable {
   @Id
   @Column(name = "phone_number_id")
   private Integer id;
-  @Column(name = "phone_number")
+  
+  @Column(name = "phone_number", length = 20, nullable = false, unique = true)
   private String phoneNumber;
 
   public PhoneNumber() {
