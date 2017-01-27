@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity(name = "person_type")
 public class PersonType implements Serializable {
@@ -12,13 +16,17 @@ public class PersonType implements Serializable {
   private static final long serialVersionUID = 7128325468862421830L;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "person_type_id")
   private Integer id; 
   
-  @Column(name = "description", length = 100)
+  @Column(name = "description")
+  @Size(max = 100)
   private String description;
   
-  @Column(name = "value", length = 20, nullable = false, unique = true)
+  @Column(name = "value", unique = true)
+  @Size(max = 20)
+  @NotNull
   private String value;
 
   public PersonType() {

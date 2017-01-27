@@ -1,4 +1,4 @@
-package com.nixsolutions.jsp.servlet;
+package com.nixsolutions.jsp.servlet.person;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -24,7 +24,7 @@ import com.nixsolutions.jsp.servlet.utils.DAOUtils;
 import com.nixsolutions.jsp.servlet.utils.Utils;
 
 @WebServlet("/admin/processPerson")
-public class InsertServlet extends HttpServlet {
+public class InsertPersonServlet extends HttpServlet {
 
   /**
    * 
@@ -62,11 +62,9 @@ public class InsertServlet extends HttpServlet {
 	personDao.create(pers);
       }
       
-      req.getRequestDispatcher("/admin?" + req.getParameter("entity")).forward(req, resp);
+      resp.sendRedirect(req.getContextPath() + "/admin/persons");
     } catch (Exception ex) {
       throw new ServletException(ex);
-    } 
-    
-    resp.sendRedirect("home");
+    }
   } 
 }

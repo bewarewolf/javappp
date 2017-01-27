@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,25 +23,26 @@ public class Journal implements Serializable {
   private static final long serialVersionUID = -2433296202714953695L;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "record_id")
   private Integer id;
   
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "person_id", referencedColumnName = "person_id", nullable = false)
+  @JoinColumn(name = "person_id", referencedColumnName = "person_id")
   @NotNull
   private Person person;
   
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "subject_id", referencedColumnName = "subject_id", nullable = false)
+  @JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
   @NotNull
   private Subject subject;
   
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "grade_id", referencedColumnName = "grade_id", nullable = false)
+  @JoinColumn(name = "grade_id", referencedColumnName = "grade_id")
   @NotNull
   private Grade grade;
   
-  @Column(name = "grade_date", columnDefinition = "timestamp", nullable = false)
+  @Column(name = "grade_date", columnDefinition = "timestamp")
   @Convert(converter = LocalDateAttributeConverter.class)
   @NotNull
   private LocalDate gradeDate;

@@ -9,11 +9,14 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.nixsolutions.jdbc.util.LocalDateAttributeConverter;
 
@@ -23,44 +26,51 @@ public class Person implements Serializable {
   private static final long serialVersionUID = -7363295378483616881L;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "person_id")
   private Integer id;
   
-  @Column(name = "login", unique = true, length = 100, nullable = false)
+  @Column(name = "login", unique = true)
+  @NotNull
+  @Size(max = 100)
   private String login;
   
-  @Column(name = "password", length = 200, nullable = false)
+  @Column(name = "password")
   @NotNull
+  @Size(max = 200)
   private String password;
   
-  @Column(name = "first_name", length = 100, nullable = false)
+  @Column(name = "first_name")
   @NotNull
+  @Size(max = 100)
   private String firstName;
   
-  @Column(name = "middle_name", length = 100)
+  @Column(name = "middle_name")
+  @Size(max = 100)
   private String middleName;
   
-  @Column(name = "last_name", length = 100, nullable = false)
+  @Column(name = "last_name")
   @NotNull
+  @Size(max = 100)
   private String lastName;
   
-  @Column(name = "birthday", columnDefinition = "date", nullable = false)
+  @Column(name = "birthday", columnDefinition = "date")
   @Convert(converter = LocalDateAttributeConverter.class)
   @NotNull
   private LocalDate birthday;
   
-  @Column(name = "date_start", columnDefinition = "date", nullable = false)
+  @Column(name = "date_start", columnDefinition = "date")
   @Convert(converter = LocalDateAttributeConverter.class)
   @NotNull
   private LocalDate startDate;
   
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "person_type_id", referencedColumnName = "person_type_id", nullable = false)
+  @JoinColumn(name = "person_type_id", referencedColumnName = "person_type_id")
   @NotNull
   private PersonType personType;
   
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "person_status_id", referencedColumnName = "person_status_id", nullable = false)
+  @JoinColumn(name = "person_status_id", referencedColumnName = "person_status_id")
   @NotNull
   private PersonStatus personStatus;
   

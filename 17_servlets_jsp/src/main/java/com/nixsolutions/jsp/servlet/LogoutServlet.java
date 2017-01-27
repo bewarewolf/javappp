@@ -19,7 +19,7 @@ public class LogoutServlet extends HttpServlet {
   private static final long serialVersionUID = -9214578703065594751L;
 
   @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     resp.setContentType("text/html");
 
     HttpSession ses = req.getSession(false);

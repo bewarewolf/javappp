@@ -1,4 +1,4 @@
-package com.nixsolutions.jsp.servlet;
+package com.nixsolutions.jsp.servlet.person;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,19 +32,6 @@ public class AddPersonServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String entity = req.getParameter("entity");
-    try {      
-      PersonType pt = DAOUtils.getPersonTypeByValue(entity);
-      req.setAttribute("type", pt.getValue());
-            
-      PersonStatus ps = DAOUtils.getPersonStatusByValue("Active");
-      req.setAttribute("status", ps.getValue());
-      
-      req.setAttribute("entity", entity);
-      
-      req.getRequestDispatcher("/WEB-INF/jsp/admin/add_person.jsp").forward(req, resp);
-    } catch (Exception ex) {
-      throw new ServletException(ex);
-    }    
+    req.getRequestDispatcher("/WEB-INF/jsp/person/add_person.jsp").forward(req, resp);
   }
 }

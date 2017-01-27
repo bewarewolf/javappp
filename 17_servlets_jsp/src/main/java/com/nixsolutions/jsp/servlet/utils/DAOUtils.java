@@ -20,7 +20,7 @@ public class DAOUtils {
     psList.addAll(coll);
   }
   
-  public static PersonStatus getPersonStatusById(Integer id) {
+  public PersonStatus getPersonStatusById(Integer id) {
     for (PersonStatus ps : psList) {
       if (ps.getId().equals(id)) {
 	return ps;
@@ -30,7 +30,7 @@ public class DAOUtils {
     return null;
   }
   
-  public static PersonStatus getPersonStatusByValue(String value) {
+  public PersonStatus getPersonStatusByValue(String value) {
     for (PersonStatus ps : psList) {
       if (ps.getValue().equals(value)) {
 	return ps;
@@ -40,7 +40,7 @@ public class DAOUtils {
     return null;
   }
   
-  public static PersonType getPersonTypeById(Integer id) {
+  public PersonType getPersonTypeById(Integer id) {
     for (PersonType pt : ptList) {
       if (pt.getId().equals(id)) {
 	return pt;
@@ -50,7 +50,7 @@ public class DAOUtils {
     return null;
   }
   
-  public static PersonType getPersonTypeByValue(String value) {
+  public PersonType getPersonTypeByValue(String value) {
     for (PersonType pt : ptList) {
       if (pt.getValue().equals(value)) {
 	return pt;

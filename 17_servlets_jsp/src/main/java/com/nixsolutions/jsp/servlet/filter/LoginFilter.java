@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.h2.util.StringUtils;
+
 @WebFilter(urlPatterns = { "/home", "/admin" })
 public class LoginFilter implements Filter {
 
@@ -29,11 +31,9 @@ public class LoginFilter implements Filter {
 
     HttpSession ses = httpReq.getSession(false);
 
-    if (ses == null) {
+    if (ses == null || ses.getAttribute("role") == null) {
       ((HttpServletResponse) resp).sendRedirect("index.html");
-    }
-
-    if (chain != null) {
+    } else if (chain != null) {
       chain.doFilter(req, resp);
     }
   }

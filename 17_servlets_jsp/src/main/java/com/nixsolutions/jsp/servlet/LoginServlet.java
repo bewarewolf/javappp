@@ -84,7 +84,7 @@ public class LoginServlet extends HttpServlet {
 	
 	HttpSession ses = req.getSession(true);
 	ses.setAttribute("user", user);
-	ses.setAttribute("role", r);
+	ses.setAttribute("role", r.getValue());
 	ses.setMaxInactiveInterval(30 * 60);
 	
 	req.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);

@@ -1,4 +1,4 @@
-package com.nixsolutions.jsp.servlet;
+package com.nixsolutions.jsp.servlet.person;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,16 +40,8 @@ public class EditPersonServlet extends HttpServlet {
       
       Person pers = personDao.getById(Integer.valueOf(req.getParameter("userId"))); 
       req.setAttribute("person", pers);
-          
-      PersonTypeDAO ptDao = fact.getPersonTypeDAO();
-      PersonType pt = ptDao.getById(pers.getPersonTypeId());
-      req.setAttribute("type", pt.getValue());
-            
-      PersonStatusDAO statDao = fact.getPersonStatusDAO();
-      PersonStatus ps = statDao.getById(pers.getPersonStatusId());
-      req.setAttribute("status", ps.getValue());
       
-      req.getRequestDispatcher("/WEB-INF/jsp/admin/add_person.jsp").forward(req, resp);
+      req.getRequestDispatcher("/WEB-INF/jsp/person/add_person.jsp").forward(req, resp);
     } catch (Exception ex) {
       throw new ServletException(ex);
     }

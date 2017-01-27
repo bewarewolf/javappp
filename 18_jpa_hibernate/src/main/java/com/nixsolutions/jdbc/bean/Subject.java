@@ -6,9 +6,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Subject implements Serializable {
@@ -16,10 +20,13 @@ public class Subject implements Serializable {
   private static final long serialVersionUID = 6810729967374225224L;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "subject_id")
   private Integer id;
   
-  @Column(name = "subject_name", length = 100, nullable = false, unique = true)
+  @Column(name = "subject_name", unique = true)
+  @Size(max = 100)
+  @NotNull
   private String subjectName;
   
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -27,7 +34,8 @@ public class Subject implements Serializable {
   private Person teacher;
   
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinColumn(name = "semester_id", referencedColumnName = "semester_id", nullable = false)
+  @JoinColumn(name = "semester_id", referencedColumnName = "semester_id")
+  @NotNull
   private Semester semester;
 
   public Subject() {

@@ -58,7 +58,7 @@ public class H2ConnectionManager {
 	URL resource = H2ConnectionManager.class.getClassLoader().getResource(strDbFileName);
 	String strFullPath = Paths.get(resource.toURI()).toFile().getAbsolutePath();
 	
-	String strUrl = String.format(prop.getProperty("db.url.h2"), strFullPath.replace(".mv.db", ""));
+	String strUrl = prop.getProperty("db.url.h2");//String.format(prop.getProperty("db.url.h2"), strFullPath.replace(".mv.db", ""));
 	String strUsername = prop.getProperty("db.username.h2");
 	String strPassword = prop.getProperty("db.password.h2");
 	String strMaxConnections = prop.getProperty("db.maxConnections.h2");

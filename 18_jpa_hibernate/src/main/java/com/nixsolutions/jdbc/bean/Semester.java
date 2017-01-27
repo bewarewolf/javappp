@@ -6,7 +6,11 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.nixsolutions.jdbc.util.LocalDateAttributeConverter;
 
@@ -16,18 +20,23 @@ public class Semester implements Serializable {
   private static final long serialVersionUID = -4230804482238449898L;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "semester_id")
   private Integer id;
   
-  @Column(name = "semester_name", length = 20, nullable = false, unique = true)
+  @Column(name = "semester_name", unique = true)
+  @Size(max = 20)
+  @NotNull
   private String semesterName;
   
-  @Column(name = "semester_date_start", columnDefinition = "date", nullable = false)
-  @Convert(converter = LocalDateAttributeConverter.class)
+  @Column(name = "semester_date_start", columnDefinition = "date")
+  @Convert(converter = LocalDateAttributeConverter.class)  
+  @NotNull
   private LocalDate startDate;
   
-  @Column(name = "semester_date_end", columnDefinition = "date", nullable = false)
+  @Column(name = "semester_date_end", columnDefinition = "date")
   @Convert(converter = LocalDateAttributeConverter.class)
+  @NotNull
   private LocalDate endDate;
 
   public Semester() {

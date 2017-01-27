@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity(name = "phone_number")
 public class PhoneNumber implements Serializable {
@@ -12,10 +16,13 @@ public class PhoneNumber implements Serializable {
   private static final long serialVersionUID = -8047594668701871392L;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "phone_number_id")
   private Integer id;
   
-  @Column(name = "phone_number", length = 20, nullable = false, unique = true)
+  @Column(name = "phone_number", unique = true)
+  @Size(max = 20)
+  @NotNull
   private String phoneNumber;
 
   public PhoneNumber() {

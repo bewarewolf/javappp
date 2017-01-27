@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.nixsolutions.jdbc.bean.PersonType;
 import com.nixsolutions.jdbc.bean.Role;
@@ -30,9 +31,10 @@ public class RoleFilter implements Filter {
       throws IOException, ServletException {
     HttpServletRequest httpReq = (HttpServletRequest) req;
 
-    PersonType role = (PersonType) httpReq.getSession(false).getAttribute("role");
+    HttpSession ses = httpReq.getSession(false);
+    String role = ses == null ? null : (String) ses.getAttribute("role");
 
-    if (!"Dean".equals(role.getValue())) {
+    if (role == null || !"Dean".equals(role)) {
       req.getRequestDispatcher("/WEB-INF/jsp/permission_denied.jsp").forward(req, resp);
       return;
     }
