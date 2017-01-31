@@ -3,7 +3,6 @@ package com.nixsolutions.jsp.servlet.person;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,14 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.h2.util.StringUtils;
 
 import com.nixsolutions.jdbc.bean.Person;
-import com.nixsolutions.jdbc.bean.User;
 import com.nixsolutions.jdbc.dao.DAOFactory;
 import com.nixsolutions.jdbc.dao.PersonDAO;
-import com.nixsolutions.jdbc.dao.PersonStatusDAO;
-import com.nixsolutions.jdbc.dao.PersonTypeDAO;
-import com.nixsolutions.jdbc.dao.UserDAO;
-import com.nixsolutions.jsp.servlet.utils.DAOUtils;
-import com.nixsolutions.jsp.servlet.utils.Utils;
 
 @WebServlet("/admin/processPerson")
 public class InsertPersonServlet extends HttpServlet {

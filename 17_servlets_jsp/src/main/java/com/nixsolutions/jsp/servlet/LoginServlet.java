@@ -1,20 +1,11 @@
 package com.nixsolutions.jsp.servlet;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,14 +16,10 @@ import org.apache.logging.log4j.Logger;
 
 import com.nixsolutions.jdbc.bean.Person;
 import com.nixsolutions.jdbc.bean.PersonType;
-import com.nixsolutions.jdbc.bean.Role;
-import com.nixsolutions.jdbc.bean.User;
 import com.nixsolutions.jdbc.dao.DAOFactory;
 import com.nixsolutions.jdbc.dao.PersonDAO;
 import com.nixsolutions.jdbc.dao.PersonStatusDAO;
 import com.nixsolutions.jdbc.dao.PersonTypeDAO;
-import com.nixsolutions.jdbc.dao.RoleDAO;
-import com.nixsolutions.jdbc.dao.UserDAO;
 import com.nixsolutions.jsp.servlet.utils.DAOUtils;
 
 @WebServlet("/login")
@@ -56,8 +43,9 @@ public class LoginServlet extends HttpServlet {
       
       DAOUtils.setPersonStatuses(psDao.getAll());
       DAOUtils.setPersonTypes(ptDao.getAll());
-    } catch (Exception e) {
-      throw new ServletException(e);
+    } catch (Exception ex) {
+      LOG.error(ex);
+      throw new ServletException(ex);
     } 
   }
   
@@ -90,6 +78,7 @@ public class LoginServlet extends HttpServlet {
 	req.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
       }
     } catch (Exception ex) {
+      LOG.error(ex);
       throw new ServletException(ex);
     }
   }

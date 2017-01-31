@@ -37,7 +37,7 @@
 		            <td class="actions">
 		              <div>
 		                <div class="actionEdit">
-			                <form action="editPerson" method='post'>
+			                <form action="personDetails" method='get'>
 			                  <input type="hidden" name="userId" value="${person.id}" />
 			                  <input type="submit" value="Edit" />
 			                </form>
@@ -58,7 +58,7 @@
     </div>
     <c:if test="${sessionScope.role eq 'Dean'}">
 	    <div class="actionAdd">
-	        <form action="addPerson" method='get'>
+	        <form action="personDetails" method='get'>
 	          <input type="submit" value="Add person" />
 	        </form>
 	     </div>

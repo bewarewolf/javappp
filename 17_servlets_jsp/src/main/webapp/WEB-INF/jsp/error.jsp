@@ -11,7 +11,9 @@
         </script>
     </jsp:attribute>
     <jsp:attribute name="content_area">
+      <div id="error">
         <h3>${ex.message}</h3>
         <img src="https://http.cat/${code}" />
+      </div>
     </jsp:attribute>
 </t:default>

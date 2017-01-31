@@ -16,19 +16,23 @@
     </jsp:attribute>
 	<jsp:attribute name="content_area">
      <div id="dropdowns">   
-       <form action="journal">    
-        <select name="subject" onchange="this.form.submit()">
-          <c:forEach var="subj" items="${subjects}">
-            <option value="${subj}" ${subj == selectedSubj ? 'selected="selected"' : ''}>${subj}</option>
-          </c:forEach>
-        </select> 
-        <select name="student" onchange="this.form.submit()">
-          <c:forEach var="stud" items="${students}">
-            <option value="${stud}" ${stud == selectedStud ? 'selected="selected"' : ''}>${stud}</option>
-          </c:forEach>
-        </select>
-        </form>   
-		</div>
+       <form action="journal">
+         <label>Subject: </label>
+         <select name="subject" onchange="this.form.submit()">
+           <c:forEach var="subj" items="${subjects}">
+             <option value="${subj}" ${subj == selectedSubj ? 'selected="selected"' : ''}>${subj}</option>
+           </c:forEach>
+         </select> 
+         <c:if test="${sessionScope.role ne 'Student'}">
+           <label>Student: </label>
+           <select name="student" onchange="this.form.submit()">
+             <c:forEach var="stud" items="${students}">
+               <option value="${stud}" ${stud == selectedStud ? 'selected="selected"' : ''}>${stud}</option>
+             </c:forEach>
+           </select>
+         </c:if>
+       </form>   
+	  </div>
      <div id="tableDiv">
        <table id="entity_list">
          <tr>         

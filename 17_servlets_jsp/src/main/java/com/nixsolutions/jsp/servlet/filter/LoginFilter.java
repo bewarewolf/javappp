@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.h2.util.StringUtils;
-
-@WebFilter(urlPatterns = { "/home", "/admin" })
+@WebFilter(urlPatterns = { "/home", "/admin/*" })
 public class LoginFilter implements Filter {
 
   @Override

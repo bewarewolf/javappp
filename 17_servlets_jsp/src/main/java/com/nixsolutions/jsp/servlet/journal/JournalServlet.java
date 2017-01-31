@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 import org.h2.util.StringUtils;
 
 import com.nixsolutions.jdbc.bean.Journal;
+import com.nixsolutions.jdbc.bean.Person;
 import com.nixsolutions.jdbc.bean.dto.JournalDTO;
 import com.nixsolutions.jdbc.dao.DAOFactory;
 
@@ -36,7 +37,16 @@ public class JournalServlet extends HttpServlet {
     String stud = req.getParameter("student");
     
     try {
-      List<Journal> listRec = DAOFactory.getFactory().getJournalDAO().getAll();
+      List<Journal> listRec = null;
+      
+      String role = (String) req.getSession(false).getAttribute("role");
+      Person user = (Person) req.getSession(false).getAttribute("user");
+      
+      if ("Student".equals(role)) {
+        listRec = DAOFactory.getFactory().getJournalDAO().getByPersonId(user.getId());
+      } else {
+	listRec = DAOFactory.getFactory().getJournalDAO().getAll();
+      }
       
       List<JournalDTO> listDto = new ArrayList<>();
       Set<String> subjList = new HashSet<>();

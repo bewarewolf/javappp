@@ -390,3 +390,31 @@ div.actionAdd {
   height:20px;
   width:35%;
 }
+
+#add_person_table {
+  width: 45%;
+  display: inline-block;
+  float: left;
+}
+
+#phone_table {
+  width: 45%;
+  display: inline-block;
+  float: left;
+}
+
+#user_info {
+  display: inline;
+}
+
+#error {
+  text-align: center;
+}
+
+body.loginBody {
+  text-align: center;
+}
+
+#login {
+  margin-top: 400px;
+}

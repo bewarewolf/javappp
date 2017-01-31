@@ -1,11 +1,6 @@
 package com.nixsolutions.jdbc.dao;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
@@ -20,7 +15,6 @@ public abstract class DAOFactory {
   public static DAOFactory getFactory() throws Exception {
     try (InputStream fis = DAOFactory.class.getClassLoader().getResourceAsStream("jdbc.properties")) {
       Properties prop = new Properties();
-      Object o = ClassLoader.getSystemResources("");
       prop.load(fis);
 
       String strDbType = prop.getProperty("dao.factoryType");

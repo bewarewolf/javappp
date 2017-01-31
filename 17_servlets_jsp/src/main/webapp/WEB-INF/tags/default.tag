@@ -9,12 +9,10 @@
 <html>
 
 <head>
-  <title>${title}</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
+  <title>${title}</title>  
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link href="${cssUrl}" type="text/css" rel="stylesheet"/>
-  <jsp:invoke fragment="head_area" />
+  <jsp:invoke fragment="head_area" />  
 </head>
 
 <body>

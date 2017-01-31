@@ -16,13 +16,10 @@ import org.apache.logging.log4j.Logger;
 
 import com.nixsolutions.jdbc.bean.Person;
 import com.nixsolutions.jdbc.bean.Semester;
-import com.nixsolutions.jdbc.bean.Subject;
 import com.nixsolutions.jdbc.bean.dto.PersonDTO;
-import com.nixsolutions.jdbc.bean.dto.SubjectDTO;
 import com.nixsolutions.jdbc.dao.DAOFactory;
 import com.nixsolutions.jdbc.dao.PersonDAO;
 import com.nixsolutions.jdbc.dao.SemesterDAO;
-import com.nixsolutions.jdbc.dao.SubjectDAO;
 import com.nixsolutions.jsp.servlet.utils.DAOUtils;
 
 @WebServlet("/admin/addSubject")
