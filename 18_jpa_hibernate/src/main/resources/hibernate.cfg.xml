@@ -14,6 +14,7 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">validate</property>
         <property name="hibernate.connection.autocommit">false</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
       
         <mapping class="com.nixsolutions.jdbc.bean.Grade"/>
         <mapping class="com.nixsolutions.jdbc.bean.Journal"/>

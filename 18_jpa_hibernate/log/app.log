@@ -386,3 +386,55 @@ java.lang.NullPointerException: null
 13:24:01.323 [main] INFO  [Main]: Person [id=8, login=darnell, password=darnell, firstName=Darnell, middleName=Tim, lastName=Sandford, birthday=1992-06-14, startDate=2015-12-20, personType=PersonType [id=3, description=Studying, value=Student], personStatus=PersonStatus [id=3, description=Activity is suspended, value=Academic leave], phoneNumbers=[PhoneNumber [id=11, phoneNumber=+1-928-293-6658], PhoneNumber [id=12, phoneNumber=602-369-7307], PhoneNumber [id=13, phoneNumber=602-468-7493]]]
 13:43:29.275 [main] INFO  [Main]: Started
 13:43:30.312 [main] INFO  [Main]: Person [id=8, login=darnell, password=darnell, firstName=Darnell, middleName=Tim, lastName=Sandford, birthday=1992-06-14, startDate=2015-12-20, personType=PersonType [id=3, description=Studying, value=Student], personStatus=PersonStatus [id=3, description=Activity is suspended, value=Academic leave], phoneNumbers=[PhoneNumber [id=11, phoneNumber=+1-928-293-6658], PhoneNumber [id=12, phoneNumber=602-369-7307], PhoneNumber [id=13, phoneNumber=602-468-7493]]]
+15:42:46.323 [main] INFO  [Main]: Started
+15:42:46.339 [main] ERROR [DAOFactory]: java.io.FileNotFoundException: jdbc.properties (The system cannot find the file specified)
+15:44:54.895 [main] INFO  [Main]: Started
+15:44:54.897 [main] ERROR [DAOFactory]: java.io.FileNotFoundException: jdbc.properties (The system cannot find the file specified)
+15:45:37.914 [main] INFO  [Main]: Started
+16:01:39.720 [main] ERROR [BaseTest]: java.io.FileNotFoundException: jdbc.properties (The system cannot find the file specified)
+16:01:39.723 [main] ERROR [BaseTest]: java.io.FileNotFoundException: jdbc.properties (The system cannot find the file specified)
+16:01:39.724 [main] ERROR [BaseTest]: java.io.FileNotFoundException: jdbc.properties (The system cannot find the file specified)
+16:01:39.724 [main] ERROR [BaseTest]: java.io.FileNotFoundException: jdbc.properties (The system cannot find the file specified)
+16:01:39.725 [main] ERROR [BaseTest]: java.io.FileNotFoundException: jdbc.properties (The system cannot find the file specified)
+16:01:39.725 [main] ERROR [BaseTest]: java.io.FileNotFoundException: jdbc.properties (The system cannot find the file specified)
+16:23:35.471 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:23:35.543 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:23:35.615 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:23:35.677 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:23:35.741 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:31:31.192 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:31:31.270 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:31:31.335 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:31:31.399 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:31:31.468 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:56:51.868 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:56:51.959 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:56:52.034 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:56:52.108 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+16:56:52.172 [main] ERROR [CrudDAO]: org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+17:08:17.868 [main] ERROR [H2JournalDAOImpl]: org.hibernate.QueryException: could not resolve property: subject of: com.nixsolutions.jdbc.bean.Grade [from com.nixsolutions.jdbc.bean.Grade as g where g.subject.id = :id]
+17:08:18.056 [main] ERROR [H2JournalDAOImpl]: org.hibernate.QueryException: could not resolve property: person of: com.nixsolutions.jdbc.bean.Grade [from com.nixsolutions.jdbc.bean.Grade as g where g.person.id = :id]
+17:08:18.199 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+17:08:18.244 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+17:08:48.524 [main] ERROR [H2JournalDAOImpl]: org.hibernate.QueryParameterException: could not locate named parameter [descr]
+17:08:48.668 [main] ERROR [H2JournalDAOImpl]: org.hibernate.QueryParameterException: could not locate named parameter [descr]
+17:08:48.810 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+17:08:48.858 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+17:09:09.967 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+17:09:10.021 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+17:14:52.825 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+17:14:52.867 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+17:19:59.435 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+17:19:59.483 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+18:13:05.025 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+18:13:05.124 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+18:15:12.825 [main] ERROR [H2PhoneNumberDAOImpl]: org.hibernate.hql.internal.ast.QuerySyntaxException: PhoneNumber is not mapped [from PhoneNumber as pn where pn.personId = :val]
+18:15:12.913 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+18:22:15.717 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+18:22:15.822 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+18:31:23.050 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+18:32:30.631 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+18:35:02.261 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+18:46:59.180 [main] ERROR [CrudDAO]: org.hibernate.HibernateException: A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance: com.nixsolutions.jdbc.bean.Person.phoneNumbers
+18:50:40.664 [main] ERROR [H2SemesterDAOImpl]: org.hibernate.QueryException: could not resolve property: value of: com.nixsolutions.jdbc.bean.Semester [from com.nixsolutions.jdbc.bean.Semester as s where s.value = :val]
+18:51:52.947 [main] ERROR [H2SemesterDAOImpl]: org.hibernate.QueryException: could not resolve property: semesterDateStart of: com.nixsolutions.jdbc.bean.Semester [from com.nixsolutions.jdbc.bean.Semester as s where current_date() between s.semesterDateStart and s.semesterDateEnd]

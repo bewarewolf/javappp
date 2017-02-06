@@ -2,6 +2,7 @@ package com.nixsolutions.jdbc.util;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -37,5 +38,13 @@ public class HibernateUtil {
 
   public static SessionFactory getSessionFactory() {
     return sessionFactory;
+  }
+  
+  public static void closeQuietly(Session ses) {
+    try {
+      ses.close();
+    } catch (Exception ex) {
+      
+    }
   }
 }

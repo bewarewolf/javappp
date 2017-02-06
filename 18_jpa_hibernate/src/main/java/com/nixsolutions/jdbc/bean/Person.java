@@ -74,7 +74,7 @@ public class Person implements Serializable {
   @NotNull
   private PersonStatus personStatus;
   
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
   @JoinColumn(name = "person_id", referencedColumnName = "person_id")
   private List<PhoneNumber> phoneNumbers;
 
@@ -91,10 +91,23 @@ public class Person implements Serializable {
     this.personType = personType;
     this.personStatus = personStatus;
   }
+  
+  public Person(String firstName, String middleName, String lastName, LocalDate birthday, LocalDate startDate,
+      PersonType personType, PersonStatus personStatus, String login, String password) {
+    this(firstName, middleName, lastName, birthday, startDate, personType, personStatus);
+    this.login = login;
+    this.password = password;
+  }
 
   public Person(Integer id, String firstName, String middleName, String lastName, LocalDate birthday,
       LocalDate startDate, PersonType personType, PersonStatus personStatus) {
     this(firstName, middleName, lastName, birthday, startDate, personType, personStatus);
+    this.id = id;
+  }
+  
+  public Person(Integer id, String firstName, String middleName, String lastName, LocalDate birthday,
+      LocalDate startDate, PersonType personType, PersonStatus personStatus, String login, String password) {
+    this(firstName, middleName, lastName, birthday, startDate, personType, personStatus, login, password);
     this.id = id;
   }
 
