@@ -13,22 +13,9 @@ public abstract class DAOFactory {
   private static final Logger LOG = LogManager.getLogger();
   
   public static DAOFactory getFactory() throws Exception {
-    try (InputStream fis = DAOFactory.class.getClassLoader().getResourceAsStream("jdbc.properties")) {
-      Properties prop = new Properties();
-      prop.load(fis);
-
-      String strDbType = prop.getProperty("dao.factoryType");
-    
-      switch (strDbType) {
-      case "h2":
+     
         return new DAOFactoryImpl();
-        default:
-  	return null;
-      }
-    } catch (Exception ex) {
-      LOG.error(ex);
-      throw ex;
-    }
+    
   }
   
   public abstract GradeDAO getGradeDAO();

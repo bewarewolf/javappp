@@ -27,17 +27,17 @@ public class Journal implements Serializable {
   @Column(name = "record_id")
   private Integer id;
   
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "person_id", referencedColumnName = "person_id")
   @NotNull
   private Person person;
   
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
   @NotNull
   private Subject subject;
   
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "grade_id", referencedColumnName = "grade_id")
   @NotNull
   private Grade grade;

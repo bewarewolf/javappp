@@ -18,6 +18,9 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.nixsolutions.jdbc.util.LocalDateAttributeConverter;
 
 @Entity
@@ -78,6 +81,10 @@ public class Person implements Serializable {
   @JoinColumn(name = "person_id", referencedColumnName = "person_id")
   private List<PhoneNumber> phoneNumbers;
 
+  @OneToMany(mappedBy="teacher", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+  @OnDelete(action=OnDeleteAction.CASCADE)
+  private List<Subject> subjects;
+  
   public Person() {
   }
 

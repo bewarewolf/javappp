@@ -1,6 +1,7 @@
 package com.nixsolutions.jdbc.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,8 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 public class Subject implements Serializable {
@@ -29,14 +34,18 @@ public class Subject implements Serializable {
   @NotNull
   private String subjectName;
   
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "teacher_id", referencedColumnName = "person_id")
   private Person teacher;
   
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "semester_id", referencedColumnName = "semester_id")
   @NotNull
   private Semester semester;
+  
+  @OneToMany(mappedBy="subject", fetch = FetchType.LAZY, orphanRemoval = true)
+  @OnDelete(action=OnDeleteAction.CASCADE)
+  private List<Journal> records;
 
   public Subject() {
   }

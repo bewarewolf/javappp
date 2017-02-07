@@ -2,15 +2,22 @@ package com.nixsolutions.jdbc.bean;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.nixsolutions.jdbc.util.LocalDateAttributeConverter;
 
@@ -38,6 +45,23 @@ public class Semester implements Serializable {
   @Convert(converter = LocalDateAttributeConverter.class)
   @NotNull
   private LocalDate endDate;
+  
+  @OneToMany(mappedBy="semester", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+  @OnDelete(action=OnDeleteAction.CASCADE)
+  private List<Subject> subjects;
+
+  public void addSubject(Subject subj) {
+    subj.setSemester(this);
+    subjects.add(subj);
+  }
+  
+  public List<Subject> getSubjects() {
+    return subjects;
+  }
+
+  public void setSubjects(List<Subject> subjects) {
+    this.subjects = subjects;
+  }
 
   public Semester() {
   }

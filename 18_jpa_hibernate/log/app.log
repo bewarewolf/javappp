@@ -438,3 +438,7 @@ java.lang.NullPointerException: null
 18:46:59.180 [main] ERROR [CrudDAO]: org.hibernate.HibernateException: A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance: com.nixsolutions.jdbc.bean.Person.phoneNumbers
 18:50:40.664 [main] ERROR [H2SemesterDAOImpl]: org.hibernate.QueryException: could not resolve property: value of: com.nixsolutions.jdbc.bean.Semester [from com.nixsolutions.jdbc.bean.Semester as s where s.value = :val]
 18:51:52.947 [main] ERROR [H2SemesterDAOImpl]: org.hibernate.QueryException: could not resolve property: semesterDateStart of: com.nixsolutions.jdbc.bean.Semester [from com.nixsolutions.jdbc.bean.Semester as s where current_date() between s.semesterDateStart and s.semesterDateEnd]
+17:53:28.888 [main] ERROR [DAOFactory]: java.lang.NullPointerException
+17:53:28.888 [main] ERROR [Main]: java.lang.NullPointerException
+17:55:50.457 [main] ERROR [CrudDAO]: org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1
+17:55:50.457 [main] ERROR [Main]: java.lang.RuntimeException: org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1
