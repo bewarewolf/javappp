@@ -1,0 +1,6 @@
+<dataset>
+	<GRADE DESCRIPTION="Fail" VALUE="1"/>
+  <GRADE DESCRIPTION="Pass" VALUE="2"/>
+  <GRADE DESCRIPTION="Good" VALUE="4"/>
+  <GRADE DESCRIPTION="Very good" VALUE="5"/>
+</dataset>

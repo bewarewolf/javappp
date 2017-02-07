@@ -1,0 +1,9 @@
+15:17:35.878 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+15:18:15.017 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+15:58:36.805 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+16:00:21.942 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+16:04:28.473 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+16:05:00.898 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+16:06:51.719 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+16:07:32.992 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
+16:08:10.587 [main] ERROR [CrudDAO]: org.hibernate.exception.ConstraintViolationException: could not execute statement
