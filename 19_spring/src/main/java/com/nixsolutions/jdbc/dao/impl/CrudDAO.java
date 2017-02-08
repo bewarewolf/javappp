@@ -26,17 +26,13 @@ public abstract class CrudDAO<T extends Serializable> {
   @Transactional
   public int create(T bean) {
     Session ses = null;
-    Transaction tx = null;
     
     try {
       ses = sessionFactory.openSession();
-      tx = ses.beginTransaction();      
       Integer id = (Integer) ses.save(bean);
-      tx.commit();
       return id;
     } catch (Exception ex) {
       LOG.error(ex);
-      tx.rollback();
       throw new RuntimeException(ex);
     } finally {           
       HibernateUtil.closeQuietly(ses);
@@ -46,16 +42,12 @@ public abstract class CrudDAO<T extends Serializable> {
   @Transactional
   public void delete(T bean) {
     Session ses = null;
-    Transaction tx = null;
     
     try {
       ses = sessionFactory.openSession();
-      tx = ses.beginTransaction();
       ses.delete(bean);
-      tx.commit();
     } catch (Exception ex) {
       LOG.error(ex);
-      tx.rollback();
       throw new RuntimeException(ex);
     } finally {
       HibernateUtil.closeQuietly(ses);
@@ -65,16 +57,12 @@ public abstract class CrudDAO<T extends Serializable> {
   @Transactional
   public void update(T bean) {
     Session ses = null;
-    Transaction tx = null;
     
     try {
       ses = sessionFactory.openSession();
-      tx = ses.beginTransaction();
       ses.merge(bean);
-      tx.commit();
     } catch (Exception ex) {
       LOG.error(ex);
-      tx.rollback();
       throw new RuntimeException(ex);
     } finally {
       HibernateUtil.closeQuietly(ses);
