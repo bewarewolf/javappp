@@ -42,7 +42,7 @@ public class PersonTypeDAOImpl extends CrudDAO<PersonType> implements PersonType
   @Override
   public PersonType getByValue(String value) {
     Session ses = sessionFactory.openSession();
-    Query query = ses.createQuery("from PersonType as pt where pt.value = :val");
+    Query query = ses.createQuery("from person_type as pt where pt.value = :val");
     query.setParameter("val", value);
     PersonType out = (PersonType) query.uniqueResult();
     ses.close();

@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.nixsolutions.university.util.LocalDateAttributeConverter;
 
 @Entity
@@ -44,6 +46,7 @@ public class Journal implements Serializable {
   @Column(name = "grade_date", columnDefinition = "timestamp")
   @Convert(converter = LocalDateAttributeConverter.class)
   @NotNull
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate gradeDate;
 
   public Integer getId() {

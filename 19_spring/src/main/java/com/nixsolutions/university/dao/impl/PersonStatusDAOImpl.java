@@ -42,7 +42,7 @@ public class PersonStatusDAOImpl extends CrudDAO<PersonStatus> implements Person
   @Override
   public PersonStatus getByValue(String value) {
     Session ses = sessionFactory.openSession();
-    Query query = ses.createQuery("from PersonStatus as ps where ps.value = :val");
+    Query query = ses.createQuery("from person_status as ps where ps.value = :val");
     query.setParameter("val", value);
     PersonStatus out = (PersonStatus) query.uniqueResult();
     ses.close();

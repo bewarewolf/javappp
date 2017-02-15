@@ -70,7 +70,7 @@ public class PersonType implements Serializable {
 
   @Override
   public String toString() {
-    return "PersonType [id=" + id + ", description=" + description + ", value=" + value + "]";
+    return value;
   }
 
   @Override

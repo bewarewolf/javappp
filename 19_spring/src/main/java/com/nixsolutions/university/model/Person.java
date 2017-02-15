@@ -2,6 +2,7 @@ package com.nixsolutions.university.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,6 +21,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.nixsolutions.university.util.LocalDateAttributeConverter;
 
@@ -60,11 +62,13 @@ public class Person implements Serializable {
   @Column(name = "birthday", columnDefinition = "date")
   @Convert(converter = LocalDateAttributeConverter.class)
   @NotNull
+  //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate birthday;
   
   @Column(name = "date_start", columnDefinition = "date")
   @Convert(converter = LocalDateAttributeConverter.class)
   @NotNull
+  //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate startDate;
   
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -85,7 +89,12 @@ public class Person implements Serializable {
   @OnDelete(action=OnDeleteAction.CASCADE)
   private List<Subject> subjects;
   
+  @OneToMany(mappedBy="person", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+  @OnDelete(action=OnDeleteAction.CASCADE)
+  private List<Journal> grades;
+  
   public Person() {
+    
   }
 
   public Person(String firstName, String middleName, String lastName, LocalDate birthday, LocalDate startDate,
@@ -273,6 +282,9 @@ public class Person implements Serializable {
 
   
   public List<PhoneNumber> getPhoneNumbers() {
+    if (phoneNumbers == null) {
+      phoneNumbers = new ArrayList<>();
+    }
     return phoneNumbers;
   }
 

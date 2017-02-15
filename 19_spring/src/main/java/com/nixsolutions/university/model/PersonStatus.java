@@ -68,7 +68,7 @@ public class PersonStatus implements Serializable {
 
   @Override
   public String toString() {
-    return "PersonStatus [id=" + id + ", description=" + description + ", value=" + value + "]";
+    return value;
   }
 
   @Override
