@@ -11,6 +11,7 @@ import com.nixsolutions.university.dao.PhoneNumberDAO;
 import com.nixsolutions.university.model.PhoneNumber;
 
 @Repository("phoneNumberDao")
+@Transactional
 public class PhoneNumberDAOImpl extends CrudDAO<PhoneNumber> implements PhoneNumberDAO {
 
   @Override
@@ -42,32 +43,31 @@ public class PhoneNumberDAOImpl extends CrudDAO<PhoneNumber> implements PhoneNum
 
   @Override
   public PhoneNumber getByNumber(String number) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Query query = ses.createQuery("from PhoneNumber as pn where pn.value = :val");
     query.setParameter("val", number);
     PhoneNumber out = (PhoneNumber) query.uniqueResult();
-    ses.close();
+    
     return out;
   }
 
   @SuppressWarnings("unchecked")
   @Override
   public List<PhoneNumber> getByPersonId(Integer id) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Query query = ses.createQuery("from PhoneNumber as pn where pn.personId = :val");
     query.setParameter("val", id);
     List<PhoneNumber> out = (List<PhoneNumber>) query.list();
-    ses.close();
+    
     return out;
   }
 
   @Override
   @Transactional
   public void deleteByPersonId(Integer id) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Query query = ses.createQuery("delete from PhoneNumber as pn where pn.personId = :val");
     query.setParameter("val", id);
-    query.executeUpdate();
-    ses.close();    
+    query.executeUpdate();        
   }
 }

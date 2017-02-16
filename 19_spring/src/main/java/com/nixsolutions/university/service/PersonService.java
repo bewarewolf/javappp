@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nixsolutions.university.dao.PersonDAO;
 import com.nixsolutions.university.dao.PersonStatusDAO;
 import com.nixsolutions.university.dao.PersonTypeDAO;
+import com.nixsolutions.university.dao.PhoneNumberDAO;
 import com.nixsolutions.university.dto.PersonDTO;
 import com.nixsolutions.university.model.Person;
 import com.nixsolutions.university.model.PersonStatus;
@@ -27,12 +28,24 @@ public class PersonService {
   @Autowired
   PersonTypeDAO personTypeDao;
   
+  @Autowired
+  PhoneNumberDAO phoneNumberDao;
+  
   public List<PersonDTO> getAll() {
     return PersonDTO.convertFromPerson(personDao.getAll());
   }
   
   public Person getById(Integer id) {
     return personDao.getById(id);
+  }
+  
+  public PersonDTO getByLogin(String login) {
+    Person p = personDao.getByLogin(login);
+    PersonDTO out = new PersonDTO();
+    out.setFirstName(p.getFirstName());
+    out.setLastName(p.getLastName());
+    out.setPersonType(p.getPersonType().getValue());
+    return out;
   }
   
   public List<PersonType> getPersonTypes() {
@@ -85,11 +98,19 @@ public class PersonService {
     pers.setStartDate(entity.getStartDate());
     pers.setPersonType(personTypeDao.getByValue(entity.getPersonType()));
     pers.setPersonStatus(personStatusDao.getByValue(entity.getPersonStatus()));
-    pers.getPhoneNumbers().clear();
-    List<PhoneNumber> phones = entity.getPhoneNumbers();
-    if (phones != null) {
-      pers.getPhoneNumbers().addAll(phones);
-    }
+    personDao.update(pers);
+  }
+  
+  @Transactional
+  public void deletePhoneNumber(Integer phoneId) {
+    phoneNumberDao.delete(phoneId);
+  }
+  
+  @Transactional
+  public void addPhoneNumber(Integer personId, PhoneNumber phone) {
+    phoneNumberDao.create(phone);
+    Person pers = getById(personId);
+    pers.getPhoneNumbers().add(phone);
     personDao.update(pers);
   }
 }

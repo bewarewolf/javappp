@@ -1,18 +1,10 @@
 package com.nixsolutions.university.controller;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.ClassEditor;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,8 +19,6 @@ import com.nixsolutions.university.model.PersonStatus;
 import com.nixsolutions.university.model.PersonType;
 import com.nixsolutions.university.model.PhoneNumber;
 import com.nixsolutions.university.service.PersonService;
-import com.nixsolutions.university.service.PersonStatusService;
-import com.nixsolutions.university.service.PersonTypeService;
 import com.nixsolutions.university.util.LocalDateEditor;
 
 @Controller
@@ -74,6 +64,20 @@ public class PersonController {
     return "redirect:/persons/edit/" + person.getId();
   }
 
+  @RequestMapping(value = "/{personId}/deletePhone/{phoneId}", method = RequestMethod.POST)
+  protected String deletePhone(@PathVariable("personId") Integer personId, 
+      @PathVariable("phoneId") Integer phoneId) {
+    personService.deletePhoneNumber(phoneId);
+    return "redirect:/persons/edit/" + personId;
+  }
+  
+  @RequestMapping(value = "/{personId}/addPhone", method = RequestMethod.POST)
+  protected String addPhone(@PathVariable("personId") Integer personId,
+      @ModelAttribute("phoneNumber") PhoneNumber phone) {
+    personService.addPhoneNumber(personId, phone);
+    return "redirect:/persons/edit/" + personId;
+  }
+  
   @ModelAttribute("typeList")
   public List<PersonType> getPersonTypes() {
     return personService.getPersonTypes();
@@ -83,7 +87,7 @@ public class PersonController {
   public List<PersonStatus> getPersonStatuses() {
     return personService.getPersonStatuses();
   }
-
+  
   @InitBinder
   protected void initBinder(WebDataBinder binder) {
     binder.registerCustomEditor(LocalDate.class, new LocalDateEditor());

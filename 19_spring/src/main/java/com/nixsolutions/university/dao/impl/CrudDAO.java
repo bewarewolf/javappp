@@ -11,50 +11,40 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public abstract class CrudDAO<T extends Serializable> {
   
   @Autowired
   protected SessionFactory sessionFactory;
 
-  @Transactional
   public int create(T bean) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Integer id = (Integer) ses.save(bean);
-    ses.flush();
-    ses.close();
     return id;
   }
 
-  @Transactional
   public void delete(T bean) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     ses.delete(bean);
-    ses.flush();
-    ses.close();
   }
 
-  @Transactional
   public void update(T bean) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     ses.merge(bean);
-    ses.flush();
-    ses.close();
   }
 
   @SuppressWarnings("unchecked")
   public T getById(Class<T> type, Integer id) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     T out = (T) ses.get(type, id);
-    ses.close();
     return out;
   }
 
   @SuppressWarnings("unchecked")
   public List<T> getAll(Class<T> type) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Criteria crit = ses.createCriteria(type);
     List<T> out = (List<T>) crit.list();
-    ses.close();
     return out;
   }
 }

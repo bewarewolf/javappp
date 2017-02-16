@@ -5,11 +5,13 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nixsolutions.university.dao.PersonTypeDAO;
 import com.nixsolutions.university.model.PersonType;
 
 @Repository("personTypeDao")
+@Transactional
 public class PersonTypeDAOImpl extends CrudDAO<PersonType> implements PersonTypeDAO {
 
   @Override
@@ -41,11 +43,10 @@ public class PersonTypeDAOImpl extends CrudDAO<PersonType> implements PersonType
 
   @Override
   public PersonType getByValue(String value) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Query query = ses.createQuery("from person_type as pt where pt.value = :val");
     query.setParameter("val", value);
     PersonType out = (PersonType) query.uniqueResult();
-    ses.close();
     return out;
   }
 }

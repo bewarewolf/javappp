@@ -5,11 +5,13 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nixsolutions.university.dao.SemesterDAO;
 import com.nixsolutions.university.model.Semester;
 
 @Repository("semesterDao")
+@Transactional
 public class SemesterDAOImpl extends CrudDAO<Semester> implements SemesterDAO {
 
   @Override
@@ -41,20 +43,18 @@ public class SemesterDAOImpl extends CrudDAO<Semester> implements SemesterDAO {
 
   @Override
   public Semester getByName(String name) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Query query = ses.createQuery("from Semester as s where s.semesterName = :name");
     query.setParameter("name", name);
     Semester out = (Semester) query.uniqueResult();
-    ses.close();
     return out;
   }
 
   @Override
   public Semester currentSemester() {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Query query = ses.createQuery("from Semester as s where current_date() " + "between s.startDate and s.endDate");
     Semester out = (Semester) query.uniqueResult();
-    ses.close();
     return out;
   }
 }

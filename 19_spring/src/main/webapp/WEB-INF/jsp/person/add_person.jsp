@@ -18,7 +18,8 @@
 	  <div id="add_person_table">
     <form:form action="/persons/process" method="post"
 					commandName="person">  
-	      <table>	      
+			<form:hidden path="id" />
+	      <table>	        
 	        <tr>
              <td><form:label path="login">Login</form:label></td>
              <td><form:input path="login" /></td>
@@ -73,18 +74,13 @@
 	            <input type="submit" value="Process" />
 	            <a href="<c:url value="/persons"/>" class="buttonCancel">Back</a>
 	          </td>
-	        </tr>
-	        <tr>
-           <td colspan = 2>
-             <form:hidden path="id" />
-           </td>
-         </tr>
+	        </tr>	        
 	      </table>
     </form:form>
     </div>
-    <div id="phone_table">
-      <h3>Phone numbers</h3>
+    <div id="phone_table">      
       <c:if test="${fn:length(person.phoneNumbers) gt 0}">
+        <h3>Phone numbers</h3>
 	      <table>	        
 	          <c:forEach var="phone" items="${person.phoneNumbers}">
 	            <tr>
@@ -101,7 +97,7 @@
 	          </c:forEach>
 	      </table>	      
         </c:if>
-        <c:if test="${person != null}">
+        <c:if test="${person.id != null}">
           <form:form method="post" commandName="phoneNumber"
 						action="/persons/${person.id}/addPhone">
             <form:input path="phoneNumber" />

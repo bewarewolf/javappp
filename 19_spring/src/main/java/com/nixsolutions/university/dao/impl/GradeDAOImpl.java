@@ -5,11 +5,13 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nixsolutions.university.dao.GradeDAO;
 import com.nixsolutions.university.model.Grade;
 
 @Repository("gradeDao")
+@Transactional
 public class GradeDAOImpl extends CrudDAO<Grade> implements GradeDAO {
 
   @Override
@@ -41,11 +43,10 @@ public class GradeDAOImpl extends CrudDAO<Grade> implements GradeDAO {
 
   @Override
   public Grade getByDescription(String description) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Query query = ses.createQuery("from Grade as g where g.description = :descr");
     query.setParameter("descr", description);
     Grade out = (Grade) query.uniqueResult();
-    ses.close();
     return out;
   }
 }

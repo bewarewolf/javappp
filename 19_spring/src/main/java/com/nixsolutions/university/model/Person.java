@@ -21,7 +21,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.nixsolutions.university.util.LocalDateAttributeConverter;
 
@@ -62,13 +61,11 @@ public class Person implements Serializable {
   @Column(name = "birthday", columnDefinition = "date")
   @Convert(converter = LocalDateAttributeConverter.class)
   @NotNull
-  //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate birthday;
   
   @Column(name = "date_start", columnDefinition = "date")
   @Convert(converter = LocalDateAttributeConverter.class)
   @NotNull
-  //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate startDate;
   
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -282,15 +279,23 @@ public class Person implements Serializable {
 
   
   public List<PhoneNumber> getPhoneNumbers() {
-    if (phoneNumbers == null) {
-      phoneNumbers = new ArrayList<>();
+    if (this.phoneNumbers == null) {
+      this.phoneNumbers = new ArrayList<>();
     }
     return phoneNumbers;
   }
 
   
   public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-    this.phoneNumbers = phoneNumbers;
+    if (this.phoneNumbers == null) {
+      this.phoneNumbers = phoneNumbers;
+    } else {
+      this.phoneNumbers.retainAll(phoneNumbers);
+      this.phoneNumbers.addAll(phoneNumbers);
+    }
   }
 
+  public boolean isEnabled() {
+    return this.personStatus.getValue().equals("Active");
+  }
 }

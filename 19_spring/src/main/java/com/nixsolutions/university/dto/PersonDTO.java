@@ -4,22 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.nixsolutions.university.model.Person;
-import com.nixsolutions.university.model.PersonStatus;
-import com.nixsolutions.university.model.PersonType;
 import com.nixsolutions.university.model.PhoneNumber;
-import com.nixsolutions.university.util.LocalDateAttributeConverter;
 
 public class PersonDTO {
 
@@ -105,6 +91,9 @@ public class PersonDTO {
     this.login = login;
   }
   public String getName() {
+    if (name == null) {
+      name = firstName + " " + lastName;
+    }
     return name;
   }
   public void setName(String name) {

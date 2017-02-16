@@ -11,8 +11,22 @@
         </script>
     </jsp:attribute>
     <jsp:attribute name="content_area">
-        <h2>You don't have permissions to visit this page</h2>
-        <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+        <div style="margin: 15% auto; width: 300px;">
+         <form action="j_spring_security_check" method="post">
+            <table>
+               <tr>
+                  <td>Login:</td>
+                  <td><input type="text" name="j_username" /></td>
+               </tr>
+               <tr>
+                  <td>Password:</td>
+                  <td><input type="password" name="j_password" /></td>
+               </tr>
+            </table>
+            <input type="submit" value="Login" />
+         </form>
+         </div>
+         <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
            <font color="red">
               Your login attempt was not successful due to <br/><br/>
            <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.         

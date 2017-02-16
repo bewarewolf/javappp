@@ -37,13 +37,11 @@
 		</property>
 	</bean>
 
-	<tx:annotation-driven proxy-target-class="false"
-		transaction-manager="txManager" />
+	<tx:annotation-driven />
 
-	<!-- similarly, don't forget the PlatformTransactionManager -->
-	<bean id="txManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="persistenceExceptionTranslationPostProcessor"

@@ -5,11 +5,13 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nixsolutions.university.dao.SubjectDAO;
 import com.nixsolutions.university.model.Subject;
 
 @Repository("subjectDao")
+@Transactional
 public class SubjectDAOImpl extends CrudDAO<Subject> implements SubjectDAO {
 
   @Override
@@ -41,33 +43,30 @@ public class SubjectDAOImpl extends CrudDAO<Subject> implements SubjectDAO {
 
   @Override
   public Subject getByName(String name) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Query query = ses.createQuery("from Subject as s where s.subjectName = :name");
     query.setParameter("name", name);
     Subject out = (Subject) query.uniqueResult();
-    ses.close();
     return out;
   }
 
   @SuppressWarnings("unchecked")
   @Override
   public List<Subject> getByTeacherId(Integer teacherId) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Query query = ses.createQuery("from Subject as s where s.teacher.id = :id");
     query.setParameter("id", teacherId);
     List<Subject> out = (List<Subject>) query.list();
-    ses.close();
     return out;
   }
 
   @SuppressWarnings("unchecked")
   @Override
   public List<Subject> getBySemesterId(Integer semesterId) {
-    Session ses = sessionFactory.openSession();
+    Session ses = sessionFactory.getCurrentSession();
     Query query = ses.createQuery("from Subject as s where s.semester.id = :id");
     query.setParameter("id", semesterId);
     List<Subject> out = (List<Subject>) query.list();
-    ses.close();
     return out;
   }
 }

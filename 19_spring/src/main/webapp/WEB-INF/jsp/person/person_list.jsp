@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <t:default title="Persons">
 	<jsp:attribute name="head_area">
         <script type="text/javascript">
@@ -20,9 +21,9 @@
 				<th>Name</th>
 	         <th>Type</th>
 	         <th>Status</th>
-	         <!-- check if dean -->
+	         <sec:authorize access="hasRole('Dean')">
 	           <th>Actions</th>   
-	         
+	         </sec:authorize>
 	      </tr>
 	      <c:forEach var="person" items="${persons}">
 	         <tr>
@@ -30,7 +31,7 @@
 	            <td><c:out value="${person.name}" /></td>
 	            <td><c:out value="${person.personType}" /></td>
 	            <td><c:out value="${person.personStatus}" /></td>
-	            <!-- check if dean -->
+	            <sec:authorize access="hasRole('Dean')">
 		            <td class="actions">
 		              <div>
 		                <div class="actionEdit">
@@ -46,17 +47,17 @@
 		                </div>
 		              </div>
 		            </td>
-	            
+	            </sec:authorize>
 	         </tr>
 	      </c:forEach>
 	    </table>
     </div>
-    <!-- check if dean -->
+    <sec:authorize access="hasRole('Dean')">
 	    <div class="actionAdd">
 	        <form action="/persons/add" method='post'>
 	          <input type="submit" value="Add person" />
 	        </form>
 	     </div>
-     
+     </sec:authorize>
     </jsp:attribute>
 </t:default>

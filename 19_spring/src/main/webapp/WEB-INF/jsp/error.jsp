@@ -14,9 +14,6 @@
       <div id="error">
         <h3>Error</h3>
         <h3>${ex.message}</h3>
-        <c:if test="${code > 0}">
-          <img src="https://http.cat/${code}" />
-        </c:if>
       </div>
     </jsp:attribute>
 </t:default>

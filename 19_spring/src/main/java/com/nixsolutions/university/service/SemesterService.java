@@ -19,8 +19,25 @@ public class SemesterService {
     return semesterDao.getAll();
   }
   
+  public Semester getById(Integer id) {
+    return semesterDao.getById(id);
+  }
+  
   @Transactional
   public void delete(Integer id) {
     semesterDao.delete(id);
+  }
+  
+  @Transactional
+  public void saveOrUpdate(Semester in) {
+    if (in.getId() != null) {
+      Semester sem = semesterDao.getById(in.getId());
+      sem.setSemesterName(in.getSemesterName());
+      sem.setStartDate(in.getStartDate());
+      sem.setEndDate(in.getEndDate());
+      semesterDao.update(sem);
+    } else {
+      semesterDao.create(in);
+    }
   }
 }

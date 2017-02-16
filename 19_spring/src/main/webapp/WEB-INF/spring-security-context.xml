@@ -1,0 +1,40 @@
+<b:beans xmlns="http://www.springframework.org/schema/security"
+       xmlns:b="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+                  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+  <http pattern="/login*" security="none"/>
+
+  <http authentication-manager-ref="auth"
+      use-expressions="true"
+      >   
+      
+    <access-denied-handler error-page="/403" />
+    
+    <intercept-url pattern="/persons/*" access="hasRole('Dean')" />
+    <intercept-url pattern="/semesters/*" access="hasRole('Dean')" />
+    <intercept-url pattern="/subjects/*" access="hasRole('Dean')" />
+    
+    <intercept-url pattern="/*" access="hasAnyRole('Dean','Teacher','Student')" />
+    
+    <form-login login-page="/login" authentication-failure-url="/login?login_error=1" 
+      default-target-url="/home" always-use-default-target="true"/>
+      
+    <logout invalidate-session="true" logout-success-url="/login" logout-url="/logout"/>
+    
+    <session-management invalid-session-url="/login">
+         <concurrency-control max-sessions="1"
+            expired-url="/login" />
+      </session-management>
+  </http>
+       
+  <authentication-manager id="auth">
+      <authentication-provider user-service-ref="userDetailsService">
+      </authentication-provider>
+   </authentication-manager>
+  
+  <b:bean id="webExpressionHandler" 
+  class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />  
+  
+</b:beans> 

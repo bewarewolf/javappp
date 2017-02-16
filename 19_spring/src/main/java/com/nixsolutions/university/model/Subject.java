@@ -1,6 +1,7 @@
 package com.nixsolutions.university.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -90,6 +91,22 @@ public class Subject implements Serializable {
   
   public void setSemester(Semester semester) {
     this.semester = semester;
+  }
+  
+  public List<Journal> getRecords() {
+    if (this.records == null) {
+      this.records = new ArrayList<>();
+    }
+    return records;
+  }
+
+  public void setRecords(List<Journal> records) {
+    if (this.records == null) {
+      this.records = records;
+    } else {
+      this.records.retainAll(records);
+      this.records.addAll(records);
+    }
   }
 
   @Override

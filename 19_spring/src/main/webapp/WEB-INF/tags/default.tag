@@ -4,6 +4,7 @@
 <%@ attribute name="head_area" fragment="true"%>
 <%@ attribute name="content_area" fragment="true"%>
 <%@ attribute name="sidebar_area" fragment="true"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <c:url value="/resources/css/style.css" var="cssUrl"/>
 <html>
@@ -24,10 +25,12 @@
           <h1><a href="index.html">University</a></h1>
           
         </div>
-        <div id="user">
-            <p>${sessionScope.user.firstName} ${sessionScope.user.lastName}
+        <sec:authorize access="isAuthenticated()">
+          <div id="user">          
+            <p><sec:authentication property="principal.username" />
             <a href="<c:url value="/logout"/>">Logout</a></p>
           </div>
+        </sec:authorize>
       </div>
       
     </div>
@@ -36,12 +39,14 @@
 	        <ul id="menu">
 	          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
 	          <li class="selected"><a href="<c:url value="/home"/>">Home</a></li>
-	          <c:if test="${sessionScope.role ne 'Student'}">
-               <li><a href="<c:url value="/persons"/>">Persons</a></li>
-	          </c:if>
-	          <li><a href="<c:url value="/subjects"/>">Subjects</a></li>
-	          <li><a href="<c:url value="/semesters"/>">Semesters</a></li>
-	          <li><a href="<c:url value="/journal"/>">Journal</a></li>
+	          <sec:authorize access="isAuthenticated()">
+		          <sec:authorize access="hasAnyRole('Dean','Teacher')">
+	               <li><a href="<c:url value="/persons"/>">Persons</a></li>
+		          </sec:authorize>
+		          <li><a href="<c:url value="/subjects"/>">Subjects</a></li>
+		          <li><a href="<c:url value="/semesters"/>">Semesters</a></li>
+		          <li><a href="<c:url value="/journal"/>">Journal</a></li>
+	          </sec:authorize>
 	        </ul>
 	      </div>
 	    <div id="site_content">

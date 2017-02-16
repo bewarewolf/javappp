@@ -37,6 +37,8 @@ public class SubjectDTO {
     this.semester = semester;
   }
   
+  public SubjectDTO() { }
+  
   public SubjectDTO(Integer id, String name, String teacher, String semester) {
     super();
     this.id = id;
