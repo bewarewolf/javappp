@@ -77,9 +77,3 @@ INSERT INTO journal (person_id, subject_id, grade_id, grade_date) VALUES (7, 3, 
 INSERT INTO journal (person_id, subject_id, grade_id, grade_date) VALUES (7, 4, 3, TIMESTAMPADD('DAY', -4, CURRENT_TIMESTAMP()));
 INSERT INTO journal (person_id, subject_id, grade_id, grade_date) VALUES (7, 4, 4, TIMESTAMPADD('DAY', -3, CURRENT_TIMESTAMP()));
 INSERT INTO journal (person_id, subject_id, grade_id, grade_date) VALUES (7, 5, 1, TIMESTAMPADD('DAY', -8, CURRENT_TIMESTAMP()));
-
-CREATE ALIAS IF NOT EXISTS PERSON_NAME AS $$
-String personName(String fName, String lName) {  
-  return fName + " " + lName;
-}
-$$;
