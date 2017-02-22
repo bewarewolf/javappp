@@ -42,8 +42,16 @@ public class JournalController {
       student = pers.getName();
     }
     
-    ModelAndView mav = new ModelAndView("journal/journal");
+    if ("ALL".equals(subject)) {
+      subject = null;
+    }
+    if ("ALL".equals(student)) {
+      student = null;
+    }
+    
+    ModelAndView mav = new ModelAndView("journal/journal");    
     mav.addObject("journal", journalService.getAll(subject, student));
+    
     MyMap map = new MyMap();
     if (!StringUtils.isNullOrEmpty(subject)) {
       map.setSubject(subject);

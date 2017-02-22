@@ -1,8 +1,8 @@
 package com.nixsolutions.university.dto;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.nixsolutions.university.model.Person;
 import com.nixsolutions.university.model.PhoneNumber;
@@ -12,21 +12,15 @@ public class PersonDTO {
   private Integer id;
   private String login;
   private String password;
-  public String getPassword() {
-    return password;
-  }
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
   private String name;
   private String firstName;
   private String middleName;
   private String lastName;
   private LocalDate birthday;
-  private LocalDate startDate;
+  private LocalDate startDate;  
   private String personType;
   private String personStatus;
+  
   public String getFirstName() {
     return firstName;
   }
@@ -90,6 +84,12 @@ public class PersonDTO {
   public void setLogin(String login) {
     this.login = login;
   }
+  public String getPassword() {
+    return password;
+  }
+  public void setPassword(String password) {
+    this.password = password;
+  }
   public String getName() {
     if (name == null) {
       name = firstName + " " + lastName;
@@ -108,8 +108,6 @@ public class PersonDTO {
   
   public PersonDTO() {  }  
   
-  
-  
   public PersonDTO(Person person) {
     super();
     this.id = person.getId();
@@ -125,9 +123,7 @@ public class PersonDTO {
     this.name = firstName + " " + lastName; 
   }
   public static List<PersonDTO> convertFromPerson(List<Person> in) {
-    List<PersonDTO> out = new ArrayList<>();
-    in.forEach(p -> out.add(new PersonDTO(p)));
-    return out;
+    return in.stream().map(p -> new PersonDTO(p)).collect(Collectors.toList());
   }
   
   

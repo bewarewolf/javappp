@@ -1,7 +1,7 @@
 package com.nixsolutions.university.dto;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.nixsolutions.university.model.Subject;
 
@@ -60,8 +60,6 @@ public class SubjectDTO {
   }
   
   public static List<SubjectDTO> convertFromSubject(List<Subject> in) {
-    List<SubjectDTO> out = new ArrayList<>();
-    in.forEach(p -> out.add(new SubjectDTO(p)));
-    return out;
+    return in.stream().map(s -> new SubjectDTO(s)).collect(Collectors.toList());
   }
 }

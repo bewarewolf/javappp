@@ -3,17 +3,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <t:default title="Home">
-    <jsp:attribute name="head_area">
-        <script type="text/javascript">
-            function myFunction () {
-                var form = document.getElementById("form");
-            }
-        </script>
-    </jsp:attribute>
-    <jsp:attribute name="content_area">
-      <div id="error">
-        <h3>Error</h3>
-        <h3>${ex.message}</h3>
-      </div>
-    </jsp:attribute>
+  <jsp:attribute name="head_area">
+    <script type="text/javascript">
+      function myFunction () {
+          var form = document.getElementById("form");
+      }
+    </script>
+  </jsp:attribute>
+  <jsp:attribute name="content_area">
+    <div id="error">
+      <h3>Error</h3>
+      <h3>${ex.message}</h3>
+    </div>
+  </jsp:attribute>
 </t:default>

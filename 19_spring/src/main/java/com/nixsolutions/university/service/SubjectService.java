@@ -1,8 +1,7 @@
 package com.nixsolutions.university.service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,6 @@ import com.nixsolutions.university.dao.PersonTypeDAO;
 import com.nixsolutions.university.dao.SemesterDAO;
 import com.nixsolutions.university.dao.SubjectDAO;
 import com.nixsolutions.university.dto.SubjectDTO;
-import com.nixsolutions.university.model.Semester;
 import com.nixsolutions.university.model.Subject;
 
 @Service("subjectService")
@@ -67,18 +65,11 @@ public class SubjectService {
   }
   
   public List<String> getSemesters() {
-    List<Semester> semList = semesterDao.getAll();
-    semList.removeIf(s -> s.getEndDate().isBefore(LocalDate.now()));
-    List<String> out = new ArrayList<>();
-    semList.forEach(s -> out.add(s.getSemesterName()));
-    return out;
+    return semesterDao.getAll().stream().map(s -> s.getSemesterName()).collect(Collectors.toList());
   }
   
   public List<String> getTeachers() {
-    List<String> out = new ArrayList<>();
-    personDao.getByType(personTypeDao.getByValue("Teacher").getId()).forEach(t -> {
-      out.add(t.getFirstName() + " " + t.getLastName());
-    });
-    return out;
+    return personDao.getByType(personTypeDao.getByValue("Teacher").getId())
+	.stream().map(p -> p.getFullName()).collect(Collectors.toList());
   }
 }

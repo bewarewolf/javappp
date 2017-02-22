@@ -4,15 +4,15 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <t:default title="Semester details">
-   <jsp:attribute name="head_area">
-        <script type="text/javascript">
-                           function myFunction() {
-                              var form = document
-                                    .getElementById("form");
-                           }
-                        </script>
-    </jsp:attribute>
-   <jsp:attribute name="content_area">
+  <jsp:attribute name="head_area">
+    <script type="text/javascript">
+      function myFunction() {
+        var form = document
+          .getElementById("form");
+      }
+    </script>
+  </jsp:attribute>
+  <jsp:attribute name="content_area">
     <form:form action="/semesters/process" commandName="semester" method="post">
       <form:hidden path="id" />
       <table id="add_person_table">
@@ -32,5 +32,5 @@
       <input type="submit" value="Process" />
       <a href="<c:url value="/semesters"/>">Back</a>
     </form:form>
-   </jsp:attribute>
+  </jsp:attribute>
 </t:default>

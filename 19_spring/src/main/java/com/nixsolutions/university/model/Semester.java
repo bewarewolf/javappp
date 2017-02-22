@@ -18,7 +18,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.nixsolutions.university.util.LocalDateAttributeConverter;
 
@@ -40,13 +39,11 @@ public class Semester implements Serializable {
   @Column(name = "semester_date_start", columnDefinition = "date")
   @Convert(converter = LocalDateAttributeConverter.class)  
   @NotNull
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate startDate;
   
   @Column(name = "semester_date_end", columnDefinition = "date")
   @Convert(converter = LocalDateAttributeConverter.class)
   @NotNull
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate endDate;
   
   @OneToMany(mappedBy="semester", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)

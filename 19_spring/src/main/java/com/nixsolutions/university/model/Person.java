@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -57,6 +58,9 @@ public class Person implements Serializable {
   @NotNull
   @Size(max = 100)
   private String lastName;
+  
+  @Formula("first_name || ' ' || last_name")
+  private String fullName;
   
   @Column(name = "birthday", columnDefinition = "date")
   @Convert(converter = LocalDateAttributeConverter.class)
@@ -253,6 +257,10 @@ public class Person implements Serializable {
     this.lastName = lastName;
   }
 
+  public String getFullName() {
+    return fullName;
+  }
+  
   public LocalDate getBirthday() {
     return birthday;
   }

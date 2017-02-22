@@ -1,9 +1,8 @@
 package com.nixsolutions.university.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.h2.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,30 +33,17 @@ public class JournalService {
   }
   
   public List<JournalDTO> getAll(String subject, String student) {
-    List<JournalDTO> out = getAll();
-    
-    if (!StringUtils.isNullOrEmpty(subject) && !"ALL".equals(subject)) {
-      out.removeIf(j -> !j.getSubject().equals(subject));
-    }
-    if (!StringUtils.isNullOrEmpty(student) && !"ALL".equals(student)) {
-      out.removeIf(j -> !j.getStudent().equals(student));
-    }
-    
-    return out;
+    return JournalDTO.convertFromJournal(journalDao.getAll(subject, student));
   }
   
   public List<String> getStudents() {
-    List<String> out = new ArrayList<>();
-    personDao.getByType(personTypeDao.getByValue("Student").getId()).forEach(t -> {
-      out.add(t.getFirstName() + " " + t.getLastName());
-    });
-    return out;
+    return personDao.getByType(personTypeDao.getByValue("Student").getId())
+	    .stream().map(p -> p.getFirstName() + " " + p.getLastName()).collect(Collectors.toList());
   }
   
   public List<String> getSubjects() {
-    List<String> out = new ArrayList<>();
-    subjectDao.getAll().forEach(s -> out.add(s.getSubjectName()));    
-    return out;
+    return subjectDao.getAll()
+	    .stream().map(s -> s.getSubjectName()).collect(Collectors.toList());
   }
   
   @Transactional

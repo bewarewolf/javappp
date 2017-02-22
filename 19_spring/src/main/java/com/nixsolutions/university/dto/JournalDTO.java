@@ -1,7 +1,7 @@
 package com.nixsolutions.university.dto;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.nixsolutions.university.model.Journal;
 
@@ -65,8 +65,6 @@ public class JournalDTO {
   }
   
   public static List<JournalDTO> convertFromJournal(List<Journal> in) {
-    List<JournalDTO> out = new ArrayList<>();
-    in.forEach(p -> out.add(new JournalDTO(p)));
-    return out;
+    return in.stream().map(j -> new JournalDTO(j)).collect(Collectors.toList());
   }
 }

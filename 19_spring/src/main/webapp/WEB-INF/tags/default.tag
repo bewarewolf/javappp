@@ -22,7 +22,7 @@
       <div id="logo">
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="index.html">University</a></h1>
+          <h1><a href="<c:url value="/home"/>">University</a></h1>
           
         </div>
         <sec:authorize access="isAuthenticated()">
@@ -37,15 +37,14 @@
     <div id="bodyDiv">
 	    <div id="menubar">
 	        <ul id="menu">
-	          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-	          <li class="selected"><a href="<c:url value="/home"/>">Home</a></li>
 	          <sec:authorize access="isAuthenticated()">
-		          <sec:authorize access="hasAnyRole('Dean','Teacher')">
-	               <li><a href="<c:url value="/persons"/>">Persons</a></li>
-		          </sec:authorize>
-		          <li><a href="<c:url value="/subjects"/>">Subjects</a></li>
-		          <li><a href="<c:url value="/semesters"/>">Semesters</a></li>
-		          <li><a href="<c:url value="/journal"/>">Journal</a></li>
+	            <li class="selected"><a href="<c:url value="/home"/>">Home</a></li>	          
+		         <sec:authorize access="hasAnyRole('Dean','Teacher')">
+	              <li><a href="<c:url value="/persons"/>">Persons</a></li>
+		         </sec:authorize>
+		         <li><a href="<c:url value="/subjects"/>">Subjects</a></li>
+		         <li><a href="<c:url value="/semesters"/>">Semesters</a></li>
+		         <li><a href="<c:url value="/journal"/>">Journal</a></li>
 	          </sec:authorize>
 	        </ul>
 	      </div>
