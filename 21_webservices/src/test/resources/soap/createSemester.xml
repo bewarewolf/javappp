@@ -1,0 +1,4 @@
+<ns2:createSemesterResponse
+	xmlns:ns2="http://nixsolutions.com/university/soap/semester">
+	<ns2:id>5</ns2:id>
+</ns2:createSemesterResponse>

@@ -1,0 +1,8 @@
+<createSemesterRequest
+	xmlns="http://nixsolutions.com/university/soap/semester">
+	<semester>
+		<semesterName>new5</semesterName>
+		<startDate>2018-01-01+02:00</startDate>
+		<endDate>2018-06-01+02:00</endDate>
+	</semester>
+</createSemesterRequest>

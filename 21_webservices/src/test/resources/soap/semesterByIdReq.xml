@@ -1,0 +1,3 @@
+<getSemesterRequest xmlns="http://nixsolutions.com/university/soap/semester">
+	<id>2</id>
+</getSemesterRequest>

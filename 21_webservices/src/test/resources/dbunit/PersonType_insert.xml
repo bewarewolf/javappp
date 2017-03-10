@@ -1,0 +1,7 @@
+<dataset>
+  <PERSON_TYPE DESCRIPTION="Administration" VALUE="Dean"/>
+  <PERSON_TYPE DESCRIPTION="Teaching and grading" VALUE="Teacher"/>
+  <PERSON_TYPE DESCRIPTION="Studying" VALUE="Student"/>
+  <PERSON_TYPE DESCRIPTION="4th" VALUE="4th"/>
+  <PERSON_TYPE DESCRIPTION="one more" VALUE="who knows"/>
+</dataset>

@@ -1,0 +1,3 @@
+<deleteSemesterRequest xmlns="http://nixsolutions.com/university/soap/semester">
+	<id>1</id>
+</deleteSemesterRequest>

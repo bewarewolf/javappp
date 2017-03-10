@@ -1,0 +1,9 @@
+<updateSemesterRequest
+	xmlns="http://nixsolutions.com/university/soap/semester">
+	<semester>
+		<id>2</id>
+		<semesterName>2nd upd</semesterName>
+		<startDate>2016-01-01+02:00</startDate>
+		<endDate>2016-05-31+03:00</endDate>
+	</semester>
+</updateSemesterRequest>

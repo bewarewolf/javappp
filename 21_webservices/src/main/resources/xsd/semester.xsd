@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="qualified"
+	targetNamespace="http://nixsolutions.com/university/soap/semester"
+	xmlns:tns="http://nixsolutions.com/university/soap/semester">
+
+	<element name="getSemesterRequest">
+		<complexType>
+			<sequence>
+				<element name="id" type="int" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="getSemesterResponse">
+		<complexType>
+			<sequence>
+				<element name="semester" type="tns:semester" minOccurs="0"/>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="createSemesterRequest">
+		<complexType>
+			<sequence>
+				<element name="semester" type="tns:semester" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="createSemesterResponse">
+		<complexType>
+			<sequence>
+				<element name="id" type="int" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="deleteSemesterRequest">
+		<complexType>
+			<sequence>
+				<element name="id" type="int" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="deleteSemesterResponse">
+		<complexType>
+			<sequence>
+				<element name="status" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="updateSemesterRequest">
+		<complexType>
+			<sequence>
+				<element name="semester" type="tns:semester" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="updateSemesterResponse">
+		<complexType>
+			<sequence>
+				<element name="status" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="listSemesterRequest">
+		<complexType />
+	</element>
+
+	<element name="listSemesterResponse">
+		<complexType>
+			<sequence>
+				<element name="semester" type="tns:semester" minOccurs="0"
+					maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<complexType name="semester">
+		<sequence>
+			<element name="id" nillable="true" type="string" />
+			<element name="semesterName" type="string" />
+			<element name="startDate" type="date" />
+			<element name="endDate" type="date" />
+		</sequence>
+	</complexType>
+</schema>

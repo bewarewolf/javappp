@@ -1,0 +1,4 @@
+<ns2:updateSemesterResponse
+	xmlns:ns2="http://nixsolutions.com/university/soap/semester">
+	<ns2:status>success</ns2:status>
+</ns2:updateSemesterResponse>

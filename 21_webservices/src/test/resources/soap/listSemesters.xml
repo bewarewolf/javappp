@@ -1,0 +1,27 @@
+<ns2:listSemesterResponse
+	xmlns:ns2="http://nixsolutions.com/university/soap/semester">
+	<ns2:semester>
+		<ns2:id>1</ns2:id>
+		<ns2:semesterName>1st</ns2:semesterName>
+		<ns2:startDate>2015-09-01+03:00</ns2:startDate>
+		<ns2:endDate>2015-12-31+02:00</ns2:endDate>
+	</ns2:semester>
+	<ns2:semester>
+		<ns2:id>2</ns2:id>
+		<ns2:semesterName>2nd</ns2:semesterName>
+		<ns2:startDate>2016-01-01+02:00</ns2:startDate>
+		<ns2:endDate>2016-05-31+03:00</ns2:endDate>
+	</ns2:semester>
+	<ns2:semester>
+		<ns2:id>3</ns2:id>
+		<ns2:semesterName>3rd</ns2:semesterName>
+		<ns2:startDate>2016-09-01+03:00</ns2:startDate>
+		<ns2:endDate>2016-12-31+02:00</ns2:endDate>
+	</ns2:semester>
+	<ns2:semester>
+		<ns2:id>4</ns2:id>
+		<ns2:semesterName>4th</ns2:semesterName>
+		<ns2:startDate>2017-01-01+02:00</ns2:startDate>
+		<ns2:endDate>2017-05-31+03:00</ns2:endDate>
+	</ns2:semester>
+</ns2:listSemesterResponse>

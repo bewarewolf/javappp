@@ -1,0 +1,6 @@
+<dataset>
+  <PERSON_STATUS DESCRIPTION="Default" VALUE="Active"/>
+  <PERSON_STATUS DESCRIPTION="Absent" VALUE="Sick leave"/>
+  <PERSON_STATUS DESCRIPTION="Activity is updated" VALUE="upd"/>
+  <PERSON_STATUS DESCRIPTION="Activity is terminated" VALUE="Expelled"/>
+</dataset>
